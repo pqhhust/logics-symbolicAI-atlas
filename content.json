@@ -50,7 +50,7 @@
         "Trace Horn rules",
         "Give a countervaluation"
       ],
-      "exerciseCount": 14,
+      "exerciseCount": 16,
       "coverage": [
         {
           "skill": "Valuations, syntax, models and entailment",
@@ -90,6 +90,13 @@
           "exerciseIds": [
             "P4",
             "P14"
+          ]
+        },
+        {
+          "skill": "Challenge synthesis · lab-level written reasoning",
+          "exerciseIds": [
+            "P15",
+            "P16"
           ]
         }
       ],
@@ -154,7 +161,7 @@
         "Unify terms",
         "Refute with first-order resolution"
       ],
-      "exerciseCount": 14,
+      "exerciseCount": 16,
       "coverage": [
         {
           "skill": "Translation, scope and negation",
@@ -195,6 +202,13 @@
           "exerciseIds": [
             "F7",
             "F12"
+          ]
+        },
+        {
+          "skill": "Challenge synthesis · lab-level written reasoning",
+          "exerciseIds": [
+            "F15",
+            "F16"
           ]
         }
       ],
@@ -259,7 +273,7 @@
         "Explain frame constraints",
         "Contrast plan and policy"
       ],
-      "exerciseCount": 14,
+      "exerciseCount": 16,
       "coverage": [
         {
           "skill": "STRIPS and state transitions",
@@ -299,6 +313,13 @@
             "A7",
             "A13",
             "A14"
+          ]
+        },
+        {
+          "skill": "Challenge synthesis · lab-level written reasoning",
+          "exerciseIds": [
+            "A15",
+            "A16"
           ]
         }
       ],
@@ -371,7 +392,7 @@
         "Calculate support/confidence/lift",
         "Run Apriori pruning"
       ],
-      "exerciseCount": 14,
+      "exerciseCount": 16,
       "coverage": [
         {
           "skill": "Derivations, closure and concepts",
@@ -417,6 +438,13 @@
             "C4",
             "C7",
             "C13"
+          ]
+        },
+        {
+          "skill": "Challenge synthesis · lab-level written reasoning",
+          "exerciseIds": [
+            "C15",
+            "C16"
           ]
         }
       ],
@@ -481,7 +509,7 @@
         "Score weighted assignments",
         "Write a PSL hinge loss"
       ],
-      "exerciseCount": 14,
+      "exerciseCount": 16,
       "coverage": [
         {
           "skill": "Degree versus probability and weighted clauses",
@@ -520,6 +548,13 @@
             "Z7",
             "Z12",
             "Z13"
+          ]
+        },
+        {
+          "skill": "Challenge synthesis · lab-level written reasoning",
+          "exerciseIds": [
+            "Z15",
+            "Z16"
           ]
         }
       ],
@@ -592,7 +627,7 @@
         "Infer a simple type",
         "Explain Curry–Howard and proof checking"
       ],
-      "exerciseCount": 14,
+      "exerciseCount": 16,
       "coverage": [
         {
           "skill": "Variables, binding and capture avoidance",
@@ -632,6 +667,13 @@
             "T7",
             "T13",
             "T14"
+          ]
+        },
+        {
+          "skill": "Challenge synthesis · lab-level written reasoning",
+          "exerciseIds": [
+            "T15",
+            "T16"
           ]
         }
       ],
@@ -696,7 +738,7 @@
         "Distinguish TBox/ABox",
         "Test satisfiability and subsumption"
       ],
-      "exerciseCount": 14,
+      "exerciseCount": 16,
       "coverage": [
         {
           "skill": "Concept/role/individual vocabulary and semantics",
@@ -738,6 +780,13 @@
             "D8",
             "D9"
           ]
+        },
+        {
+          "skill": "Challenge synthesis · lab-level written reasoning",
+          "exerciseIds": [
+            "D15",
+            "D16"
+          ]
         }
       ],
       "slides": [
@@ -774,7 +823,8 @@
         "Empty clause",
         "Independent semantic explanation"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "P2",
@@ -795,7 +845,8 @@
         "CNF",
         "Three models"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "P3",
@@ -816,7 +867,8 @@
         "Premise verification",
         "Valid second inference"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "P4",
@@ -837,7 +889,8 @@
         "Longer paths",
         "Termination and no invented facts"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "P5",
@@ -858,7 +911,8 @@
         "Correct elimination rules",
         "Discharge"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "P6",
@@ -879,7 +933,8 @@
         "Conjunction",
         "Disjunction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "P7",
@@ -901,7 +956,8 @@
         "Transitive entailment",
         "Vacuous truth"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "F1",
@@ -924,7 +980,8 @@
         "Correct negation",
         "Order comparison and counterexample"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "F2",
@@ -947,7 +1004,8 @@
         "Two clauses",
         "Equisatisfiability distinction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "F3",
@@ -968,7 +1026,8 @@
         "Substitution",
         "Empty clause"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "F4",
@@ -991,7 +1050,8 @@
         "Occurs check",
         "Generality"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "F5",
@@ -1012,7 +1072,8 @@
         "Local witness verification",
         "Both global candidates rejected"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "F6",
@@ -1033,7 +1094,8 @@
         "Inner connective and quantifier",
         "Free-variable identification"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "F7",
@@ -1054,7 +1116,8 @@
         "Premise true and conclusion false",
         "Fresh-witness restriction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "A1",
@@ -1077,7 +1140,8 @@
         "Delete effects",
         "Persistence and assumptions"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "A2",
@@ -1098,7 +1162,8 @@
         "Second state",
         "Failed preconditions"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "A3",
@@ -1121,7 +1186,8 @@
         "Persistence or negative frame",
         "Spurious SAT model"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "A4",
@@ -1142,7 +1208,8 @@
         "Final goal",
         "Minimality argument"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "A5",
@@ -1163,7 +1230,8 @@
         "Failed final state",
         "Interleaving/revisit explanation"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "A6",
@@ -1184,7 +1252,8 @@
         "No-op/persistence condition",
         "Exact-length caveat"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "A7",
@@ -1205,7 +1274,8 @@
         "Transition/reward/policy notation",
         "Adaptation to stochastic outcomes"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "C1",
@@ -1226,7 +1296,8 @@
         "Two attribute closures",
         "Closedness decision"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "C2",
@@ -1249,7 +1320,8 @@
         "Correct order",
         "Cover edges"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "C3",
@@ -1272,7 +1344,8 @@
         "Lift",
         "Interpretation"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "C4",
@@ -1293,7 +1366,8 @@
         "Pruning reason",
         "Candidate versus confirmed frequent"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "C5",
@@ -1314,7 +1388,8 @@
         "Counterexample",
         "Confidence and distinction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "C6",
@@ -1335,7 +1410,8 @@
         "Definition applied twice",
         "Empty-extent case"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "C7",
@@ -1358,7 +1434,8 @@
         "Maximal itemsets",
         "Counterexample to equivalence"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "Z1",
@@ -1381,7 +1458,8 @@
         "Łukasiewicz pair",
         "Drastic pair"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "Z2",
@@ -1404,7 +1482,8 @@
         "Second pair",
         "Convention distinction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "Z3",
@@ -1426,7 +1505,8 @@
         "Optimum",
         "Inconsistency"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "Z4",
@@ -1449,7 +1529,8 @@
         "Numerical values",
         "Linear/squared distinction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "Z5",
@@ -1470,7 +1551,8 @@
         "Associativity counterexample",
         "Conclusion"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "Z6",
@@ -1491,7 +1573,8 @@
         "Fuzzy degree",
         "Semantic distinction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "Z7",
@@ -1512,7 +1595,8 @@
         "Four relaxed truths",
         "Gap and conclusion"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "T1",
@@ -1533,7 +1617,8 @@
         "Correct normal form",
         "Free-variable check"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "T2",
@@ -1556,7 +1641,8 @@
         "Natural deduction",
         "Discharges"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "T3",
@@ -1577,7 +1663,8 @@
         "Inner application",
         "Numeral identification"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "T4",
@@ -1598,7 +1685,8 @@
         "Terminating strategy",
         "Nonterminating strategy and distinction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "T5",
@@ -1619,7 +1707,8 @@
         "Impossible type equation",
         "Connection to normalization"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "T6",
@@ -1640,7 +1729,8 @@
         "Candidate versus checked proof",
         "Specification/assumption risk"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "T7",
@@ -1661,7 +1751,8 @@
         "Inequality",
         "Constructive/classical contrast"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "D1",
@@ -1682,7 +1773,8 @@
         "Universal",
         "Explicit existence"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "D2",
@@ -1703,7 +1795,8 @@
         "Mixed-successor countermodel",
         "Both conclusions"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "D3",
@@ -1726,7 +1819,8 @@
         "Universal propagation",
         "Clash"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "D4",
@@ -1747,7 +1841,8 @@
         "Lan classification",
         "Open-world distinction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "D5",
@@ -1768,7 +1863,8 @@
         "Unsatisfiability characterization",
         "Countermodel to converse"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "D6",
@@ -1789,7 +1885,8 @@
         "True-model construction",
         "False-model construction"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "D7",
@@ -1810,7 +1907,8 @@
         "Unsatisfiable concept",
         "ABox-induced inconsistency"
       ],
-      "origin": "Original practice · based on current course concepts"
+      "origin": "Original practice · based on current course concepts",
+      "difficulty": "standard"
     },
     {
       "id": "P8",
@@ -1832,7 +1930,8 @@
         "Inconsistent case"
       ],
       "pages": "18–19",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "P9",
@@ -1854,7 +1953,8 @@
         "Assumptions stated"
       ],
       "pages": "19",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "P10",
@@ -1876,7 +1976,8 @@
         "Semantic interpretation"
       ],
       "pages": "19",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "P11",
@@ -1898,7 +1999,8 @@
         "Result versus validity"
       ],
       "pages": "9–16",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "P12",
@@ -1920,7 +2022,8 @@
         "Calculus versus KB"
       ],
       "pages": "29–37",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "P13",
@@ -1942,7 +2045,8 @@
         "Soundness explanation"
       ],
       "pages": "22–28",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "P14",
@@ -1964,7 +2068,8 @@
         "Finite monotone termination"
       ],
       "pages": "Datalog handout",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "F8",
@@ -1986,7 +2091,8 @@
         "Existential check"
       ],
       "pages": "22–29",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "F9",
@@ -2008,7 +2114,8 @@
         "Free y"
       ],
       "pages": "35–43",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "F10",
@@ -2031,7 +2138,8 @@
         "Equisatisfiability"
       ],
       "pages": "38–45",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "F11",
@@ -2053,7 +2161,8 @@
         "Second substitution and contradiction"
       ],
       "pages": "43–49",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "F12",
@@ -2075,7 +2184,8 @@
         "No witness escape"
       ],
       "pages": "Natural deduction rules handout",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "F13",
@@ -2097,7 +2207,8 @@
         "Negation"
       ],
       "pages": "10–20",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "F14",
@@ -2119,7 +2230,8 @@
         "No shared-witness strengthening"
       ],
       "pages": "10–29",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "A8",
@@ -2141,7 +2253,8 @@
         "Subgoal interference"
       ],
       "pages": "15–22",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "A9",
@@ -2163,7 +2276,8 @@
         "Spurious initial model"
       ],
       "pages": "23–32",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "A10",
@@ -2185,7 +2299,8 @@
         "Idle/concurrent semantics"
       ],
       "pages": "23–32",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "A11",
@@ -2207,7 +2322,8 @@
         "Inductive invariant conclusion"
       ],
       "pages": "4–14, 23–32",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "A12",
@@ -2229,7 +2345,8 @@
         "Idle-step action count"
       ],
       "pages": "23–32",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "A13",
@@ -2251,7 +2368,8 @@
         "Interpretation"
       ],
       "pages": "35–36",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "A14",
@@ -2273,7 +2391,8 @@
         "Long-horizon limitation"
       ],
       "pages": "35–36",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "C8",
@@ -2297,7 +2416,8 @@
         "Full order and termination"
       ],
       "pages": "22–24, 83–92",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "C9",
@@ -2319,7 +2439,8 @@
         "Order reversal"
       ],
       "pages": "15–21",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "C10",
@@ -2341,7 +2462,8 @@
         "Redundancy reasoning"
       ],
       "pages": "31–34",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "C11",
@@ -2363,7 +2485,8 @@
         "Complete nonredundant basis"
       ],
       "pages": "31–34",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "C12",
@@ -2385,7 +2508,8 @@
         "Lattice versus support distinction"
       ],
       "pages": "27–29",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "C13",
@@ -2408,7 +2532,8 @@
         "Algorithm contrast"
       ],
       "pages": "64–66",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "C14",
@@ -2430,7 +2555,8 @@
         "Threshold and support distinction"
       ],
       "pages": "67–79",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "Z8",
@@ -2452,7 +2578,8 @@
         "Weak contradiction bound"
       ],
       "pages": "22–24",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "Z9",
@@ -2474,7 +2601,8 @@
         "Top conorm value"
       ],
       "pages": "22–27",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "Z10",
@@ -2496,7 +2624,8 @@
         "Boundary and formulas"
       ],
       "pages": "Implication section",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "Z11",
@@ -2518,7 +2647,8 @@
         "Operator dependence"
       ],
       "pages": "23–27, implication section",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "Z12",
@@ -2541,7 +2671,8 @@
         "Convexity and constant sum"
       ],
       "pages": "PSL slides 11–20",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "Z13",
@@ -2563,7 +2694,8 @@
         "Global conclusion"
       ],
       "pages": "PSL slides 11–20",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "Z14",
@@ -2585,7 +2717,8 @@
         "Semantic distinction"
       ],
       "pages": "PSL slides 3–19",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "T8",
@@ -2607,7 +2740,8 @@
         "Consistent alpha-conversion"
       ],
       "pages": "15, 19",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "T9",
@@ -2629,7 +2763,8 @@
         "Argument-count explanation"
       ],
       "pages": "15, 19",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "T10",
@@ -2651,7 +2786,8 @@
         "Normal form"
       ],
       "pages": "16–17",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "T11",
@@ -2673,7 +2809,8 @@
         "Selection explanation"
       ],
       "pages": "18",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "T12",
@@ -2695,7 +2832,8 @@
         "Elimination and discharge"
       ],
       "pages": "21–24",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "T13",
@@ -2717,7 +2855,8 @@
         "Nonconstructive choice"
       ],
       "pages": "27",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "T14",
@@ -2739,7 +2878,8 @@
         "Checking distinction"
       ],
       "pages": "9–14, 28",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "D8",
@@ -2761,7 +2901,8 @@
         "Name versus individual distinction"
       ],
       "pages": "21–22",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "D9",
@@ -2783,7 +2924,8 @@
         "No converse role inclusion"
       ],
       "pages": "22, 52–54",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "D10",
@@ -2805,7 +2947,8 @@
         "Semantic duality"
       ],
       "pages": "9–18, 35–44",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "D11",
@@ -2827,7 +2970,8 @@
         "Explicit model"
       ],
       "pages": "35–46",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "D12",
@@ -2849,7 +2993,8 @@
         "Negated-filler existential"
       ],
       "pages": "9–18",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "D13",
@@ -2871,7 +3016,8 @@
         "Domain/range inference"
       ],
       "pages": "2–8, 49–65",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
     },
     {
       "id": "D14",
@@ -2893,7 +3039,389 @@
         "Source/successor distinction"
       ],
       "pages": "9–19, 30–34",
-      "origin": "Original practice · mapped to current lecture"
+      "origin": "Original practice · mapped to current lecture",
+      "difficulty": "standard"
+    },
+    {
+      "id": "P15",
+      "topic": "prop",
+      "title": "Odd closed walks: a hidden distinction",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 30,
+      "points": 5,
+      "prompt": "Using only positive Datalog rules, define Odd(x,y) and Even(x,y) for directed paths of positive odd/even length. Test the graph a→b→c→a together with c→d→c. Prove that Odd(d,d) follows although d lies on no odd simple directed cycle. Explain what your rules actually recognize.",
+      "hint": "Start Odd with each edge. Extend a path by one edge to reverse its parity. A closed walk may revisit a vertex.",
+      "steps": [
+        "Use Edge(x,y)→Odd(x,y), Odd(x,y)∧Edge(y,z)→Even(x,z), and Even(x,y)∧Edge(y,z)→Odd(x,z). All head variables occur in their bodies.",
+        "Induct on path length: the base has length 1 and every extension flips parity. Conversely, every derived fact describes a path of the claimed positive parity; even paths begin at length 2.",
+        "At d, the walk d→c→a→b→c→d has length 5, so Odd(d,d) is derived.",
+        "Every simple cycle through d must use d→c and c→d, hence is the length-2 cycle. Taking the triangle as a detour revisits c, so it is not simple.",
+        "The diagonal query recognizes odd closed walks, not membership in an odd simple cycle. Positive path rules cannot enforce all vertices being distinct."
+      ],
+      "rubric": [
+        "Safe parity rules",
+        "Inductive soundness/completeness",
+        "Length-5 witness",
+        "No odd simple cycle through d",
+        "Correct query interpretation"
+      ],
+      "scope": "Datalog lab exercises 2–4: paths, cycles and odd paths.",
+      "pages": "Datalog handout",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "P16",
+      "topic": "prop",
+      "title": "Why a least model exists",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 30,
+      "points": 5,
+      "prompt": "Treat a finite ground positive Datalog program as implications A₁∧…∧Aₖ→B, including facts with empty bodies. Prove that the intersection of any nonempty family of its models is also a model. Deduce existence of a least model. Show with a two-atom example why replacing a Horn head by a disjunction can break this argument.",
+      "hint": "If every body atom survives the intersection, it is true in every original model.",
+      "steps": [
+        "Let M be the intersection. If a rule body is true in M, each body atom is true in every Mᵢ. Because each Mᵢ satisfies the rule, B belongs to every Mᵢ, hence to M. Facts likewise belong to all models.",
+        "The valuation making every atom true is a model of a positive program, so the family of all models is nonempty. Its intersection is a model contained in every other model: the least model.",
+        "For p∨q, the models {p} and {q} have intersection ∅, which does not satisfy p∨q.",
+        "Thus the unique positive head is essential to this intersection proof; the proof concerns sets of ground facts over a fixed vocabulary/domain, not arbitrary intersections of unrelated first-order domains."
+      ],
+      "rubric": [
+        "Closure proof for rules",
+        "Facts and nonempty model family",
+        "Leastness",
+        "Disjunctive counterexample",
+        "Fixed ground setting"
+      ],
+      "scope": "Datalog theoretical handout: minimal model; propositional implication semantics.",
+      "pages": "Datalog handout",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "F15",
+      "topic": "fol",
+      "title": "Find the smallest model",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 30,
+      "points": 5,
+      "prompt": "Consider ∀x∃y R(x,y), ∀x¬R(x,x), and ∀x∀y(R(x,y)→¬R(y,x)), over a nonempty domain. Find the smallest possible finite domain and an interpretation. Then add ∀x∀y∀z((R(x,y)∧R(y,z))→R(x,z)); prove that your smallest model can no longer work. Do not invoke a graph algorithm.",
+      "hint": "Every individual needs an outgoing edge, self-loops are forbidden, and an edge rules out its reverse.",
+      "steps": [
+        "A one-element domain fails because the required edge is a forbidden self-loop. In a two-element domain, the only possible outgoing edges are a→b and b→a; requiring both contradicts the third axiom.",
+        "Three elements suffice: R={(a,b),(b,c),(c,a)}. Each object has a successor, no self-loop exists, and no edge is accompanied by its reverse.",
+        "With transitivity, R(a,b) and R(b,c) force R(a,c), contradicting R(c,a) and asymmetry. More generally every admissible three-element model must give each vertex its only permitted cyclic arrangement, so none can meet the added condition.",
+        "The argument establishes the stated minimum and rules out three-element transitive models; it does not infer global inconsistency merely from one failed finite size."
+      ],
+      "rubric": [
+        "One-element exclusion",
+        "Two-element exclusion",
+        "Explicit three-element model",
+        "Transitivity contradiction",
+        "Precisely bounded conclusion"
+      ],
+      "scope": "First-order model construction, quantified axioms and semantic countermodels.",
+      "pages": "10–29",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "F16",
+      "topic": "fol",
+      "title": "Witnesses that force a contradiction",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 35,
+      "points": 5,
+      "prompt": "Refute the following KB using clausal resolution: (1) ∀x(P(x)→∃y(R(x,y)∧P(y))); (2) ∀x∀y(R(x,y)→(Q(x)∨Q(y))); (3) ∃x P(x); (4) ∀x(P(x)→¬Q(x)). Show the Skolem dependencies and every nontrivial substitution.",
+      "hint": "The existential root and its generated successor both satisfy P, hence neither can satisfy Q.",
+      "steps": [
+        "Skolemize (1) with fresh f(x), obtaining ¬P(x)∨R(x,f(x)) and ¬P(x)∨P(f(x)). Clause (3) is P(c) for fresh c.",
+        "The other clauses are ¬R(u,v)∨Q(u)∨Q(v) and ¬P(z)∨¬Q(z), with variables standardized apart.",
+        "Resolve P(c) with the first two clauses using x↦c: obtain R(c,f(c)) and P(f(c)). Resolve (4) at z↦c and z↦f(c) to obtain ¬Q(c) and ¬Q(f(c)).",
+        "Resolve the R clause with R(c,f(c)) using {u↦c,v↦f(c)}: obtain Q(c)∨Q(f(c)). Resolving the two negative units gives Q(f(c)) and then □.",
+        "A constant for the witness in (1) would incorrectly force the same successor for all P-objects. The fresh constant c and function f have different roles."
+      ],
+      "rubric": [
+        "Correct Skolem symbols",
+        "All clauses and variable hygiene",
+        "Generated P/R facts",
+        "Both negative Q units",
+        "Resolution to empty clause"
+      ],
+      "scope": "First-order clausal form, Skolemization, unification and resolution.",
+      "pages": "35–49",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "A15",
+      "topic": "plan",
+      "title": "A shortest plan with a lower-bound proof",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 35,
+      "points": 5,
+      "prompt": "Four blocks start with On(A,C), On(C,Table), On(D,B), On(B,Table). Only A and D are clear. The goal is On(A,B), On(B,C), On(C,D). A serial action moves one clear block onto a clear different block or onto the table. Give a shortest plan and prove its length is minimal.",
+      "hint": "A must leave C before C moves; it cannot remain on its final support B while B moves.",
+      "steps": [
+        "A five-move plan is: move A from C to Table; move D from B to Table; move C from Table to D; move B from Table to C; move A from Table to B. Every moved block and non-table destination is clear at its action.",
+        "The final state contains the three goal On atoms and D on Table.",
+        "B must move from Table to C. C must move from Table to D. D must move off B so B can move: at least one action each.",
+        "A must leave C before C can move. That first move cannot be its permanent final move onto B, since B must still move and must be clear then. Therefore A needs at least two moves.",
+        "The lower bound is 1+1+1+2=5, attained by the displayed plan. Table destinations do not require the table itself to be clear."
+      ],
+      "rubric": [
+        "Legal plan",
+        "Final goal check",
+        "B/C/D lower bounds",
+        "A requires two moves",
+        "Tight minimum"
+      ],
+      "scope": "STRIPS, clear-block preconditions, subgoal interference and Sussman anomaly.",
+      "pages": "4–22",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "A16",
+      "topic": "plan",
+      "title": "Why an extra SAT step can destroy feasibility",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 30,
+      "points": 4,
+      "prompt": "Use one fluent Open. Action OpenDoor has precondition ¬Open and effect Open; CloseDoor has precondition Open and effect ¬Open. Initially ¬Open; exactly one action is required at every step. Prove that goal Open at horizon H is reachable iff H is odd. Write a horizon-2 refutation argument, then state the precise change that makes feasibility monotone in H.",
+      "hint": "Only one action is applicable in each state. Use induction on time rather than enumerating every horizon.",
+      "steps": [
+        "At time 0 Open is false. If false, only OpenDoor is applicable and it makes Open true. If true, only CloseDoor is applicable and it makes Open false. Thus Open_t is true exactly when t is odd, by induction.",
+        "At H=2, exactly-one plus preconditions force OpenDoor₀ and CloseDoor₁, so the effect gives ¬Open₂, contradicting the goal Open₂.",
+        "At H=1 a plan exists, while H=2 is UNSAT. Feasibility is therefore not monotone for exact-length encodings without idle steps.",
+        "Allow zero actions per step with complete persistence constraints, or add a genuine no-op. Any satisfying H-step plan can then be extended by an idle step without changing the final state."
+      ],
+      "rubric": [
+        "Inductive invariant",
+        "Horizon-2 contradiction",
+        "Non-monotonicity example",
+        "No-op plus persistence repair"
+      ],
+      "scope": "SATPLAN horizons, serial actions, preconditions/effects and frames.",
+      "pages": "23–32",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "C15",
+      "topic": "fca",
+      "title": "Reconstruct the whole conceptual structure",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 40,
+      "points": 5,
+      "prompt": "Context: 1:{a,b,c,d}, 2:{a,b}, 3:{a,c}, 4:{d}, ordered a<b<c<d. List every formal concept and its Hasse cover edges under extent inclusion. Compute the meet and join of the concepts with intents {a,b} and {a,c}. Enumerate the intents in NextClosure lectical order, explaining at least one rejected pivot.",
+      "hint": "Enumerate closures of attribute subsets first. A pivot fails if its closure introduces a new earlier attribute.",
+      "steps": [
+        "The closed intents are ∅, {a}, {d}, {a,b}, {a,c}, {a,b,c,d}. Their extents are respectively {1,2,3,4}, {1,2,3}, {1,4}, {1,2}, {1,3}, {1}.",
+        "Hasse cover edges from larger extent to smaller: top→{a}, top→{d}; {a}→{a,b}, {a}→{a,c}; {a,b}→all, {a,c}→all, {d}→all. Here labels denote intents; they are ordered oppositely to extents.",
+        "Meet of the {a,b}/{a,c} concepts has extent {1} and full intent. Their join has extent {1,2,3} and intent {a}.",
+        "NextClosure order is ∅, {d}, {a}, {a,c}, {a,b}, full. For example, from {d}, pivot c closes {c} to {a,c}, introducing earlier a absent from the old set, so reject it.",
+        "Verify each listed pair by deriving its extent and then its intent. Exhaustiveness follows from checking all 16 attribute subsets or from the complete terminating NextClosure trace."
+      ],
+      "rubric": [
+        "All closed intents/extents",
+        "Correct cover edges",
+        "Meet and join",
+        "Lectical order and rejected pivot",
+        "Exhaustiveness justification"
+      ],
+      "scope": "FCA lab-level concept enumeration, lattice construction, closure and NextClosure.",
+      "pages": "15–24, 83–92",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "C16",
+      "topic": "fca",
+      "title": "From transactions to an implication basis",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 40,
+      "points": 5,
+      "prompt": "Transactions are abc, abc, ab, ac, bc. At support count at least 2, list all frequent nonempty itemsets and identify the closed and maximal frequent sets. At confidence ≥2/3 list every rule with union abc. Is there any nontrivial exact implication in this context? Justify your final claim using all closed itemsets, including ∅.",
+      "hint": "Compute the closure system separately from the frequency threshold. Equality at 2/3 is accepted.",
+      "steps": [
+        "Singletons a,b,c have support count 4 each; ab,ac,bc have count 3 each; abc has count 2. All seven nonempty itemsets are frequent.",
+        "All eight subsets including ∅ are closed: no attribute is shared by all transactions, each singleton’s extent has no extra common attribute, each pair lacks the third in one transaction, and abc is already full. All seven nonempty frequent sets are closed; only abc is maximal frequent.",
+        "Rules ab⇒c, ac⇒b and bc⇒a have confidence 2/3 and support 2/5, so all meet the threshold. Rules a⇒bc, b⇒ac, c⇒ab have confidence 1/2 and fail.",
+        "No nontrivial exact implication X→Y with Y not contained in X holds: X″=X for every X. The empty set of implications is already a complete basis for this closure system, while high-confidence association rules still exist."
+      ],
+      "rubric": [
+        "Complete supports",
+        "Closed and maximal sets",
+        "All six candidate rules",
+        "Exact-implication argument",
+        "Empty premise checked"
+      ],
+      "scope": "Association-rule lab, frequent/closed/maximal sets and FCA implications.",
+      "pages": "31–34, 39–79",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "Z15",
+      "topic": "fuzzy",
+      "title": "Solve an entire family of weighted problems",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 35,
+      "points": 5,
+      "prompt": "Clauses p, ¬p∨q, ¬q have arbitrary strictly positive weights α,β,γ. Derive a formula for the Boolean optimum and characterize the optimal assignments including ties. Prove that the Łukasiewicz relaxation has the same optimum for this particular family, without invoking a numerical optimizer.",
+      "hint": "Every Boolean assignment must lose some weight. Split the relaxed square into p≤q and p≥q.",
+      "steps": [
+        "Assignments 00,01,10,11 score β+γ, β, α+γ, α+β. Since α,γ>0, 01 is never optimal. The optimum is α+β+γ−min(α,β,γ).",
+        "The optimal Boolean assignments are 00 when α is a minimum weight, 10 when β is a minimum, and 11 when γ is a minimum. Include every tied case.",
+        "The relaxed objective is αp+βmin(1,1−p+q)+γ(1−q). It is affine on each triangle p≤q and p≥q. An affine function on either closed triangle attains a maximum at one of its vertices.",
+        "The two triangles’ vertices are 00,01,11 and 00,10,11, all Boolean. Hence the continuous optimum equals the Boolean optimum here. Tied edges can contain fractional optima, but cannot improve the value.",
+        "This equality is specific to the instance family; it is not a general theorem that relaxed weighted MAX-SAT has no integrality gap."
+      ],
+      "rubric": [
+        "Four scores",
+        "Optimal-value formula",
+        "Tie classification",
+        "Piecewise-affine vertex proof",
+        "Correctly limited conclusion"
+      ],
+      "scope": "Weighted MAX-SAT, Łukasiewicz clause relaxation and piecewise-linear optimization.",
+      "pages": "PSL slides 3–20",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "Z16",
+      "topic": "fuzzy",
+      "title": "Derive the residuum instead of memorizing it",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 30,
+      "points": 4,
+      "prompt": "For T(a,c)=max(0,a+c−1) on [0,1], prove T(a,c)≤b iff c≤min(1,1−a+b). Deduce the residual implication and compare it with the product S-implication at a=0.8,b=0.3. Explain which property the proof uses about b.",
+      "hint": "Because b≥0, max(0,x)≤b is equivalent to x≤b.",
+      "steps": [
+        "Since b≥0, max(0,a+c−1)≤b iff a+c−1≤b, equivalently c≤1−a+b. Together with c≤1, this is exactly c≤min(1,1−a+b).",
+        "The admissible c form a closed interval ending at min(1,1−a+b), so the supremum is attained and I_Luk(a,b)=min(1,1−a+b).",
+        "At (0.8,0.3), this gives 0.5. Product dual disjunction is S(x,y)=x+y−xy, so the product S-implication S(1−a,b)=0.2+0.3−0.06=0.44.",
+        "The initial equivalence would fail for negative b: max(0,x) is always nonnegative. The input range [0,1] is part of the argument, not decoration."
+      ],
+      "rubric": [
+        "Equivalence using b≥0",
+        "Supremum and endpoint",
+        "Two numerical values",
+        "Range condition"
+      ],
+      "scope": "T-norms, dual conorms, S-implication and residual implication.",
+      "pages": "Implication section",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "T15",
+      "topic": "proof",
+      "title": "Explain the Church predecessor",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 45,
+      "points": 5,
+      "prompt": "The lab gives PRED=λn.λf.λx.n(λg.λh.h(g f))(λu.x)(λu.u). Prove it represents predecessor with PRED 0=0. Let F=λg.λh.h(g f), G₀=λu.x and Gₖ₊₁=F Gₖ. Derive Gₖ and evaluate Gₖ I for I=λu.u. Show PRED TWO explicitly.",
+      "hint": "First compute G₁ and G₂. For k≥1, the invariant is Gₖ=λh.h(f^(k−1)x).",
+      "steps": [
+        "G₁=F G₀→λh.h(G₀ f)→λh.h(x). G₂→λh.h(G₁ f)→λh.h(f x).",
+        "For k≥1, if Gₖ=λh.h(f^(k−1)x), then Gₖ₊₁=λh.h(Gₖ f)→λh.h(f^k x). This proves the invariant by induction, with capture-free substitution.",
+        "For n=0, G₀ I→x. For n≥1, Gₙ I→I(f^(n−1)x)→f^(n−1)x. Therefore PRED n=λf.λx.f^max(n−1,0)x.",
+        "PRED TWO→λf.λx.G₂ I→λf.λx.I(f x)→λf.λx.f x, which is ONE.",
+        "The successor application is delayed inside the continuation h; the special G₀ seed prevents applying f on the first iteration."
+      ],
+      "rubric": [
+        "G₁ and G₂",
+        "Induction invariant",
+        "Zero and positive cases",
+        "PRED TWO reduction",
+        "Mechanism explained"
+      ],
+      "scope": "Direct written version of lambda-calculus lab exercise 4.",
+      "pages": "Lambda exercise sheet, exercise 4",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "T16",
+      "topic": "proof",
+      "title": "Read a higher-order Church encoding",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 40,
+      "points": 4,
+      "prompt": "Let E=λm.λn.n m, with Church numerals m,n. Identify the arithmetic operation. Reduce E TWO THREE enough to count applications of f. Explain the n=0 case carefully: compare λx.x with the numeral ONE using β-reduction after supplying f and x. Also explain what λn.n(λx.FALSE)TRUE tests.",
+      "hint": "Iterating the function TWO three times doubles the application count three times. Zero iterations returns the identity.",
+      "steps": [
+        "E TWO THREE→THREE TWO→λx.TWO(TWO(TWO x)). Supplying f and then x shows 2³=8 applications of f, so the resulting numeral represents 8. Generally E m n represents m^n under Church arithmetic.",
+        "For n=0, ZERO m→λx.x. Applied to f and x this yields f x, the same as ONE f x. Thus it represents ONE extensionally, even though it is not the two-abstraction β-normal form λf.λx.f x.",
+        "At m=n=0 this encoding returns ONE as well: the encoding chooses the conventional Church-arithmetic value 0^0=1. It is not a claim about limits of real-valued exponentiation.",
+        "For the last term, zero applications of λx.FALSE leave TRUE; any positive numeral applies that constant-FALSE function at least once, yielding FALSE. It is a zero test."
+      ],
+      "rubric": [
+        "Operation and 2³ trace",
+        "Application-level zero case",
+        "0^0 convention",
+        "Zero-test reasoning"
+      ],
+      "scope": "Direct written extensions of lambda-calculus lab exercises 2–3 and Church encodings.",
+      "pages": "Lambda exercise sheet, exercises 2–3",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "D15",
+      "topic": "dl",
+      "title": "A family ontology that reasons too far",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 40,
+      "points": 5,
+      "prompt": "Let isBrotherOf⊑isSiblingOf, with domain(isBrotherOf)=Male. Let isSiblingOf be symmetric and transitive, and Male⊓Female⊑⊥. ABox: isBrotherOf(a,b), Female(b). Is the KB consistent? Which sibling self-edges are entailed? Would making isBrotherOf symmetric preserve consistency? Explain the modelling issue without using Protégé.",
+      "hint": "Properties of a superrole do not automatically become properties of its subrole. Symmetry plus transitivity creates self-edges.",
+      "steps": [
+        "The KB is consistent. Infer Male(a) from the brother-role domain, isSiblingOf(a,b) by inclusion and isSiblingOf(b,a) by symmetry. No isBrotherOf(b,a) follows from those axioms.",
+        "Transitivity gives isSiblingOf(a,a) and isSiblingOf(b,b). A model can have distinct a,b, Male={a}, Female={b}, brother={(a,b)}, sibling={(a,a),(a,b),(b,a),(b,b)}.",
+        "If brother itself is symmetric, isBrotherOf(b,a) follows, so domain gives Male(b), clashing with Female(b) and disjointness.",
+        "A symmetric transitive role with any edge necessarily contains associated self-edges. If the intended sibling relation excludes self-siblings, that combination of axioms is unsuitable; the shared-parent rule in the lab uses explicit differentFrom instead of expecting these axioms to enforce distinctness."
+      ],
+      "rubric": [
+        "Consistency and concrete model",
+        "Subrole/superrole distinction",
+        "Both self-edges",
+        "Symmetric brother contradiction",
+        "Modelling diagnosis"
+      ],
+      "scope": "Family-ontology lab: role hierarchy, domain, symmetry, transitivity and disjointness.",
+      "pages": "Family ontology handout",
+      "origin": "Original challenge · course and lab concepts only"
+    },
+    {
+      "id": "D16",
+      "topic": "dl",
+      "title": "When two existential witnesses must coincide",
+      "kind": "Challenge · written proof",
+      "difficulty": "challenge",
+      "minutes": 35,
+      "points": 5,
+      "prompt": "Relative to P⊓Q⊑⊥, is C=∃r.P⊓∃r.Q⊓(≤1 r.⊤) satisfiable? Give a semantic proof. Then examine the two repairs separately: remove the upper bound; or remove disjointness. For each repaired case give a smallest possible model and justify its size.",
+      "hint": "Two existential statements may use one witness unless disjointness prevents it; the cardinality restriction then matters.",
+      "steps": [
+        "If x∈C, choose an r-successor y∈P and z∈Q. The ≤1 bound forces y=z. That element is in P⊓Q, forbidden by the TBox; C is unsatisfiable.",
+        "Remove the upper bound: two domain elements suffice, not necessarily three. Take domain {x,y}, P={x}, Q={y}, r={(x,x),(x,y)}. Then x has both required successors, and P,Q are disjoint. One element cannot inhabit both nonempty disjoint fillers.",
+        "Remove disjointness instead: one element x suffices with P=Q={x} and r={(x,x)}. The one successor satisfies both existentials and the upper bound.",
+        "The source is allowed to be its own successor because no irreflexivity restriction was imposed. Requiring distinct names or forbidding self-edges without an axiom would incorrectly inflate the minimum."
+      ],
+      "rubric": [
+        "Forced witness identity",
+        "Contradiction with disjointness",
+        "Two-element first repair and lower bound",
+        "One-element second repair",
+        "No unstated irreflexivity"
+      ],
+      "scope": "DL restrictions, satisfiability, cardinalities and open-world model construction.",
+      "pages": "9–22, 30–46",
+      "origin": "Original challenge · course and lab concepts only"
     }
   ],
   "sources": [
@@ -3062,6 +3590,78 @@
           "marks": 3
         }
       ]
+    },
+    {
+      "id": "mock-e",
+      "title": "Challenge paper E · proof and construction",
+      "minutes": 210,
+      "difficulty": "challenge",
+      "questions": [
+        {
+          "id": "P15",
+          "marks": 2
+        },
+        {
+          "id": "F15",
+          "marks": 3
+        },
+        {
+          "id": "A15",
+          "marks": 3
+        },
+        {
+          "id": "C15",
+          "marks": 3
+        },
+        {
+          "id": "Z15",
+          "marks": 3
+        },
+        {
+          "id": "T15",
+          "marks": 3
+        },
+        {
+          "id": "D15",
+          "marks": 3
+        }
+      ]
+    },
+    {
+      "id": "mock-f",
+      "title": "Challenge paper F · witnesses and invariants",
+      "minutes": 210,
+      "difficulty": "challenge",
+      "questions": [
+        {
+          "id": "P16",
+          "marks": 2
+        },
+        {
+          "id": "F16",
+          "marks": 3
+        },
+        {
+          "id": "A16",
+          "marks": 3
+        },
+        {
+          "id": "C16",
+          "marks": 3
+        },
+        {
+          "id": "Z16",
+          "marks": 3
+        },
+        {
+          "id": "T16",
+          "marks": 3
+        },
+        {
+          "id": "D16",
+          "marks": 3
+        }
+      ]
     }
   ],
   "coverage_note": "The seven current Moodle sections are the coverage spine. Modal logic and revision appear in the historical paper but are not separate current Moodle sections; consult your teacher before expanding revision scope. No recent official paper was located in the checked Moodle resources or public lecturer sources.",
@@ -3155,5 +3755,6 @@
       "filename": "lambda-exercises.pdf",
       "format": "pdf"
     }
-  ]
+  ],
+  "challengeNote": "Fourteen original hard problems and two 210-minute challenge papers. They combine course and lab ideas into long written proofs, reductions, model constructions and minimality arguments. No new AI formalism or programming tool is required."
 }
