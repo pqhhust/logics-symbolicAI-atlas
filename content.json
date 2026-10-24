@@ -1,0 +1,3159 @@
+{
+  "topics": [
+    {
+      "id": "prop",
+      "n": "01",
+      "title": "Propositional logic",
+      "short": "Truth & consequence",
+      "color": "#397575",
+      "subtitle": "From statements to clauses, models and refutations.",
+      "source": "https://moodle.ip-paris.fr/mod/resource/view.php?id=518039",
+      "concepts": [
+        {
+          "title": "Syntax & semantics",
+          "body": "A valuation assigns each atom 0 or 1. A model of a knowledge base makes every formula true. A formula is valid if every valuation satisfies it; satisfiable if at least one does."
+        },
+        {
+          "title": "Entailment",
+          "body": "KB ⊨ φ iff every model of KB satisfies φ. Test this by checking that KB ∧ ¬φ is unsatisfiable. An inconsistent KB classically entails every formula."
+        },
+        {
+          "title": "Rewrite to CNF",
+          "body": "Remove → using ¬A ∨ B; push negations inward using De Morgan and double negation; distribute ∨ over ∧. CNF is a conjunction of clauses, each a disjunction of literals."
+        },
+        {
+          "title": "Resolution",
+          "body": "From C ∨ p and D ∨ ¬p infer C ∨ D. Add the negated goal and derive the empty clause □ to prove entailment. Resolving two complementary pairs at once is invalid."
+        },
+        {
+          "title": "Horn & Datalog by hand",
+          "body": "A definite Horn rule has one positive head. Start from facts and repeatedly fire rules whose bodies are true until no new fact is added. This computes the least fixed point for a finite function-free positive program."
+        },
+        {
+          "title": "Natural deduction & functional completeness",
+          "body": "Modus ponens eliminates →; proving A → B means temporarily assuming A and deriving B. NAND is functionally complete: ¬p = p ↑ p and p ∧ q = (p ↑ q) ↑ (p ↑ q)."
+        },
+        {
+          "title": "Semantic proof patterns",
+          "body": "Entailment ↔ refutation, monotonicity and the deduction property can all be proved by quantifying over valuations. Soundness and completeness compare derivability with entailment; satisfiability concerns one formula or KB."
+        }
+      ],
+      "traps": [
+        "A satisfiable formula need not be valid.",
+        "The converse q → p does not follow from p → q.",
+        "A failed proof search alone is not a countermodel."
+      ],
+      "checklist": [
+        "Construct a truth table",
+        "Convert to CNF",
+        "Write a resolution refutation",
+        "Trace Horn rules",
+        "Give a countervaluation"
+      ],
+      "exerciseCount": 14,
+      "coverage": [
+        {
+          "skill": "Valuations, syntax, models and entailment",
+          "exerciseIds": [
+            "P2",
+            "P3",
+            "P7",
+            "P11"
+          ]
+        },
+        {
+          "skill": "CNF and resolution",
+          "exerciseIds": [
+            "P1",
+            "P2",
+            "P13"
+          ]
+        },
+        {
+          "skill": "Semantic proofs, soundness and completeness",
+          "exerciseIds": [
+            "P8",
+            "P9",
+            "P10",
+            "P12"
+          ]
+        },
+        {
+          "skill": "Natural deduction and connectives",
+          "exerciseIds": [
+            "P5",
+            "P6"
+          ]
+        },
+        {
+          "skill": "Datalog least-fixed-point reasoning",
+          "exerciseIds": [
+            "P4",
+            "P14"
+          ]
+        }
+      ],
+      "slides": [
+        {
+          "topic": "prop",
+          "title": "Propositional logic",
+          "url": "slides/propositional-logic.pdf",
+          "pages": 37,
+          "format": "pdf",
+          "filename": "propositional-logic.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fol",
+      "n": "02",
+      "title": "First-order logic",
+      "short": "Quantifiers & witnesses",
+      "color": "#7a6695",
+      "subtitle": "Translate carefully, normalize, then reason with witnesses.",
+      "source": "https://moodle.ip-paris.fr/mod/resource/view.php?id=518040",
+      "concepts": [
+        {
+          "title": "Language",
+          "body": "Constants name individuals; variables range over a nonempty domain; predicates express relations; functions return individuals. A free variable is not in the scope of a corresponding quantifier."
+        },
+        {
+          "title": "Quantifier order",
+          "body": "∀x∃y R(x,y) allows y to depend on x. ∃y∀x R(x,y) requires one common witness. The latter entails the former, but the converse generally fails."
+        },
+        {
+          "title": "Negation & prenex form",
+          "body": "¬∀x φ ≡ ∃x ¬φ and ¬∃x φ ≡ ∀x ¬φ. Rename bound variables before moving quantifiers; the variable moved across a connective must not be free in the other operand."
+        },
+        {
+          "title": "Skolemization",
+          "body": "Replace an existential by a fresh constant if it has no preceding universal dependency, otherwise by a fresh function of those universal variables. Skolemization preserves satisfiability, not logical equivalence in the original signature."
+        },
+        {
+          "title": "Unification & resolution",
+          "body": "Unification finds a substitution making terms identical. Check repeated variables and the occurs check. Standardize clause variables apart before resolution; universally quantified variables are implicit in clauses."
+        },
+        {
+          "title": "Inference side conditions",
+          "body": "∀ elimination substitutes a term for a universal variable. ∃ introduction gives a witness. In ∃ elimination the temporary witness is fresh and may not escape into a conclusion that depends on its identity."
+        },
+        {
+          "title": "Interpretations and relational chains",
+          "body": "An interpretation supplies a domain, constants, functions and predicate relations. A sentence with linked relations may need several nested witnesses. Clause normalization must respect free variables and witness dependencies."
+        }
+      ],
+      "traps": [
+        "Do not swap ∀ and ∃.",
+        "An existential witness is not automatically a named individual.",
+        "P(x,x) and P(a,b) do not unify when a and b are distinct constants."
+      ],
+      "checklist": [
+        "Translate with declared predicates",
+        "Negate a quantified formula",
+        "Skolemize with correct dependencies",
+        "Unify terms",
+        "Refute with first-order resolution"
+      ],
+      "exerciseCount": 14,
+      "coverage": [
+        {
+          "skill": "Translation, scope and negation",
+          "exerciseIds": [
+            "F1",
+            "F5",
+            "F6",
+            "F13",
+            "F14"
+          ]
+        },
+        {
+          "skill": "Interpretations and free/bound variables",
+          "exerciseIds": [
+            "F6",
+            "F7",
+            "F8"
+          ]
+        },
+        {
+          "skill": "Prenex form and Skolem dependencies",
+          "exerciseIds": [
+            "F2",
+            "F9",
+            "F10"
+          ]
+        },
+        {
+          "skill": "Unification and resolution",
+          "exerciseIds": [
+            "F3",
+            "F4",
+            "F11"
+          ]
+        },
+        {
+          "skill": "Witnesses and deduction rules",
+          "exerciseIds": [
+            "F7",
+            "F12"
+          ]
+        }
+      ],
+      "slides": [
+        {
+          "topic": "fol",
+          "title": "First-order logic",
+          "url": "slides/predicate-logic.pdf",
+          "pages": 49,
+          "format": "pdf",
+          "filename": "predicate-logic.pdf"
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "n": "03",
+      "title": "Planning",
+      "short": "States & action",
+      "color": "#a97838",
+      "subtitle": "Write actions and transitions instead of implementing a solver.",
+      "source": "https://moodle.ip-paris.fr/mod/resource/view.php?id=512485",
+      "concepts": [
+        {
+          "title": "Classical planning",
+          "body": "A state is a set of true ground atoms. Under the closed-world convention, other ground atoms are false. A plan is an applicable action sequence whose final state satisfies the goal."
+        },
+        {
+          "title": "STRIPS",
+          "body": "An action has preconditions Pre(a), add effects Add(a), and delete effects Del(a). It is applicable when Pre(a) ⊆ S. Its successor is γ(S,a)=(S ∖ Del(a)) ∪ Add(a)."
+        },
+        {
+          "title": "Frame problem",
+          "body": "Facts unaffected by an action persist. SAT encodings need frame constraints in addition to precondition and effect constraints; otherwise facts can change without a cause."
+        },
+        {
+          "title": "Planning as SAT",
+          "body": "At horizon H introduce state variables p₀,…,pH and action variables a₀,…,aH−1. Encode initial facts, goal at H, action preconditions, effects, persistence and the chosen serial/concurrent action semantics."
+        },
+        {
+          "title": "Subgoal interaction",
+          "body": "Achieving one subgoal may destroy another. Blocks-world examples such as the Sussman anomaly require interleaving; solving each goal once in isolation can fail."
+        },
+        {
+          "title": "Beyond deterministic planning",
+          "body": "The lecture introduces probabilistic transitions p(s′|s,a), rewards, policies and expected discounted return ΣγᵗE[rₜ]. Revise those definitions and small expectation calculations. Belief-state updates and POMDP solution algorithms are not taught in the supplied slides and are not required here."
+        },
+        {
+          "title": "Subgoal order, invariants and bounds",
+          "body": "Trace the Sussman anomaly, justify state invariants from preconditions and effects, and distinguish the first feasible horizon from an arbitrary feasible bound. For stochastic examples compute only the transition/reward expectations introduced in the lecture."
+        }
+      ],
+      "traps": [
+        "Effects apply only when preconditions hold.",
+        "A SAT model at horizon H is not necessarily a shortest plan.",
+        "Do not assume concurrent actions unless the encoding allows them."
+      ],
+      "checklist": [
+        "Write a STRIPS operator",
+        "Trace a state sequence",
+        "Find a failed precondition",
+        "Explain frame constraints",
+        "Contrast plan and policy"
+      ],
+      "exerciseCount": 14,
+      "coverage": [
+        {
+          "skill": "STRIPS and state transitions",
+          "exerciseIds": [
+            "A1",
+            "A2",
+            "A4"
+          ]
+        },
+        {
+          "skill": "SAT initial/goal/action/frame constraints",
+          "exerciseIds": [
+            "A3",
+            "A6",
+            "A9",
+            "A10"
+          ]
+        },
+        {
+          "skill": "Subgoal interaction and Sussman anomaly",
+          "exerciseIds": [
+            "A5",
+            "A8"
+          ]
+        },
+        {
+          "skill": "Invariants and shortest-horizon reasoning",
+          "exerciseIds": [
+            "A4",
+            "A11",
+            "A12"
+          ]
+        },
+        {
+          "skill": "Lecture-level transitions, policies and rewards",
+          "exerciseIds": [
+            "A7",
+            "A13",
+            "A14"
+          ]
+        }
+      ],
+      "slides": [
+        {
+          "topic": "plan",
+          "title": "Planning · current 2026 lecture",
+          "url": "slides/planning.pdf",
+          "pages": 36,
+          "format": "pdf",
+          "filename": "planning.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fca",
+      "n": "04",
+      "title": "Concepts & association rules",
+      "short": "Closure & patterns",
+      "color": "#657e49",
+      "subtitle": "Derive extents, intents, lattices and useful rules.",
+      "source": "https://moodle.ip-paris.fr/mod/resource/view.php?id=527701",
+      "concepts": [
+        {
+          "title": "Formal context",
+          "body": "A context (G,M,I) consists of objects G, attributes M and incidence I. A′ is the set of attributes shared by all objects in A; B′ is the set of objects having every attribute in B."
+        },
+        {
+          "title": "Closure",
+          "body": "Derivation reverses inclusion. Double derivation is extensive, monotone and idempotent: B ⊆ B″, B ⊆ C ⇒ B″ ⊆ C″, B⁗=B″. The empty intersection convention gives ∅′=M on the object side and ∅′=G on the attribute side."
+        },
+        {
+          "title": "Formal concept & lattice",
+          "body": "(A,B) is a formal concept iff A′=B and B′=A. Order concepts by extent inclusion, equivalently reverse intent inclusion. In a Hasse diagram draw only cover relations, not every comparable pair."
+        },
+        {
+          "title": "Association rules",
+          "body": "support(X⇒Y)=support(X∪Y); confidence(X⇒Y)=support(X∪Y)/support(X); lift=confidence/support(Y). Confidence is undefined if support(X)=0."
+        },
+        {
+          "title": "Implications & frequent itemsets",
+          "body": "An implication X→Y holds when Y ⊆ X″. Unlike an association rule that may tolerate exceptions, an implication holds for every object in the context. Apriori uses support anti-monotonicity: a superset cannot be more frequent than a subset."
+        },
+        {
+          "title": "Closed and maximal itemsets",
+          "body": "A closed itemset has no strict superset with the same support; equivalently X=X″ for the transaction context. A maximal frequent itemset has no frequent strict superset. Closed frequent itemsets preserve more support information than maximal ones."
+        },
+        {
+          "title": "Meet, join & NextClosure",
+          "body": "For concepts (A₁,B₁),(A₂,B₂), meet has extent A₁∩A₂ and intent (B₁∪B₂)″; join has extent (A₁∪A₂)″ and intent B₁∩B₂. NextClosure enumerates closed intents in lectical order, starting at ∅″ and rejecting pivots whose closure introduces a new earlier attribute."
+        },
+        {
+          "title": "Implication bases & preprocessing",
+          "body": "Use Armstrong reflexivity, augmentation and transitivity to reason with implications. A complete nonredundant basis derives all valid implications without dispensable rules. The DG basis uses pseudo-intents. Clarification removes duplicate rows/columns; reduction also removes derivable information. The lattice structure is preserved, but discarding duplicate transactions can change empirical supports."
+        },
+        {
+          "title": "FP-Growth and lecture overview",
+          "body": "FP-Growth counts frequent items, orders each transaction, builds a prefix-count tree, and mines conditional pattern bases/trees. FP-Max targets maximal frequent sets. Alternative FCA algorithms and scaling/iceberg extensions appear as overview topics; detailed implementations are outside this written review."
+        }
+      ],
+      "traps": [
+        "Do not swap extent and intent.",
+        "High confidence can reflect a common consequent, not a useful association.",
+        "At zero antecedent support, do not divide by zero."
+      ],
+      "checklist": [
+        "Compute A′ and B″",
+        "List all formal concepts",
+        "Draw a Hasse diagram",
+        "Calculate support/confidence/lift",
+        "Run Apriori pruning"
+      ],
+      "exerciseCount": 14,
+      "coverage": [
+        {
+          "skill": "Derivations, closure and concepts",
+          "exerciseIds": [
+            "C1",
+            "C2",
+            "C6"
+          ]
+        },
+        {
+          "skill": "Lattice order, meet/join and NextClosure",
+          "exerciseIds": [
+            "C2",
+            "C8",
+            "C9"
+          ]
+        },
+        {
+          "skill": "Implications, Armstrong and canonical basis",
+          "exerciseIds": [
+            "C5",
+            "C10",
+            "C11"
+          ]
+        },
+        {
+          "skill": "Clarification and reduction overview",
+          "exerciseIds": [
+            "C12"
+          ]
+        },
+        {
+          "skill": "Support, confidence, lift and rule generation",
+          "exerciseIds": [
+            "C3",
+            "C5",
+            "C14"
+          ]
+        },
+        {
+          "skill": "Apriori, FP-Growth, closed and maximal sets",
+          "exerciseIds": [
+            "C4",
+            "C7",
+            "C13"
+          ]
+        }
+      ],
+      "slides": [
+        {
+          "topic": "fca",
+          "title": "Formal concepts & association rules",
+          "url": "slides/formal-concepts-association-rules.pdf",
+          "pages": 94,
+          "format": "pdf",
+          "filename": "formal-concepts-association-rules.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fuzzy",
+      "n": "05",
+      "title": "Fuzzy & soft logic",
+      "short": "Degrees & constraints",
+      "color": "#aa674f",
+      "subtitle": "Choose an operator, compute its value, explain its meaning.",
+      "source": "https://suchanek.name/work/teaching/topics/fuzzy-logic/index.html",
+      "concepts": [
+        {
+          "title": "Truth degree ≠ probability",
+          "body": "A fuzzy degree measures graded satisfaction of a vague property. Probability measures uncertainty about whether an event occurs. Combining degrees requires the specified fuzzy operators, not an independence assumption."
+        },
+        {
+          "title": "Negation & t-norms",
+          "body": "With standard negation N(a)=1−a: minimum T=min(a,b), product T=ab, Łukasiewicz T=max(0,a+b−1), drastic T=b if a=1, a if b=1, otherwise 0. A t-norm is associative, commutative, monotone and has neutral element 1."
+        },
+        {
+          "title": "Dual disjunction",
+          "body": "For a chosen t-norm, S(a,b)=1−T(1−a,1−b). This yields max, a+b−ab, min(1,a+b), and the drastic conorm. The maximum t-norm bounds all t-norms from above."
+        },
+        {
+          "title": "Implications",
+          "body": "S-implication uses S(1−a,b). Residual implication is I(a,b)=sup{c:T(a,c)≤b}. They need not agree: under min, S-implication=max(1−a,b), while the residual is 1 if a≤b and b otherwise."
+        },
+        {
+          "title": "Weighted MAX-SAT",
+          "body": "For Boolean assignments, maximize the sum of weights of satisfied clauses. It is an optimization objective, not the probability that all formulas are true. Enumerate small instances on paper."
+        },
+        {
+          "title": "Probabilistic Soft Logic",
+          "body": "Relax atom values to [0,1]. Under Łukasiewicz disjunction, clause truth is min(1,sum of literal truth values). Weighted clause truth maximization is equivalent to minimizing weighted hinge losses max(0,1−sum); with nonnegative weights and linear constraints this formulation is convex."
+        },
+        {
+          "title": "Optimization by cases",
+          "body": "For small relaxed MAX-SAT examples, split at hinge boundaries and optimize the resulting affine pieces. A common positive scaling of weights preserves the maximizers. Distinguish clause weights, fuzzy degrees and event probabilities."
+        }
+      ],
+      "traps": [
+        "Always name the t-norm and implication convention.",
+        "Fuzzy p ∨ ¬p need not have degree 1 under every choice.",
+        "A Boolean optimum need not equal the relaxed optimum."
+      ],
+      "checklist": [
+        "Evaluate three t-norms",
+        "Derive dual conorms",
+        "Compare S and R implications",
+        "Score weighted assignments",
+        "Write a PSL hinge loss"
+      ],
+      "exerciseCount": 14,
+      "coverage": [
+        {
+          "skill": "Degree versus probability and weighted clauses",
+          "exerciseIds": [
+            "Z6",
+            "Z14"
+          ]
+        },
+        {
+          "skill": "Negation, t-norms, conorms and their axioms",
+          "exerciseIds": [
+            "Z1",
+            "Z5",
+            "Z8",
+            "Z9",
+            "Z11"
+          ]
+        },
+        {
+          "skill": "S-implications and residual implications",
+          "exerciseIds": [
+            "Z2",
+            "Z10"
+          ]
+        },
+        {
+          "skill": "Boolean weighted MAX-SAT",
+          "exerciseIds": [
+            "Z3"
+          ]
+        },
+        {
+          "skill": "PSL clause truth, hinge losses and relaxation",
+          "exerciseIds": [
+            "Z4",
+            "Z7",
+            "Z12",
+            "Z13"
+          ]
+        }
+      ],
+      "slides": [
+        {
+          "topic": "fuzzy",
+          "title": "Fuzzy logic · HTML deck",
+          "url": "slides/fuzzy-logic.html",
+          "pages": null,
+          "format": "html",
+          "filename": "fuzzy-logic.html"
+        },
+        {
+          "topic": "fuzzy",
+          "title": "Probabilistic soft logic · HTML deck",
+          "url": "slides/probabilistic-soft-logic.html",
+          "pages": null,
+          "format": "html",
+          "filename": "probabilistic-soft-logic.html"
+        }
+      ]
+    },
+    {
+      "id": "proof",
+      "n": "06",
+      "title": "Theorem proving",
+      "short": "Terms & proofs",
+      "color": "#566d9a",
+      "subtitle": "Reduce terms, avoid capture, and connect proofs with types.",
+      "source": "https://moodle.ip-paris.fr/mod/resource/view.php?id=532026",
+      "concepts": [
+        {
+          "title": "Lambda syntax",
+          "body": "Terms are variables x, abstractions λx.M and applications M N. Application associates left: f x y=(f x)y. An abstraction extends as far right as parentheses allow."
+        },
+        {
+          "title": "Alpha & beta",
+          "body": "Alpha-conversion consistently renames bound variables. Beta-reduction (λx.M) N → M[x:=N] substitutes only free occurrences of x, renaming bound variables first to avoid capture."
+        },
+        {
+          "title": "Normalization",
+          "body": "A normal form contains no β-redex. Strong normalization means every reduction sequence terminates. Untyped lambda calculus admits divergence; simply typed lambda calculus is strongly normalizing."
+        },
+        {
+          "title": "Church encodings",
+          "body": "n=λf.λx.fⁿx, true=λa.λb.a, false=λa.λb.b. SUCC=λn.λf.λx.f(n f x). Boolean encodings select branches by function application."
+        },
+        {
+          "title": "Curry–Howard",
+          "body": "Propositions correspond to types and proofs to terms. Implication is function type, conjunction product, disjunction sum, truth unit and falsehood empty type. → introduction corresponds to abstraction; → elimination to application."
+        },
+        {
+          "title": "Constructivity & limits",
+          "body": "A constructive existence proof supplies a witness. Classical excluded-middle reasoning may prove existence without selecting a witness. Gödel incompleteness applies to consistent effectively axiomatized theories sufficiently expressive for arithmetic; it is not a failure of propositional completeness. Proof checking and proof discovery are different tasks."
+        },
+        {
+          "title": "Church data and proof rules",
+          "body": "Trace addition, successor, multiplication and boolean encodings using capture-avoiding β-reduction. Read application left-associatively. For natural deduction, label branch assumptions and discharge rules, especially disjunction elimination."
+        }
+      ],
+      "traps": [
+        "Never capture a free variable during substitution.",
+        "The existence of one terminating strategy is weaker than strong normalization.",
+        "A proof checker checks a formal statement, which may differ from the intended informal claim."
+      ],
+      "checklist": [
+        "Reduce a β-redex",
+        "Perform capture-free substitution",
+        "Read a Church numeral",
+        "Infer a simple type",
+        "Explain Curry–Howard and proof checking"
+      ],
+      "exerciseCount": 14,
+      "coverage": [
+        {
+          "skill": "Variables, binding and capture avoidance",
+          "exerciseIds": [
+            "T1",
+            "T8",
+            "T9"
+          ]
+        },
+        {
+          "skill": "Church arithmetic and booleans",
+          "exerciseIds": [
+            "T3",
+            "T10",
+            "T11"
+          ]
+        },
+        {
+          "skill": "Typing and normalization",
+          "exerciseIds": [
+            "T2",
+            "T4",
+            "T5"
+          ]
+        },
+        {
+          "skill": "Natural deduction and Curry–Howard",
+          "exerciseIds": [
+            "T2",
+            "T12"
+          ]
+        },
+        {
+          "skill": "Constructivity, kernels and incompleteness",
+          "exerciseIds": [
+            "T6",
+            "T7",
+            "T13",
+            "T14"
+          ]
+        }
+      ],
+      "slides": [
+        {
+          "topic": "proof",
+          "title": "Theorem proving",
+          "url": "slides/theorem-proving.pdf",
+          "pages": 28,
+          "format": "pdf",
+          "filename": "theorem-proving.pdf"
+        }
+      ]
+    },
+    {
+      "id": "dl",
+      "n": "07",
+      "title": "Description logic",
+      "short": "Concepts & models",
+      "color": "#8c6d51",
+      "subtitle": "Read restrictions, construct models and test subsumption.",
+      "source": "https://moodle.ip-paris.fr/mod/resource/view.php?id=512496",
+      "concepts": [
+        {
+          "title": "Vocabulary & semantics",
+          "body": "Concepts denote subsets of a nonempty domain; roles denote binary relations; individuals denote domain elements. A TBox specifies concept axioms; an ABox gives individual concept and role assertions."
+        },
+        {
+          "title": "ALC constructors",
+          "body": "(C⊓D)ᴵ=Cᴵ∩Dᴵ, (C⊔D)ᴵ=Cᴵ∪Dᴵ, (¬C)ᴵ=Δᴵ∖Cᴵ. (∃r.C)ᴵ contains elements with at least one r-successor in C; (∀r.C)ᴵ contains elements whose every r-successor is in C."
+        },
+        {
+          "title": "Vacuity & open world",
+          "body": "∀r.C does not imply an r-successor exists: it is true when there are none. Missing assertions are unknown under open-world reasoning, not automatically false. Different names need not denote distinct individuals without an explicit distinctness assumption."
+        },
+        {
+          "title": "Reasoning tasks",
+          "body": "C⊑D means Cᴵ⊆Dᴵ in every model of the TBox. Concept satisfiability asks whether C can have an instance in some model; consistency asks whether the entire ontology has a model. Reduce subsumption to unsatisfiability of C⊓¬D."
+        },
+        {
+          "title": "Tableau reasoning",
+          "body": "Expand conjunctions, branch on disjunctions, create a witness for an existential, and propagate universals to all matching successors. A branch closes on C and ¬C at the same node. One open complete branch witnesses satisfiability for the relevant calculus."
+        },
+        {
+          "title": "Ontology languages",
+          "body": "DL provides a formal basis for OWL-style ontologies. Cardinality restrictions need explicit semantics: ≥n r.C requires n distinct qualifying successors. Inverse roles reverse edge direction; do not infer symmetry merely from a role name."
+        },
+        {
+          "title": "Role extensions & cardinality",
+          "body": "Qualified cardinalities count distinct successors in a filler concept. Inverse roles reverse edges; transitive roles compose along paths; subroles imply edges in a superrole. Domain and range axioms infer classifications under open-world semantics rather than simply validate an input table."
+        }
+      ],
+      "traps": [
+        "A universal restriction is not an existence claim.",
+        "Non-entailment is different from entailment of the negation.",
+        "A contradictory concept may be empty while the TBox stays consistent."
+      ],
+      "checklist": [
+        "Translate natural language to DL",
+        "Build a countermodel",
+        "Propagate universal restrictions",
+        "Distinguish TBox/ABox",
+        "Test satisfiability and subsumption"
+      ],
+      "exerciseCount": 14,
+      "coverage": [
+        {
+          "skill": "Concept/role/individual vocabulary and semantics",
+          "exerciseIds": [
+            "D1",
+            "D10",
+            "D12",
+            "D13"
+          ]
+        },
+        {
+          "skill": "Open-world reasoning and vacuity",
+          "exerciseIds": [
+            "D2",
+            "D6",
+            "D14"
+          ]
+        },
+        {
+          "skill": "Tableaux, satisfiability and consistency",
+          "exerciseIds": [
+            "D3",
+            "D7",
+            "D11"
+          ]
+        },
+        {
+          "skill": "Subsumption, classification, TBox and ABox",
+          "exerciseIds": [
+            "D4",
+            "D5",
+            "D13",
+            "D14"
+          ]
+        },
+        {
+          "skill": "Role extensions and qualified cardinalities",
+          "exerciseIds": [
+            "D8",
+            "D9"
+          ]
+        }
+      ],
+      "slides": [
+        {
+          "topic": "dl",
+          "title": "Description logic · current Moodle file",
+          "url": "slides/description-logic.pdf",
+          "pages": 65,
+          "format": "pdf",
+          "filename": "description-logic.pdf"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P1",
+      "topic": "prop",
+      "title": "A knowledge base with no model",
+      "kind": "Refutation",
+      "minutes": 10,
+      "points": 4,
+      "prompt": "Let KB = {p ∨ q, p → r, q → r, ¬r}. Prove that KB is unsatisfiable using resolution, then give a semantic argument.",
+      "hint": "Replace each implication by a two-literal clause.",
+      "steps": [
+        "The clauses are C₁={p,q}, C₂={¬p,r}, C₃={¬q,r}, C₄={¬r}.",
+        "Resolve C₂ with C₄ to obtain {¬p}. Resolve C₃ with C₄ to obtain {¬q}.",
+        "Resolve C₁ with {¬p} to obtain {q}; resolve with {¬q} to obtain □.",
+        "Semantically, ¬r forces p=false and q=false through the two implications, contradicting p ∨ q."
+      ],
+      "rubric": [
+        "Correct clauses",
+        "Two unit consequences",
+        "Empty clause",
+        "Independent semantic explanation"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "P2",
+      "topic": "prop",
+      "title": "CNF without losing equivalence",
+      "kind": "Transformation",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Convert ¬(p → (q ∧ r)) into equivalent CNF. Give all satisfying assignments.",
+      "hint": "Negate ¬p ∨ (q ∧ r), then apply De Morgan.",
+      "steps": [
+        "p → (q ∧ r) ≡ ¬p ∨ (q ∧ r).",
+        "Negating gives p ∧ ¬(q ∧ r) ≡ p ∧ (¬q ∨ ¬r).",
+        "Thus p=1 and q,r are not both 1: (p,q,r)=(1,0,0),(1,0,1),(1,1,0)."
+      ],
+      "rubric": [
+        "Correct negation",
+        "CNF",
+        "Three models"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "P3",
+      "topic": "prop",
+      "title": "One implication, two different claims",
+      "kind": "Countermodel",
+      "minutes": 6,
+      "points": 3,
+      "prompt": "Does {p → q, q} entail p? Does {p → q, p} entail q? Justify both answers.",
+      "hint": "To disprove entailment, make the premises true and the conclusion false.",
+      "steps": [
+        "No for the first claim: p=0,q=1 satisfies p → q and q, but not p.",
+        "Yes for the second: modus ponens gives q from p → q and p. Equivalently, adding ¬q produces a contradiction.",
+        "Observing q does not establish that p caused it."
+      ],
+      "rubric": [
+        "Countervaluation",
+        "Premise verification",
+        "Valid second inference"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "P4",
+      "topic": "prop",
+      "title": "Follow the least fixed point",
+      "kind": "Rule tracing",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Facts: Edge(a,b), Edge(b,c), Edge(c,d). Rules: Path(x,y) ← Edge(x,y); Path(x,z) ← Path(x,y) ∧ Edge(y,z). List every derived Path fact, by synchronous rounds.",
+      "hint": "In each round, use facts known at the end of the preceding round.",
+      "steps": [
+        "Round 1: Path(a,b), Path(b,c), Path(c,d).",
+        "Round 2 adds Path(a,c), Path(b,d). Round 3 adds Path(a,d).",
+        "No further paths are added. The six listed facts form the Path relation at the least fixed point; no reverse or reflexive paths follow."
+      ],
+      "rubric": [
+        "First-round facts",
+        "Longer paths",
+        "Termination and no invented facts"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "P5",
+      "topic": "prop",
+      "title": "Prove a small theorem",
+      "kind": "Proof",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Give a natural-deduction proof of (p ∧ (p → q)) → q. Label assumptions and discharged assumptions.",
+      "hint": "Assume the entire antecedent, then use ∧ elimination twice.",
+      "steps": [
+        "Assume H: p ∧ (p → q).",
+        "From H obtain p and p → q by ∧ elimination. Apply → elimination to get q.",
+        "Discharge H by → introduction, giving (p ∧ (p → q)) → q."
+      ],
+      "rubric": [
+        "Antecedent assumption",
+        "Correct elimination rules",
+        "Discharge"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "P6",
+      "topic": "prop",
+      "title": "Build connectives from NAND",
+      "kind": "Construction",
+      "minutes": 6,
+      "points": 3,
+      "prompt": "Using only ↑, express ¬p, p ∧ q and p ∨ q. Here p ↑ q = ¬(p ∧ q).",
+      "hint": "Use the same input twice to obtain negation.",
+      "steps": [
+        "¬p = p ↑ p.",
+        "p ∧ q = (p ↑ q) ↑ (p ↑ q).",
+        "p ∨ q = (p ↑ p) ↑ (q ↑ q), by De Morgan. These constructions show functional completeness because ¬ and ∧ suffice."
+      ],
+      "rubric": [
+        "Negation",
+        "Conjunction",
+        "Disjunction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "P7",
+      "topic": "prop",
+      "title": "Find every model",
+      "kind": "Model enumeration",
+      "minutes": 8,
+      "points": 4,
+      "prompt": "For KB={p → q, q → r}, enumerate all models over p,q,r. Is r entailed? Is p → r entailed?",
+      "hint": "The truth values must satisfy p ≤ q ≤ r.",
+      "steps": [
+        "Models in (p,q,r) order: 000, 001, 011, 111.",
+        "r is not entailed: 000 is a countermodel.",
+        "p → r is entailed: if p is true, q and then r must be true; in the remaining models the implication is vacuously true."
+      ],
+      "rubric": [
+        "Complete four-model list",
+        "Countermodel to r",
+        "Transitive entailment",
+        "Vacuous truth"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "F1",
+      "topic": "fol",
+      "title": "Every student has an adviser",
+      "kind": "Translation",
+      "minutes": 9,
+      "points": 4,
+      "prompt": "Use Student(x) and Advises(y,x). Formalize “Every student has an adviser.” Negate your formula, and compare it to “Someone advises every student.”",
+      "hint": "Advises has adviser first and student second.",
+      "steps": [
+        "∀x (Student(x) → ∃y Advises(y,x)).",
+        "Its negation is ∃x (Student(x) ∧ ∀y ¬Advises(y,x)).",
+        "The common-adviser claim is ∃y∀x (Student(x) → Advises(y,x)). It implies the first claim in nonempty domains.",
+        "The converse fails with two students and two advisers, each adviser advising only one student."
+      ],
+      "rubric": [
+        "Declared argument order",
+        "Correct formula",
+        "Correct negation",
+        "Order comparison and counterexample"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "F2",
+      "topic": "fol",
+      "title": "Make the witness dependency visible",
+      "kind": "Skolemization",
+      "minutes": 9,
+      "points": 4,
+      "prompt": "Put ∀x (P(x) → ∃y (R(x,y) ∧ Q(y))) into clausal form. Explain why a Skolem constant is generally insufficient.",
+      "hint": "The existential witness is selected separately for each x.",
+      "steps": [
+        "Eliminate →: ∀x (¬P(x) ∨ ∃y(R(x,y) ∧ Q(y))).",
+        "Move ∃y outward (y is not free in P(x)), then replace y with fresh f(x).",
+        "The clauses are {¬P(x),R(x,f(x))} and {¬P(x),Q(f(x))}. Universal quantifiers are implicit.",
+        "A constant would force a single witness for all P objects, a stronger requirement. Skolemization is an equisatisfiable signature extension."
+      ],
+      "rubric": [
+        "Implication elimination",
+        "Dependency f(x)",
+        "Two clauses",
+        "Equisatisfiability distinction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "F3",
+      "topic": "fol",
+      "title": "Resolve a universal rule",
+      "kind": "Refutation",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "From ∀x (Human(x) → Mortal(x)) and Human(ada), prove Mortal(ada) by resolution.",
+      "hint": "Add the negated goal as a unit clause.",
+      "steps": [
+        "Clauses: {¬Human(x),Mortal(x)}, {Human(ada)}, {¬Mortal(ada)}.",
+        "Resolve the first two using {x↦ada}, obtaining {Mortal(ada)}.",
+        "Resolve with the negated goal to derive □. Thus the premises entail Mortal(ada)."
+      ],
+      "rubric": [
+        "Clauses and negated goal",
+        "Substitution",
+        "Empty clause"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "F4",
+      "topic": "fol",
+      "title": "Which substitutions exist?",
+      "kind": "Unification",
+      "minutes": 8,
+      "points": 4,
+      "prompt": "Find a most general unifier for P(x,f(y)) and P(g(z),f(a)). Then decide whether P(x,x) unifies with P(a,b), and whether x unifies with f(x).",
+      "hint": "Unify corresponding arguments, and check for cyclic terms.",
+      "steps": [
+        "The first pair has MGU {x↦g(z), y↦a}; z stays free.",
+        "The second requires a=b. Distinct constant symbols a,b cannot be unified syntactically.",
+        "x=f(x) fails the occurs check for finite first-order terms.",
+        "An MGU leaves unconstrained variables free rather than assigning arbitrary constants."
+      ],
+      "rubric": [
+        "Two substitutions",
+        "Repeated-variable conflict",
+        "Occurs check",
+        "Generality"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "F5",
+      "topic": "fol",
+      "title": "Local witnesses do not become global",
+      "kind": "Countermodel",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Give a two-element model satisfying ∀x∃y R(x,y) but not ∃y∀x R(x,y).",
+      "hint": "Let each object relate only to itself.",
+      "steps": [
+        "Take domain {a,b} and R={(a,a),(b,b)}.",
+        "For x=a choose y=a; for x=b choose y=b. Hence ∀x∃y R(x,y) is true.",
+        "No common y works: y=a fails for x=b, and y=b fails for x=a."
+      ],
+      "rubric": [
+        "Domain and relation",
+        "Local witness verification",
+        "Both global candidates rejected"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "F6",
+      "topic": "fol",
+      "title": "Negation, scope and free variables",
+      "kind": "Transformation",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Negate ∃x (P(x) ∧ ∀y (R(x,y) → Q(y))). Identify the free variables in ∀x R(x,z).",
+      "hint": "Negate from the outside inward; ¬(A → B) is A ∧ ¬B.",
+      "steps": [
+        "The negation is ∀x (¬P(x) ∨ ∃y (R(x,y) ∧ ¬Q(y))).",
+        "The transformation uses ¬∃=∀¬, De Morgan and ¬∀=∃¬.",
+        "In ∀x R(x,z), x is bound and z is free."
+      ],
+      "rubric": [
+        "Outer quantifier",
+        "Inner connective and quantifier",
+        "Free-variable identification"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "F7",
+      "topic": "fol",
+      "title": "Do not invent the named witness",
+      "kind": "Entailment",
+      "minutes": 6,
+      "points": 3,
+      "prompt": "Does ∃x Student(x) entail Student(ada)? Give a countermodel. What can be safely inferred instead?",
+      "hint": "The existing student need not be Ada.",
+      "steps": [
+        "Take domain {a,b}, ada interpreted as a, and Student interpreted as {b}. The premise is true but Student(ada) is false.",
+        "One may use a fresh temporary witness c satisfying Student(c) in an existential-elimination subproof.",
+        "A conclusion outside that subproof must not depend on the witness being a particular named person."
+      ],
+      "rubric": [
+        "Explicit interpretation",
+        "Premise true and conclusion false",
+        "Fresh-witness restriction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "A1",
+      "topic": "plan",
+      "title": "Move a block on paper",
+      "kind": "STRIPS",
+      "minutes": 10,
+      "points": 4,
+      "prompt": "Represent Move(A,B,C), moving block A from block B onto block C. Assume distinct blocks and use On and Clear. State preconditions, add effects and delete effects.",
+      "hint": "The source becomes clear, the destination stops being clear.",
+      "steps": [
+        "Pre={On(A,B),Clear(A),Clear(C)}.",
+        "Add={On(A,C),Clear(B)}. Del={On(A,B),Clear(C)}.",
+        "Clear(A) persists: nothing is put on A. Other unrelated facts persist too.",
+        "Distinctness and legal-state constraints are assumptions of this operator; moving from/to the table may require separately defined operators."
+      ],
+      "rubric": [
+        "Preconditions",
+        "Add effects",
+        "Delete effects",
+        "Persistence and assumptions"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "A2",
+      "topic": "plan",
+      "title": "Trace, then reject a bad action",
+      "kind": "State tracing",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Let S₀={At(robot,A),At(box,B),Empty}. Move(A,B) needs At(robot,A), adds At(robot,B), deletes At(robot,A). Pick(B) needs At(robot,B),At(box,B),Empty; adds Holding and deletes At(box,B),Empty. Trace both actions. Can Pick(B) run again?",
+      "hint": "Use the set update, not just the add effects.",
+      "steps": [
+        "After Move: S₁={At(robot,B),At(box,B),Empty}.",
+        "After Pick: S₂={At(robot,B),Holding}.",
+        "A second Pick is inapplicable: both At(box,B) and Empty are absent."
+      ],
+      "rubric": [
+        "First state",
+        "Second state",
+        "Failed preconditions"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "A3",
+      "topic": "plan",
+      "title": "Stop a fact from appearing by magic",
+      "kind": "SAT encoding",
+      "minutes": 10,
+      "points": 4,
+      "prompt": "At horizon 1, an action Paint can make Red true. Write its effect constraint and an explanatory frame constraint for Red. Explain why effects alone are insufficient.",
+      "hint": "A false-to-true change needs an action that adds the fact.",
+      "steps": [
+        "Effect: Paint₀ → Red₁.",
+        "Positive explanatory frame: (¬Red₀ ∧ Red₁) → Paint₀, assuming Paint is the only action adding Red.",
+        "If no action deletes Red, also require Red₀ → Red₁. More generally, (Red₀ ∧ ¬Red₁) implies a deleting action.",
+        "Without frames, an assignment with ¬Red₀,¬Paint₀,Red₁ satisfies the effect implication while changing Red without a cause."
+      ],
+      "rubric": [
+        "Effect",
+        "Positive frame",
+        "Persistence or negative frame",
+        "Spurious SAT model"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "A4",
+      "topic": "plan",
+      "title": "Find a shortest small plan",
+      "kind": "Planning",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "S₀={At(A),DoorClosed}. Open needs At(A),DoorClosed and replaces DoorClosed with DoorOpen. Go needs At(A),DoorOpen and replaces At(A) with At(B). Close needs At(B),DoorOpen and replaces DoorOpen with DoorClosed. Goal={At(B),DoorClosed}. Find a shortest serial plan.",
+      "hint": "Reaching B and restoring the door are separate requirements.",
+      "steps": [
+        "Plan: Open, Go, Close.",
+        "The intermediate door states are open, open, closed; the robot locations are A,B,B.",
+        "At least one Go is needed, which requires Open first. After Go the door is open, so Close is also needed. Three actions are necessary and sufficient."
+      ],
+      "rubric": [
+        "Applicable sequence",
+        "Final goal",
+        "Minimality argument"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "A5",
+      "topic": "plan",
+      "title": "Why greedy goal ordering fails",
+      "kind": "Explanation",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Explain how achieving G₁ and then G₂ can fail even if each goal is separately reachable. Give a small action-effect example.",
+      "hint": "Let the action establishing G₂ delete G₁.",
+      "steps": [
+        "Let S₀=∅, action a add G₁, and action b require G₁, add G₂ and delete G₁.",
+        "Running a then b ends with {G₂}, not both goals. Reapplying a after b gives {G₁,G₂} if a has no deleting effect.",
+        "A planner must track interactions and may need to revisit a goal; isolated one-pass subgoal achievement is insufficient."
+      ],
+      "rubric": [
+        "Concrete operators",
+        "Failed final state",
+        "Interleaving/revisit explanation"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "A6",
+      "topic": "plan",
+      "title": "Horizon is a modelling choice",
+      "kind": "SAT reasoning",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "A horizon-2 SAT encoding is UNSAT. What does that establish about plan existence? What extra condition makes SAT(H) imply SAT(H+1)?",
+      "hint": "Consider whether the encoding permits idle steps.",
+      "steps": [
+        "UNSAT at H=2 rules out plans representable at that horizon under the chosen action semantics. It does not rule out longer plans.",
+        "To extend any H-step plan while preserving its final state, permit a no-op or allow zero actions per step with persistence.",
+        "If exactly one non-no-op action is mandatory, a satisfying plan need not extend by one step."
+      ],
+      "rubric": [
+        "Bounded conclusion",
+        "No-op/persistence condition",
+        "Exact-length caveat"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "A7",
+      "topic": "plan",
+      "title": "Plan, policy and stochastic transitions",
+      "kind": "Concepts",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Contrast a deterministic classical plan with an MDP policy using the lecture’s transition and reward notation. Why might a fixed action list be insufficient when outcomes are stochastic?",
+      "hint": "A policy can react to the state reached after an uncertain outcome.",
+      "steps": [
+        "A classical plan is a fixed action sequence for a known deterministic initial state and action model.",
+        "An MDP uses probabilities p(s′|s,a) and rewards. A state-dependent policy π(s) chooses actions to maximize expected discounted return ΣγᵗE[rₜ].",
+        "Different outcomes can lead to different successor states, so reacting with a policy can be necessary instead of following one fixed list. No belief-update algorithm is needed for this lecture overview."
+      ],
+      "rubric": [
+        "Classical sequence",
+        "Transition/reward/policy notation",
+        "Adaptation to stochastic outcomes"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "C1",
+      "topic": "fca",
+      "title": "Close a set of attributes",
+      "kind": "Closure",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Context: object 1 has {a,b}; object 2 has {a,c}; object 3 has {a,b,c}. Compute {b}′, {b}″ and {b,c}″. Is {b} closed?",
+      "hint": "First collect objects, then intersect their attributes.",
+      "steps": [
+        "{b}′={1,3}; intersecting their attributes gives {b}″={a,b}.",
+        "{b,c}′={3}, so {b,c}″={a,b,c}.",
+        "{b} is not closed because its closure also contains a."
+      ],
+      "rubric": [
+        "Object derivation",
+        "Two attribute closures",
+        "Closedness decision"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "C2",
+      "topic": "fca",
+      "title": "Draw the entire concept lattice",
+      "kind": "Lattice",
+      "minutes": 12,
+      "points": 4,
+      "prompt": "For the same context 1:{a,b}, 2:{a,c}, 3:{a,b,c}, find every concept and draw its cover relations.",
+      "hint": "Every intent contains a; enumerate closed intents rather than arbitrary pairs.",
+      "steps": [
+        "Concepts are ({1,2,3},{a}), ({1,3},{a,b}), ({2,3},{a,c}), ({3},{a,b,c}).",
+        "There are four closed intents; the remaining attribute subsets close to one of them.",
+        "By extent inclusion, the top has extent {1,2,3}; the bottom has extent {3}. The two middle concepts are incomparable.",
+        "Hasse edges form a diamond: top to each middle concept, each middle concept to bottom."
+      ],
+      "rubric": [
+        "Complete concept list",
+        "Closure justification",
+        "Correct order",
+        "Cover edges"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "C3",
+      "topic": "fca",
+      "title": "Confidence can be misleading",
+      "kind": "Calculation",
+      "minutes": 9,
+      "points": 4,
+      "prompt": "Transactions: 1:{a,b}, 2:{a,b}, 3:{a}, 4:{b}, 5:{b}. Compute support, confidence and lift of a⇒b. Is it positively associated?",
+      "hint": "Count a, b and their intersection separately.",
+      "steps": [
+        "support(a)=3/5, support(b)=4/5, support(a∪b)=2/5.",
+        "Rule support=2/5; confidence=(2/5)/(3/5)=2/3.",
+        "Lift=(2/3)/(4/5)=5/6≈0.833.",
+        "Despite confidence above one half, lift<1: b is less common among a transactions than overall."
+      ],
+      "rubric": [
+        "Counts",
+        "Support and confidence",
+        "Lift",
+        "Interpretation"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "C4",
+      "topic": "fca",
+      "title": "Apriori: prune before counting",
+      "kind": "Algorithm tracing",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Suppose the frequent pairs are {a,b}, {a,c}, {b,c}, {b,d}. Which triples can survive Apriori pruning? Explain why {a,b,d} cannot.",
+      "hint": "Every pair of a candidate frequent triple must be frequent.",
+      "steps": [
+        "Only {a,b,c} has all three pairs in the frequent-pair set.",
+        "{a,b,d} is pruned because {a,d} is not frequent. {a,c,d} and {b,c,d} also contain missing pairs.",
+        "{a,b,c} is only a candidate: its actual support must still be counted before declaring it frequent."
+      ],
+      "rubric": [
+        "Surviving candidate",
+        "Pruning reason",
+        "Candidate versus confirmed frequent"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "C5",
+      "topic": "fca",
+      "title": "Rule or exact implication?",
+      "kind": "Reasoning",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "In context 1:{a,b}, 2:{a,c}, 3:{a,b,c}, decide whether b→a and a→b are valid implications. Give the confidence of a⇒b.",
+      "hint": "For an implication, one counterexample is enough to refute it.",
+      "steps": [
+        "b→a holds: objects 1 and 3 both have a. Equivalently a belongs to {b}″.",
+        "a→b fails because object 2 has a but not b.",
+        "confidence(a⇒b)=2/3. It can be an association rule at a low enough threshold but is not an exact implication."
+      ],
+      "rubric": [
+        "First implication",
+        "Counterexample",
+        "Confidence and distinction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "C6",
+      "topic": "fca",
+      "title": "Prove closure is extensive",
+      "kind": "Proof",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Using the derivation definitions, prove B ⊆ B″ for any attribute set B.",
+      "hint": "Every object in B′ has every attribute in B, by definition.",
+      "steps": [
+        "Choose m∈B. Every g∈B′ has all attributes of B, hence has m.",
+        "Therefore m is shared by all objects in B′, so m∈(B′)′=B″.",
+        "Since this holds for each m∈B, B⊆B″. If B′ is empty, all attributes are shared vacuously, so the conclusion still holds."
+      ],
+      "rubric": [
+        "Arbitrary attribute",
+        "Definition applied twice",
+        "Empty-extent case"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "C7",
+      "topic": "fca",
+      "title": "Closed is different from maximal",
+      "kind": "Classification",
+      "minutes": 9,
+      "points": 4,
+      "prompt": "Transactions: {a,b}, {a,b}, {a}. Minimum support is 2/3. List frequent nonempty itemsets; identify closed frequent and maximal frequent itemsets.",
+      "hint": "Adding b changes the support of a, but adding a does not change the support of b.",
+      "steps": [
+        "Frequent: {a} with support 1; {b} with support 2/3; {a,b} with support 2/3.",
+        "Closed frequent: {a} and {a,b}. {b} is not closed because {a,b} has the same support.",
+        "Maximal frequent: only {a,b}; {a} is closed but not maximal because it has a frequent strict superset.",
+        "Thus closed and maximal are different notions."
+      ],
+      "rubric": [
+        "Frequent list and supports",
+        "Closed itemsets",
+        "Maximal itemsets",
+        "Counterexample to equivalence"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "Z1",
+      "topic": "fuzzy",
+      "title": "Four meanings of “and”",
+      "kind": "Calculation",
+      "minutes": 7,
+      "points": 4,
+      "prompt": "Let a=0.7 and b=0.4. Compute a∧b and a∨b for minimum, product, Łukasiewicz and drastic operators, with dual conorms.",
+      "hint": "For disjunction compute 1−T(1−a,1−b).",
+      "steps": [
+        "Minimum: conjunction 0.4, disjunction 0.7.",
+        "Product: conjunction 0.28, disjunction 0.7+0.4−0.28=0.82.",
+        "Łukasiewicz: conjunction max(0,1.1−1)=0.1, disjunction min(1,1.1)=1.",
+        "Drastic conjunction=0 because neither input is 1. Its dual drastic disjunction=1 because neither input is 0."
+      ],
+      "rubric": [
+        "Minimum pair",
+        "Product pair",
+        "Łukasiewicz pair",
+        "Drastic pair"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "Z2",
+      "topic": "fuzzy",
+      "title": "Implication needs a convention",
+      "kind": "Calculation",
+      "minutes": 8,
+      "points": 4,
+      "prompt": "At a=0.3,b=0.6, compare the S-implication and residual implication induced by the minimum t-norm. Then compute both at a=0.8,b=0.2.",
+      "hint": "For the minimum residuum: use 1 if a≤b, otherwise b.",
+      "steps": [
+        "Minimum S-implication is max(1−a,b): at (0.3,0.6) it is 0.7.",
+        "Minimum residual implication is 1 at (0.3,0.6), since a≤b.",
+        "At (0.8,0.2), S-implication=max(0.2,0.2)=0.2 and residual implication=b=0.2.",
+        "The operators sometimes agree but are not interchangeable in general."
+      ],
+      "rubric": [
+        "First S value",
+        "First residual value",
+        "Second pair",
+        "Convention distinction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "Z3",
+      "topic": "fuzzy",
+      "title": "Enumerate a weighted MAX-SAT instance",
+      "kind": "Optimization",
+      "minutes": 10,
+      "points": 4,
+      "prompt": "Clauses are p with weight 3, ¬p∨q with weight 4, and ¬q with weight 2. Score all Boolean assignments and find the optimum.",
+      "hint": "A false antecedent makes p→q true.",
+      "steps": [
+        "In (p,q) order, 00 scores 0+4+2=6; 01 scores 0+4+0=4.",
+        "10 scores 3+0+2=5; 11 scores 3+4+0=7.",
+        "The unique optimum is p=q=1 with score 7. The total possible weight is 9, but no assignment satisfies all three clauses."
+      ],
+      "rubric": [
+        "00 and 01",
+        "10 and 11",
+        "Optimum",
+        "Inconsistency"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "Z4",
+      "topic": "fuzzy",
+      "title": "Turn a clause into a hinge loss",
+      "kind": "Derivation",
+      "minutes": 9,
+      "points": 4,
+      "prompt": "For a,b∈[0,1], write the Łukasiewicz truth of ¬a∨b, its distance to satisfaction, and the weighted loss with weight 5. Evaluate at a=0.8,b=0.3.",
+      "hint": "Literal truth values are 1−a and b.",
+      "steps": [
+        "Clause truth=min(1,1−a+b).",
+        "Distance=1−truth=max(0,a−b); weighted linear loss is 5 max(0,a−b).",
+        "At (0.8,0.3), truth=0.5, distance=0.5 and loss=2.5.",
+        "A squared-loss variant would be 5[max(0,a−b)]²=1.25; it is a different specified objective."
+      ],
+      "rubric": [
+        "Clause truth",
+        "Hinge expression",
+        "Numerical values",
+        "Linear/squared distinction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "Z5",
+      "topic": "fuzzy",
+      "title": "Why the average is not a t-norm",
+      "kind": "Counterexample",
+      "minutes": 6,
+      "points": 3,
+      "prompt": "Could T(a,b)=(a+b)/2 be a t-norm? Give two failed axioms with numerical examples.",
+      "hint": "Check the neutral element before doing algebra.",
+      "steps": [
+        "Neutrality fails: T(0.4,1)=0.7≠0.4.",
+        "Associativity fails: T(T(0,0),1)=0.5, whereas T(0,T(0,1))=0.25.",
+        "Although the arithmetic mean is commutative and monotone, that is insufficient for a t-norm."
+      ],
+      "rubric": [
+        "Neutral-element counterexample",
+        "Associativity counterexample",
+        "Conclusion"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "Z6",
+      "topic": "fuzzy",
+      "title": "Two uncertain events, two vague properties",
+      "kind": "Interpretation",
+      "minutes": 6,
+      "points": 3,
+      "prompt": "Two independent alarms each fire with probability 0.6. Separately, two people have “tall” degree 0.6. Compute the probability at least one alarm fires, and the fuzzy degree at least one person is tall using max.",
+      "hint": "Independence applies only to the alarm calculation.",
+      "steps": [
+        "Alarm probability=1−(1−0.6)²=0.84.",
+        "Fuzzy max disjunction=max(0.6,0.6)=0.6.",
+        "The two numbers answer different questions: uncertainty of an event versus degree of a vague predicate. A product-dual fuzzy conorm would instead also yield 0.84 by operator choice, not probabilistic independence."
+      ],
+      "rubric": [
+        "Probability",
+        "Fuzzy degree",
+        "Semantic distinction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "Z7",
+      "topic": "fuzzy",
+      "title": "The relaxation can improve the objective",
+      "kind": "Optimization",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Consider four clauses p∨q, p∨¬q, ¬p∨q, ¬p∨¬q, each of weight 1. Compare the Boolean optimum with the Łukasiewicz relaxed score at p=q=0.5.",
+      "hint": "Every Boolean assignment falsifies exactly one clause.",
+      "steps": [
+        "Every Boolean assignment satisfies three clauses and falsifies one, so the Boolean optimum is 3.",
+        "At p=q=0.5 each literal has degree 0.5, and each two-literal clause has truth min(1,0.5+0.5)=1.",
+        "The relaxed score is 4, the maximum possible sum. Thus a fractional optimum can exceed the Boolean optimum."
+      ],
+      "rubric": [
+        "Boolean optimum",
+        "Four relaxed truths",
+        "Gap and conclusion"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "T1",
+      "topic": "proof",
+      "title": "A reduction with a free variable",
+      "kind": "Beta reduction",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Reduce (λx.λy.x) y without capturing the free y. Give the free variables of the result.",
+      "hint": "Rename the inner bound y before substitution.",
+      "steps": [
+        "Alpha-rename λx.λy.x to λx.λz.x, choosing fresh z.",
+        "Then (λx.λz.x) y → λz.y.",
+        "The result has free-variable set {y}. The tempting λy.y is wrong because it captures the originally free y."
+      ],
+      "rubric": [
+        "Alpha-renaming",
+        "Correct normal form",
+        "Free-variable check"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "T2",
+      "topic": "proof",
+      "title": "Compose two functions",
+      "kind": "Typing & proof",
+      "minutes": 8,
+      "points": 4,
+      "prompt": "Infer the type of λf.λg.λx.f(g x), using types A,B,C. Give its corresponding logical proposition and a short proof.",
+      "hint": "Assign g:A→B and f:B→C.",
+      "steps": [
+        "With x:A, g x:B and f(g x):C.",
+        "The full type is (B→C)→(A→B)→A→C.",
+        "Assume B→C, A→B and A. Two applications of modus ponens yield C.",
+        "Discharge A, then A→B, then B→C. This mirrors the three lambda abstractions."
+      ],
+      "rubric": [
+        "Intermediate types",
+        "Full type",
+        "Natural deduction",
+        "Discharges"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "T3",
+      "topic": "proof",
+      "title": "Church successor by hand",
+      "kind": "Reduction",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Let TWO=λf.λx.f(f x) and SUCC=λn.λf.λx.f(n f x). Reduce SUCC TWO to normal form.",
+      "hint": "Substitute TWO for n, then apply it to f and x.",
+      "steps": [
+        "SUCC TWO → λf.λx.f(TWO f x).",
+        "TWO f x → f(f x). Rename bound variables in TWO if needed to make substitution explicit.",
+        "The result is λf.λx.f(f(f x)), the Church numeral THREE."
+      ],
+      "rubric": [
+        "First substitution",
+        "Inner application",
+        "Numeral identification"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "T4",
+      "topic": "proof",
+      "title": "Normal form is not guaranteed",
+      "kind": "Normalization",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Let Ω=(λx.x x)(λx.x x). Explain why Ω diverges. Compare (λz.a) Ω under normal-order and argument-first reduction.",
+      "hint": "One β-step on Ω reproduces Ω.",
+      "steps": [
+        "Ω → Ω, so the reduction can continue forever.",
+        "Normal order reduces the outer redex of (λz.a) Ω directly to a, a normal form.",
+        "Reducing the argument Ω first never terminates. This term has a normal form but is not strongly normalizing."
+      ],
+      "rubric": [
+        "Self-reproduction",
+        "Terminating strategy",
+        "Nonterminating strategy and distinction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "T5",
+      "topic": "proof",
+      "title": "Why self-application has no simple type",
+      "kind": "Typing",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Explain why λx.x x cannot be assigned a finite simple type. What does this imply for Ω?",
+      "hint": "The same x must be both a function and its own argument.",
+      "steps": [
+        "If x has type σ, the application x x also requires x:σ→τ for some τ.",
+        "Thus σ must equal σ→τ, which has no finite simple-type solution.",
+        "The self-application function and therefore Ω are untypable in simply typed lambda calculus, consistent with its strong-normalization theorem."
+      ],
+      "rubric": [
+        "Two uses of x",
+        "Impossible type equation",
+        "Connection to normalization"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "T6",
+      "topic": "proof",
+      "title": "Proof checking is not proof discovery",
+      "kind": "Explanation",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Explain what a proof assistant checks, why an AI-generated proof is not automatically reliable, and one remaining risk even after a proof passes the kernel.",
+      "hint": "Separate the statement being proved from the proof of that statement.",
+      "steps": [
+        "The kernel verifies a formal proof term against a formal statement and the allowed axioms/inference rules.",
+        "Generated prose or tactic text is only a candidate until elaboration and kernel checking succeed.",
+        "A checked theorem may formalize the wrong informal claim or use unwanted assumptions. Review the statement, assumptions and trusted foundation too."
+      ],
+      "rubric": [
+        "Kernel role",
+        "Candidate versus checked proof",
+        "Specification/assumption risk"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "T7",
+      "topic": "proof",
+      "title": "A constructive existence proof",
+      "kind": "Proof",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Prove constructively that for every natural n there exists a natural m with m>n. Contrast this with an existence proof that splits on an undecided excluded-middle proposition.",
+      "hint": "Provide m as an explicit expression in n.",
+      "steps": [
+        "For arbitrary n choose m=n+1. The natural-number order gives n+1>n.",
+        "The witness is computable directly from n, so the proof is constructive.",
+        "A proof that argues “if P choose a, otherwise choose b” without deciding P may establish classical existence without giving a computable choice."
+      ],
+      "rubric": [
+        "Explicit witness",
+        "Inequality",
+        "Constructive/classical contrast"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "D1",
+      "topic": "dl",
+      "title": "Some children, all children",
+      "kind": "Translation",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Translate: (i) a person with at least one student child; (ii) a person whose children are all students; (iii) a person who has children and whose children are all students. Use Person,Student,hasChild.",
+      "hint": "Only an existential restriction guarantees an outgoing edge.",
+      "steps": [
+        "(i) Person ⊓ ∃hasChild.Student.",
+        "(ii) Person ⊓ ∀hasChild.Student.",
+        "(iii) Person ⊓ ∃hasChild.⊤ ⊓ ∀hasChild.Student. The existence conjunct is needed even when all children are students."
+      ],
+      "rubric": [
+        "Existential",
+        "Universal",
+        "Explicit existence"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "D2",
+      "topic": "dl",
+      "title": "Vacuous truth in an empty family",
+      "kind": "Countermodel",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Does ∀r.C ⊑ ∃r.C hold? Does ∃r.C ⊑ ∀r.C hold? Give countermodels.",
+      "hint": "For the second direction, add one good successor and one bad successor.",
+      "steps": [
+        "First direction fails: take domain {a}, r=∅ and C=∅. Then a satisfies ∀r.C but not ∃r.C.",
+        "Second direction fails: domain {a,b,c}, r={(a,b),(a,c)}, C={b}. a has a C-successor, but also the non-C successor c.",
+        "Neither subsumption holds in general."
+      ],
+      "rubric": [
+        "Vacuous countermodel",
+        "Mixed-successor countermodel",
+        "Both conclusions"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "D3",
+      "topic": "dl",
+      "title": "A short tableau closes",
+      "kind": "Satisfiability",
+      "minutes": 9,
+      "points": 4,
+      "prompt": "Is ∃r.A ⊓ ∀r.B ⊓ ∀r.¬A satisfiable? Show the tableau argument.",
+      "hint": "Create the existential witness, then propagate both universals.",
+      "steps": [
+        "Start with root x carrying all three conjuncts.",
+        "The existential creates y with r(x,y) and A(y).",
+        "The universal restrictions add B(y) and ¬A(y).",
+        "A(y) and ¬A(y) clash. Every required expansion closes, so the concept is unsatisfiable."
+      ],
+      "rubric": [
+        "Conjunction expansion",
+        "Witness edge",
+        "Universal propagation",
+        "Clash"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "D4",
+      "topic": "dl",
+      "title": "TBox plus ABox inference",
+      "kind": "Entailment",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "TBox: Student⊑Person, Parent≡Person⊓∃hasChild.Person. ABox: Student(bao), Person(lan), hasChild(lan,bao). Is Parent(lan) entailed? Is Parent(bao) entailed?",
+      "hint": "Use both directions of the equivalence, but do not invent facts about Bao.",
+      "steps": [
+        "Student(bao) entails Person(bao). Together with hasChild(lan,bao) and Person(lan), the right-hand side holds for lan, so Parent(lan) follows.",
+        "Parent(bao) is not entailed: a model with no outgoing hasChild edge from bao satisfies the KB while bao is not a parent.",
+        "This does not establish ¬Parent(bao); another model may add a child for bao."
+      ],
+      "rubric": [
+        "Student subsumption",
+        "Lan classification",
+        "Open-world distinction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "D5",
+      "topic": "dl",
+      "title": "Reduce subsumption to a contradiction",
+      "kind": "Proof",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Prove ∃r.(A⊓B) ⊑ ∃r.A. Does the converse hold?",
+      "hint": "Use the same witness for the valid direction.",
+      "steps": [
+        "If x has an r-successor y in A⊓B, then y is in A. Thus x is in ∃r.A.",
+        "Equivalently, ∃r.(A⊓B) ⊓ ¬∃r.A is unsatisfiable.",
+        "The converse fails: choose r={(x,y)}, A={y}, B=∅. Then x∈∃r.A but x∉∃r.(A⊓B)."
+      ],
+      "rubric": [
+        "Witness-based proof",
+        "Unsatisfiability characterization",
+        "Countermodel to converse"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "D6",
+      "topic": "dl",
+      "title": "Unknown does not mean false",
+      "kind": "Open world",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "An ABox contains Person(ada), Person(ben), hasFriend(ada,ben), with no Student assertions. Does it entail (∀hasFriend.Student)(ada)? Does it entail its negation?",
+      "hint": "Construct one model with Ben a student and another with Ben not a student.",
+      "steps": [
+        "Neither is entailed. A model with Student={ben} and no other friend edges makes the restriction true at ada.",
+        "A model with Student=∅ makes it false because the asserted friend ben is not a student.",
+        "Both models satisfy the ABox. The absent Student assertion leaves the claim undetermined."
+      ],
+      "rubric": [
+        "Neither conclusion",
+        "True-model construction",
+        "False-model construction"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "D7",
+      "topic": "dl",
+      "title": "Empty concepts and inconsistent ontologies",
+      "kind": "Consistency",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Let T={A⊑B, A⊑¬B}. Is T inconsistent? What changes if the ABox adds A(ada)?",
+      "hint": "A concept name is allowed to denote the empty set.",
+      "steps": [
+        "T alone is consistent: set Aᴵ=∅ in a nonempty domain, with any Bᴵ.",
+        "A is unsatisfiable relative to T because an A-instance would be both B and ¬B.",
+        "Adding A(ada) forces such an instance and makes the combined knowledge base inconsistent."
+      ],
+      "rubric": [
+        "Model for T",
+        "Unsatisfiable concept",
+        "ABox-induced inconsistency"
+      ],
+      "origin": "Original practice · based on current course concepts"
+    },
+    {
+      "id": "P8",
+      "topic": "prop",
+      "title": "Entailment and refutation are the same test",
+      "kind": "Proof",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Prove KB ⊨ φ iff KB∪{¬φ} has no model. State why this also works when KB itself is inconsistent.",
+      "hint": "Negate the condition “every KB-model satisfies φ”.",
+      "steps": [
+        "If KB entails φ, a model of KB∪{¬φ} would satisfy both φ and ¬φ, impossible.",
+        "Conversely, if entailment fails, some KB-model falsifies φ; that same valuation satisfies KB∪{¬φ}, contradicting unsatisfiability.",
+        "If KB is inconsistent it has no models. Entailment holds vacuously, and adding ¬φ cannot create a model."
+      ],
+      "rubric": [
+        "Forward direction",
+        "Reverse direction",
+        "Inconsistent case"
+      ],
+      "pages": "18–19",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "P9",
+      "topic": "prop",
+      "title": "Use the deduction property",
+      "kind": "Proof",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Prove KB∪{p} ⊨ q iff KB ⊨ p→q, by valuation semantics.",
+      "hint": "Only valuations with p=true can falsify the implication.",
+      "steps": [
+        "Suppose the left side holds. In any KB-model, either p is false, making p→q true, or p is true, in which case q is true by the premise.",
+        "For the reverse, any model of KB∪{p} satisfies p→q and p, so q is true.",
+        "This is a semantic statement; the proof uses no assumption that KB is consistent."
+      ],
+      "rubric": [
+        "Both p cases",
+        "Reverse argument",
+        "Assumptions stated"
+      ],
+      "pages": "19",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "P10",
+      "topic": "prop",
+      "title": "Monotonicity and explosion",
+      "kind": "Proof",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Prove: if KB ⊨ φ then KB∪{ψ} ⊨ φ. Also explain why {p,¬p} entails q, even if p and q are unrelated.",
+      "hint": "Adding assumptions can only remove models.",
+      "steps": [
+        "Every model of KB∪{ψ} is a KB-model, so it satisfies φ.",
+        "No valuation satisfies both p and ¬p, so there is no countermodel to q. This is classical explosion by vacuous universal quantification over models.",
+        "Explosion is not evidence that q is true in the actual world; it identifies the consequences of an inconsistent classical premise set."
+      ],
+      "rubric": [
+        "Model inclusion",
+        "No countermodel",
+        "Semantic interpretation"
+      ],
+      "pages": "19",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "P11",
+      "topic": "prop",
+      "title": "Truth-function induction",
+      "kind": "Derivation",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Define evaluation of a propositional formula recursively. Then evaluate (p∨q)→(p∧¬q) at p=1,q=0, showing the subformula values.",
+      "hint": "Start at atoms, then work up the syntax tree.",
+      "steps": [
+        "Set v(p),v(q) on atoms; v(¬A)=1−v(A); v(A∧B)=min(v(A),v(B)); v(A∨B)=max(v(A),v(B)); v(A→B)=max(1−v(A),v(B)) for Boolean values.",
+        "Here p∨q=1, ¬q=1, p∧¬q=1.",
+        "The whole implication evaluates to 1→1=1. This one valuation does not prove validity."
+      ],
+      "rubric": [
+        "Recursive definition",
+        "Subformulas",
+        "Result versus validity"
+      ],
+      "pages": "9–16",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "P12",
+      "topic": "prop",
+      "title": "Explain soundness and completeness",
+      "kind": "Concepts",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "What do soundness and completeness of a propositional proof calculus mean? Distinguish them from satisfiability and consistency of one knowledge base.",
+      "hint": "One property concerns what proofs establish; the other what semantic consequences can be proved.",
+      "steps": [
+        "Soundness: KB⊢φ implies KB⊨φ. The calculus proves only semantic consequences.",
+        "Completeness: KB⊨φ implies KB⊢φ. It can prove every semantic consequence.",
+        "Satisfiability/semantic consistency asks whether one KB has a model; it is not a property of all inference rules."
+      ],
+      "rubric": [
+        "Soundness",
+        "Completeness",
+        "Calculus versus KB"
+      ],
+      "pages": "29–37",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "P13",
+      "topic": "prop",
+      "title": "Resolve exactly one pivot",
+      "kind": "Counterexample",
+      "minutes": 7,
+      "points": 3,
+      "prompt": "Why is it invalid to resolve {p,q} and {¬p,¬q} directly to □? Give the correct resolvent on p and a satisfying valuation for the two premises.",
+      "hint": "Other literals remain in the resolvent even if they are complementary.",
+      "steps": [
+        "Resolving on p gives {q,¬q}, a tautological clause, not the empty clause.",
+        "For p=1,q=0, both p∨q and ¬p∨¬q are true. Therefore the two premises are jointly satisfiable.",
+        "A supposed direct derivation of □ would violate soundness by removing two pivot pairs at once."
+      ],
+      "rubric": [
+        "Correct resolvent",
+        "Satisfying valuation",
+        "Soundness explanation"
+      ],
+      "pages": "22–28",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "P14",
+      "topic": "prop",
+      "title": "From a small graph to a logical rule",
+      "kind": "Datalog reasoning",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Facts: Parent(a,b), Parent(b,c), Parent(c,a). Rules: Anc(x,y)←Parent(x,y); Anc(x,z)←Anc(x,y)∧Parent(y,z). Does Anc(a,a) follow? List the final Anc relation and explain termination.",
+      "hint": "A directed cycle creates positive-length paths back to the starting point.",
+      "steps": [
+        "Round 1 gives (a,b),(b,c),(c,a). Round 2 adds (a,c),(b,a),(c,b). Round 3 adds (a,a),(b,b),(c,c).",
+        "The final Anc relation is every ordered pair in {a,b,c}², so Anc(a,a) follows.",
+        "There are only nine possible ground Anc facts, and rules only add facts. Saturation must terminate even though the represented graph contains a cycle."
+      ],
+      "rubric": [
+        "Derived rounds",
+        "All nine facts",
+        "Finite monotone termination"
+      ],
+      "pages": "Datalog handout",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "F8",
+      "topic": "fol",
+      "title": "Give semantics, not just a formula",
+      "kind": "Interpretation",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Let domain={0,1}, c=0, f swap 0 and 1, and R={(0,1),(1,0)}. Evaluate R(c,f(c)), ∀x R(x,f(x)), and ∃x R(x,x).",
+      "hint": "Compute function values before looking up relation tuples.",
+      "steps": [
+        "f(c)=1 and (0,1)∈R, so R(c,f(c)) is true.",
+        "For x=0, R(0,1) is true; for x=1, R(1,0) is true. The universal is true.",
+        "Neither (0,0) nor (1,1) is in R, so the existential is false."
+      ],
+      "rubric": [
+        "Term interpretation",
+        "Universal check",
+        "Existential check"
+      ],
+      "pages": "22–29",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "F9",
+      "topic": "fol",
+      "title": "Fresh names before prenex form",
+      "kind": "Transformation",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "Put (∀x P(x))∨(∃x Q(x,y)) into prenex form. Explain why renaming one x is useful, and identify the free variables in the result.",
+      "hint": "Rename the existential variable z before pulling it out.",
+      "steps": [
+        "Rename the second bound x to z: (∀x P(x))∨(∃z Q(z,y)).",
+        "A prenex form is ∀x∃z (P(x)∨Q(z,y)), over the course’s nonempty domains. x is not free in Q(z,y), and z is not free in P(x).",
+        "Only y remains free. Renaming avoids suggesting that the two original quantifiers bind the same occurrences."
+      ],
+      "rubric": [
+        "Alpha-renaming",
+        "Valid prenex form and conditions",
+        "Free y"
+      ],
+      "pages": "35–43",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "F10",
+      "topic": "fol",
+      "title": "A Skolem constant and a Skolem function",
+      "kind": "Skolemization",
+      "minutes": 10,
+      "points": 4,
+      "prompt": "Skolemize ∃u∀x∃y P(u,x,y), then compare it with ∀x∃u∃y P(u,x,y). Use fresh symbols and state the dependency differences.",
+      "hint": "A witness can depend on universal variables preceding its quantifier.",
+      "steps": [
+        "The first becomes ∀x P(c,x,f(x)); c is a fresh constant and f is a fresh unary function.",
+        "The second can become ∀x P(g(x),x,h(x)), with fresh unary functions g,h.",
+        "The first requires one u shared by all x; the second permits a separate u for each x. Both transformations preserve satisfiability in the extended signatures, not formula equivalence in the original language."
+      ],
+      "rubric": [
+        "First dependencies",
+        "Second dependencies",
+        "Shared-witness distinction",
+        "Equisatisfiability"
+      ],
+      "pages": "38–45",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "F11",
+      "topic": "fol",
+      "title": "Chain two predicate rules",
+      "kind": "Resolution",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "Premises: ∀x(P(x)→Q(f(x))), ∀y(Q(y)→R(y)), P(a). Refute the negation of R(f(a)), showing substitutions.",
+      "hint": "Keep rule variables distinct, then use the generated term f(a).",
+      "steps": [
+        "Clauses: ¬P(x)∨Q(f(x)); ¬Q(y)∨R(y); P(a); ¬R(f(a)).",
+        "Resolve first clause with P(a), using x↦a, to obtain Q(f(a)).",
+        "Resolve with the second using y↦f(a), obtaining R(f(a)). Resolve against the negated goal to derive □."
+      ],
+      "rubric": [
+        "All clauses",
+        "First substitution",
+        "Second substitution and contradiction"
+      ],
+      "pages": "43–49",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "F12",
+      "topic": "fol",
+      "title": "Quantifier rules need side conditions",
+      "kind": "Proof",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Given ∃x P(x) and ∀x(P(x)→Q(x)), prove ∃x Q(x) by natural deduction. What would be wrong with concluding Q(ada)?",
+      "hint": "Introduce a fresh temporary witness c inside a subproof.",
+      "steps": [
+        "Assume P(c) for fresh c as the existential witness. Instantiate the universal to get P(c)→Q(c), then infer Q(c).",
+        "Introduce ∃x Q(x), and discharge the witness subproof. c does not occur free in that conclusion or in undischarged assumptions outside its scope.",
+        "Q(ada) is not justified: the existing witness need not denote Ada."
+      ],
+      "rubric": [
+        "Fresh-witness subproof",
+        "Universal elimination and existential introduction",
+        "No witness escape"
+      ],
+      "pages": "Natural deduction rules handout",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "F13",
+      "topic": "fol",
+      "title": "Everyone knows someone is not everyone knows everyone",
+      "kind": "Countermodel",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "Compare ∀x∃y Knows(x,y) and ∀x∀y Knows(x,y). Give a model satisfying the first but not the second. Negate the second.",
+      "hint": "A two-person model with only self-knowledge suffices.",
+      "steps": [
+        "Domain={a,b}, Knows={(a,a),(b,b)} satisfies the first formula.",
+        "The second is false because Knows(a,b) is false. It is strictly stronger.",
+        "Its negation is ∃x∃y ¬Knows(x,y), witnessed by (a,b)."
+      ],
+      "rubric": [
+        "Explicit model",
+        "Strictness",
+        "Negation"
+      ],
+      "pages": "10–20",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "F14",
+      "topic": "fol",
+      "title": "Translate a relational chain",
+      "kind": "Formalization",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "Use Student(x), Course(y), Teacher(z), Takes(x,y) and Teaches(z,y). Formalize “Every student takes a course taught by a teacher.” Negate the formula. Do not require one common course or teacher.",
+      "hint": "The course and teacher witnesses may depend on the student.",
+      "steps": [
+        "∀x(Student(x)→∃y∃z(Course(y)∧Teacher(z)∧Takes(x,y)∧Teaches(z,y))).",
+        "Its negation is ∃x(Student(x)∧∀y∀z(¬Course(y)∨¬Teacher(z)∨¬Takes(x,y)∨¬Teaches(z,y))).",
+        "The existential witnesses are inside the scope of ∀x. Pulling them before ∀x would impose shared witnesses that the sentence does not require."
+      ],
+      "rubric": [
+        "Predicates and argument order",
+        "Correct negation",
+        "No shared-witness strengthening"
+      ],
+      "pages": "10–29",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "A8",
+      "topic": "plan",
+      "title": "The Sussman anomaly on three blocks",
+      "kind": "Planning",
+      "minutes": 15,
+      "points": 3,
+      "prompt": "Initially On(C,A), On(A,Table), On(B,Table), with C and B clear. Goal: On(A,B)∧On(B,C). Assume standard clear-block moves. Give a plan, and explain why completing On(A,B) first can interfere with the other goal.",
+      "hint": "You must clear A and keep B clear until it can move onto C.",
+      "steps": [
+        "Move C from A to Table; move B from Table to C; move A from Table to B. The goal then holds.",
+        "If A is placed onto B before moving B onto C, B is no longer clear and cannot move. Achieving the second goal requires temporarily undoing the first.",
+        "The need to coordinate subgoal order/interleaving is the point; the hand-traced solution uses no solver-specific implementation."
+      ],
+      "rubric": [
+        "Applicable three-move plan",
+        "Goal verification",
+        "Subgoal interference"
+      ],
+      "pages": "15–22",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "A9",
+      "topic": "plan",
+      "title": "Initialize every relevant fact",
+      "kind": "SAT encoding",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "A grounded planning vocabulary contains AtA,AtB,DoorOpen. Initially only AtA holds. Write initial clauses and a goal clause for AtB at horizon H. Why is writing only AtA₀ insufficient?",
+      "hint": "Initial false facts also constrain the SAT assignment.",
+      "steps": [
+        "Initial units: AtA₀, ¬AtB₀, ¬DoorOpen₀. Goal: AtB_H.",
+        "If only AtA₀ is stated, SAT can choose AtB₀=true or DoorOpen₀=true, inventing a more helpful initial state.",
+        "A complete closed-world initial description and transition constraints must agree on the set of grounded fluents being represented."
+      ],
+      "rubric": [
+        "Positive and negative initial clauses",
+        "Goal at H",
+        "Spurious initial model"
+      ],
+      "pages": "23–32",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "A10",
+      "topic": "plan",
+      "title": "Serial actions and mutual exclusion",
+      "kind": "SAT reasoning",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "At each of three steps, actions Open,Go,Close are possible. Write an at-most-one-action constraint for one step. How does it differ from exactly one?",
+      "hint": "At-most-one forbids all three distinct pairs, but permits all-false.",
+      "steps": [
+        "At time t use (¬Open_t∨¬Go_t)∧(¬Open_t∨¬Close_t)∧(¬Go_t∨¬Close_t).",
+        "Exactly one adds Open_t∨Go_t∨Close_t. At-most-one alone permits an idle step.",
+        "Idle steps preserve state through frame constraints; permitting several actions requires explicit noninterference/concurrency semantics rather than simply removing all mutex constraints."
+      ],
+      "rubric": [
+        "Three pairwise clauses",
+        "At-least-one distinction",
+        "Idle/concurrent semantics"
+      ],
+      "pages": "23–32",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "A11",
+      "topic": "plan",
+      "title": "Prove an invariant is preserved",
+      "kind": "Proof",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "Suppose every legal state has exactly one robot location. Move(u,v), u≠v, requires At(u), deletes At(u), and adds At(v). Prove that this invariant is preserved by an applicable move.",
+      "hint": "Use the invariant in the pre-state, not only the effect list.",
+      "steps": [
+        "The precondition and invariant imply At(u) is the unique true location; all other At facts, including At(v), are false.",
+        "Deleting At(u) removes that one location. Adding At(v) creates exactly one new location. Unrelated location facts remain false.",
+        "Thus the successor again has exactly one location. This argument depends on complete delete/add effects and the legal initial-state invariant."
+      ],
+      "rubric": [
+        "Unique pre-state location",
+        "Delete/add reasoning",
+        "Inductive invariant conclusion"
+      ],
+      "pages": "4–14, 23–32",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "A12",
+      "topic": "plan",
+      "title": "What SATPLAN minimizes",
+      "kind": "Explanation",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "A solver finds a horizon-5 plan. Under what search procedure can you conclude it is shortest? What is the relationship between horizon and action count when idle steps are permitted?",
+      "hint": "Distinguish a feasible bound from the first feasible bound.",
+      "steps": [
+        "If every smaller horizon 0,…,4 was proven UNSAT under the same serial semantics, 5 is the minimum feasible horizon.",
+        "A lone SAT result at H=5 proves feasibility only; shorter plans might exist.",
+        "With idle steps, the horizon is an upper bound on serial action count. A returned horizon-5 model may use fewer than five non-idle actions; count the actions and remove idle steps."
+      ],
+      "rubric": [
+        "Increasing proven bounds",
+        "Feasible versus shortest",
+        "Idle-step action count"
+      ],
+      "pages": "23–32",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "A13",
+      "topic": "plan",
+      "title": "Discounted rewards by hand",
+      "kind": "Calculation",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Two deterministic policies have reward streams A:(4,0,0,…) and B:(0,6,0,…). Compare their returns at γ=0.5 and γ=0.9.",
+      "hint": "Use G=Σ γᵗr_t, starting at t=0.",
+      "steps": [
+        "At γ=0.5, G_A=4 and G_B=0+0.5×6=3, so A is better.",
+        "At γ=0.9, G_A=4 and G_B=5.4, so B is better.",
+        "The choice depends on discounting: a higher γ places more relative value on delayed reward. This uses only the lecture’s return objective."
+      ],
+      "rubric": [
+        "First discount",
+        "Second discount",
+        "Interpretation"
+      ],
+      "pages": "35–36",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "A14",
+      "topic": "plan",
+      "title": "Expected one-step reward",
+      "kind": "Calculation",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Action a leads to reward 10 with probability 0.3 and 0 otherwise. Action b gives reward 2 certainly. Which maximizes expected immediate reward? Does this alone determine the best infinite-horizon policy?",
+      "hint": "Calculate the expectation, then ask what future states might matter.",
+      "steps": [
+        "E[r|a]=0.3×10+0.7×0=3. E[r|b]=2. Action a has the larger expected immediate reward.",
+        "This does not settle infinite-horizon choice: future rewards depend on successor states and subsequent actions, discounted by γ.",
+        "Without those transitions and future rewards, an optimal long-run policy cannot be identified."
+      ],
+      "rubric": [
+        "Expectations",
+        "Immediate choice",
+        "Long-horizon limitation"
+      ],
+      "pages": "35–36",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "C8",
+      "topic": "fca",
+      "title": "NextClosure with an explicit lectical order",
+      "kind": "Algorithm tracing",
+      "minutes": 16,
+      "points": 4,
+      "prompt": "Context: 1:{a,b}, 2:{a,c}, 3:{a,b,c}; order a<b<c. Start at ∅″. To find the next intent, scan i from c back to a, close (A∩{j:j<i})∪{i}, and accept only if no earlier attribute absent from A is introduced. List the intents and the first two accepted pivots.",
+      "hint": "The starting closure is {a}, not ∅.",
+      "steps": [
+        "∅″={a}. From A={a}, try pivot c: close {a,c}={a,c}; no earlier new attribute appears, so accept.",
+        "From A={a,c}, skip c because c∈A; pivot b gives closure {a,b}. It adds no earlier attribute beyond a, so accept.",
+        "From A={a,b}, pivot c yields {a,b,c}. No further pivot is possible. Sequence: {a}, {a,c}, {a,b}, {a,b,c}.",
+        "Lectical order is not set inclusion order; the middle intents are incomparable."
+      ],
+      "rubric": [
+        "Start at closure",
+        "First pivot",
+        "Second pivot",
+        "Full order and termination"
+      ],
+      "pages": "22–24, 83–92",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "C9",
+      "topic": "fca",
+      "title": "Meet and join in a concept lattice",
+      "kind": "Derivation",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "In context 1:{a,b}, 2:{a,c}, 3:{a,b,c}, take C=({1,3},{a,b}) and D=({2,3},{a,c}). Compute their meet and join under extent inclusion.",
+      "hint": "Meet intersects extents; join closes the union of extents.",
+      "steps": [
+        "Meet extent={1,3}∩{2,3}={3}; its intent is {a,b,c}. Hence C∧D=({3},{a,b,c}).",
+        "Join extent=({1,3}∪{2,3})″={1,2,3}; intent={a}. Hence C∨D=({1,2,3},{a}).",
+        "Intent order is reversed: meet closes the union of intents, while join intersects intents."
+      ],
+      "rubric": [
+        "Meet",
+        "Join",
+        "Order reversal"
+      ],
+      "pages": "15–21",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "C10",
+      "topic": "fca",
+      "title": "Use Armstrong’s axioms",
+      "kind": "Proof",
+      "minutes": 11,
+      "points": 3,
+      "prompt": "From a→b and b→c, derive a→{b,c} using Armstrong’s axioms. Then decide if adding {a,c}→b is redundant.",
+      "hint": "Use augmentation to keep an attribute already present in a conclusion.",
+      "steps": [
+        "Transitivity gives a→c. Augment a→b with a to obtain a→{a,b}.",
+        "Augment a→c with b to obtain {a,b}→{b,c}. Transitivity yields a→{b,c}.",
+        "The rule {a,c}→b follows by augmenting a→b with c and then reflexivity/projection, so it adds no new consequence and is redundant."
+      ],
+      "rubric": [
+        "Valid axiom steps",
+        "Union conclusion",
+        "Redundancy reasoning"
+      ],
+      "pages": "31–34",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "C11",
+      "topic": "fca",
+      "title": "A tiny canonical implication basis",
+      "kind": "Closure reasoning",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "Context over attributes {a,b}: object 1 has {a}, object 2 has {a,b}. Find the closed sets and a complete nonredundant implication basis. Explain why ∅ is the only pseudo-intent here (using: P≠P″ and every smaller pseudo-intent Q⊂P has Q″⊆P).",
+      "hint": "All objects share a; compute all four closures.",
+      "steps": [
+        "Closures: ∅″={a}, {a}″={a}, {b}″={a,b}, {a,b}″={a,b}. Closed sets are {a} and {a,b}.",
+        "∅ is non-closed and has no smaller pseudo-intent, so it is a pseudo-intent. {b} is not: ∅⊂{b} but ∅″={a} is not a subset of {b}.",
+        "The DG basis is ∅→{a}. It yields every closure by adding a and is nonredundant; deleting it loses a valid implication."
+      ],
+      "rubric": [
+        "Four closures",
+        "Pseudo-intent check",
+        "Complete nonredundant basis"
+      ],
+      "pages": "31–34",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "C12",
+      "topic": "fca",
+      "title": "Clarify without changing the lattice",
+      "kind": "Preprocessing",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "Context rows: 1:{a,b}, 2:{a,b}, 3:{a,c}. Identify duplicate rows and columns and give a clarified context. What structural property is preserved?",
+      "hint": "A column is its object extent, not its name.",
+      "steps": [
+        "Rows 1 and 2 are identical; retain one representative, say 1. Original column extents are a:{1,2,3}, b:{1,2}, c:{3}, so no columns are identical.",
+        "A clarified context has rows 1:{a,b} and 3:{a,c}. The concept lattice is isomorphic to the original; duplicated objects were redundant labels.",
+        "Clarified does not mean reduced: reduction also removes structurally derivable rows/columns. Clarification alone is not a guarantee that every association-rule support is preserved when duplicate transaction counts are discarded."
+      ],
+      "rubric": [
+        "Duplicates",
+        "Clarified table",
+        "Lattice versus support distinction"
+      ],
+      "pages": "27–29",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "C13",
+      "topic": "fca",
+      "title": "Build a small FP-tree",
+      "kind": "Algorithm tracing",
+      "minutes": 14,
+      "points": 4,
+      "prompt": "Transactions: abc, ab, ac, bc. Minimum support count=2. Order frequent items by decreasing count, ties a<b<c. Build the FP-tree counts and the conditional pattern base for c.",
+      "hint": "All singletons have count 3. Sort each transaction a,b,c before insertion.",
+      "steps": [
+        "Tree: root→a:3 and root→b:1. Under a are b:2 and c:1. Under a→b is c:1. Under root→b is c:1.",
+        "The c conditional pattern base is prefix ab with count 1, prefix a with count 1, prefix b with count 1.",
+        "Conditional counts are a:2,b:2,ab:1. Thus ac and bc are frequent at count 2, but abc is not. FP-Growth mines conditional trees instead of enumerating every Apriori candidate."
+      ],
+      "rubric": [
+        "Tree counts",
+        "Conditional prefixes",
+        "Frequent extensions",
+        "Algorithm contrast"
+      ],
+      "pages": "64–66",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "C14",
+      "topic": "fca",
+      "title": "Generate strong rules from a frequent triple",
+      "kind": "Association rules",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "Five transactions are abc, abc, ab, ac, bc. At minimum confidence 0.75, which rules with union abc are strong? Compute the support and confidence of ab⇒c and a⇒bc.",
+      "hint": "There are six nonempty proper antecedents, and support(abc)=2/5.",
+      "steps": [
+        "support(ab)=support(ac)=support(bc)=3/5; support(a)=support(b)=support(c)=4/5.",
+        "Pair-to-singleton confidences are (2/5)/(3/5)=2/3; singleton-to-pair confidences are (2/5)/(4/5)=1/2. None reaches 0.75.",
+        "Both requested rule supports equal 2/5. Their confidences are 2/3 and 1/2 respectively. A frequent union alone does not guarantee a strong rule."
+      ],
+      "rubric": [
+        "Six-rule reasoning",
+        "Counts and confidences",
+        "Threshold and support distinction"
+      ],
+      "pages": "67–79",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "Z8",
+      "topic": "fuzzy",
+      "title": "Prove the largest t-norm bound",
+      "kind": "Proof",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Using t-norm monotonicity and the neutral element, prove T(a,b)≤min(a,b), and deduce T(a,1−a)≤0.5.",
+      "hint": "Compare b with 1, and a with 1.",
+      "steps": [
+        "Because b≤1, T(a,b)≤T(a,1)=a. Likewise T(a,b)≤T(1,b)=b, using commutativity and neutrality.",
+        "Therefore T(a,b)≤min(a,b).",
+        "Set b=1−a. The maximum of min(a,1−a) on [0,1] is 0.5, so the weak contradiction bound follows."
+      ],
+      "rubric": [
+        "Bound by a",
+        "Bound by b",
+        "Weak contradiction bound"
+      ],
+      "pages": "22–24",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "Z9",
+      "topic": "fuzzy",
+      "title": "Derive a dual operation",
+      "kind": "Proof",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Let S(a,b)=1−T(1−a,1−b) for a t-norm T. Prove S(a,0)=a and S(a,1)=1.",
+      "hint": "First prove T(x,0)=0 from monotonicity and T(1,0)=0.",
+      "steps": [
+        "S(a,0)=1−T(1−a,1)=1−(1−a)=a.",
+        "T(x,0)≤T(1,0)=T(0,1)=0, and t-norm outputs are nonnegative; hence T(x,0)=0.",
+        "Thus S(a,1)=1−T(1−a,0)=1."
+      ],
+      "rubric": [
+        "Neutral conorm value",
+        "Annihilator proof",
+        "Top conorm value"
+      ],
+      "pages": "22–27",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "Z10",
+      "topic": "fuzzy",
+      "title": "Residual implications for product and Łukasiewicz",
+      "kind": "Calculation",
+      "minutes": 11,
+      "points": 3,
+      "prompt": "Compute residual implications at a=0.8,b=0.3 for product and Łukasiewicz t-norms using I(a,b)=sup{c:T(a,c)≤b}. Do not assume S-implication.",
+      "hint": "Solve the inequality for c∈[0,1].",
+      "steps": [
+        "Product requires 0.8c≤0.3, so c≤0.375 and I=0.375.",
+        "Łukasiewicz requires max(0,0.8+c−1)≤0.3, giving c≤0.5 and I=0.5.",
+        "The general formulas are I_product=1 when a≤b, otherwise b/a; I_Luk=min(1,1−a+b). At a=0, the product residuum is 1."
+      ],
+      "rubric": [
+        "Product inequality",
+        "Łukasiewicz inequality",
+        "Boundary and formulas"
+      ],
+      "pages": "Implication section",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "Z11",
+      "topic": "fuzzy",
+      "title": "Test classical laws under fuzzy operators",
+      "kind": "Counterexample",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "At a=0.4 compute a∨¬a and a∧¬a with minimum/max operators and with Łukasiewicz operators. Which classical equalities survive in these examples?",
+      "hint": "Use ¬a=0.6 throughout.",
+      "steps": [
+        "Minimum/max: disjunction=max(0.4,0.6)=0.6, conjunction=min(0.4,0.6)=0.4. Neither equals the classical 1 or 0.",
+        "Łukasiewicz: disjunction=min(1,1)=1 and conjunction=max(0,1−1)=0. These equalities in fact hold for all a with standard negation.",
+        "A classical law cannot be transferred to all fuzzy logics without specifying the operators."
+      ],
+      "rubric": [
+        "Minimum pair",
+        "Łukasiewicz pair",
+        "Operator dependence"
+      ],
+      "pages": "23–27, implication section",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "Z12",
+      "topic": "fuzzy",
+      "title": "Write the full PSL objective",
+      "kind": "Optimization",
+      "minutes": 12,
+      "points": 4,
+      "prompt": "Atoms p,q∈[0,1]. Weighted clauses: p [2], ¬p∨q [3], ¬q [1]. Write the weighted truth objective and equivalent hinge-loss objective. Evaluate both at p=0.7,q=0.4.",
+      "hint": "Each weighted truth equals its weight minus the weighted distance.",
+      "steps": [
+        "Maximize 2p+3min(1,1−p+q)+(1−q). Equivalently minimize 2(1−p)+3max(0,p−q)+q.",
+        "At the given point, truth objective=1.4+3×0.7+0.6=4.1. Loss=0.6+0.9+0.4=1.9.",
+        "The objectives sum to total weight 6. Nonnegative weighted hinge losses are convex; maximizing the concave truth sum over the box is equivalent."
+      ],
+      "rubric": [
+        "Truth objective",
+        "Loss objective",
+        "Numerical values",
+        "Convexity and constant sum"
+      ],
+      "pages": "PSL slides 11–20",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "Z13",
+      "topic": "fuzzy",
+      "title": "Optimize a two-variable relaxation",
+      "kind": "Optimization",
+      "minutes": 14,
+      "points": 3,
+      "prompt": "For the preceding objective 2p+3min(1,1−p+q)+1−q, find the global optimum on [0,1]² by splitting into p≤q and p≥q.",
+      "hint": "On either side of p=q the objective is affine.",
+      "steps": [
+        "If p≤q, the objective is 4+2p−q≤4+p≤5, with equality at p=q=1.",
+        "If p≥q, it is 4−p+2q≤4+q≤5, again with equality at p=q=1.",
+        "The global optimum is uniquely (1,1), score 5. In this instance relaxation gives no advantage over the best Boolean assignment; relaxation gaps are instance-dependent."
+      ],
+      "rubric": [
+        "First region",
+        "Second region",
+        "Global conclusion"
+      ],
+      "pages": "PSL slides 11–20",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "Z14",
+      "topic": "fuzzy",
+      "title": "Weights are priorities, not probabilities",
+      "kind": "Interpretation",
+      "minutes": 8,
+      "points": 3,
+      "prompt": "What does multiplying all positive clause weights by 10 do to a weighted MAX-SAT maximizer? Does a weight of 0.8 mean the corresponding formula is true with probability 0.8?",
+      "hint": "A common positive scale changes scores but not their order.",
+      "steps": [
+        "All assignment scores are multiplied by 10, so maximizers are unchanged.",
+        "A clause weight specifies its contribution to the optimization objective. It is not itself a calibrated event probability.",
+        "Probabilistic soft logic combines weighted formulas and fuzzy-valued atoms, but neither interpretation licenses treating every weight as a probability."
+      ],
+      "rubric": [
+        "Scale invariance",
+        "Weight meaning",
+        "Semantic distinction"
+      ],
+      "pages": "PSL slides 3–19",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "T8",
+      "topic": "proof",
+      "title": "Free and bound occurrences",
+      "kind": "Syntax",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "In λx.(x (λy.x y) z), identify free variables, identify the bound occurrences of x and y, and alpha-rename the outer binder to u.",
+      "hint": "z is not bound by either lambda.",
+      "steps": [
+        "FV={z}. Both x occurrences are bound by the outer λx; the y occurrence is bound by λy.",
+        "Renaming gives λu.(u (λy.u y) z), with fresh u.",
+        "The free z remains unchanged; renaming only a binder without its bound occurrences would change the term."
+      ],
+      "rubric": [
+        "Free variables",
+        "Occurrence binding",
+        "Consistent alpha-conversion"
+      ],
+      "pages": "15, 19",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "T9",
+      "topic": "proof",
+      "title": "Read application associativity",
+      "kind": "Reduction",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "Reduce ((λx.λy.x) a) b and compare with (λx.λy.x)(a b).",
+      "hint": "Application associates left unless parentheses say otherwise.",
+      "steps": [
+        "((λx.λy.x) a) b→(λy.a)b→a, assuming y is chosen fresh for a.",
+        "(λx.λy.x)(a b)→λy.(a b), with capture-avoiding renaming if needed.",
+        "The second expression supplies one argument, namely a b; the first supplies a and then b."
+      ],
+      "rubric": [
+        "Left-associated reduction",
+        "Other grouping",
+        "Argument-count explanation"
+      ],
+      "pages": "15, 19",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "T10",
+      "topic": "proof",
+      "title": "Church multiplication",
+      "kind": "Reduction",
+      "minutes": 14,
+      "points": 3,
+      "prompt": "Let TWO=λf.λx.f(f x), THREE=λf.λx.f(f(f x)), and MUL=λm.λn.λf.λx.m(n f)x. Show MUL TWO THREE represents six.",
+      "hint": "THREE f is a function applying f three times.",
+      "steps": [
+        "MUL TWO THREE→λf.λx.TWO(THREE f)x.",
+        "TWO(THREE f)x applies THREE f twice, yielding (THREE f)((THREE f)x).",
+        "After expanding both uses, the normal form is λf.λx.f(f(f(f(f(f x))))), the Church numeral six."
+      ],
+      "rubric": [
+        "Substitution",
+        "Composition interpretation",
+        "Normal form"
+      ],
+      "pages": "16–17",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "T11",
+      "topic": "proof",
+      "title": "Church booleans select a branch",
+      "kind": "Reduction",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "Let TRUE=λa.λb.a, FALSE=λa.λb.b and AND=λp.λq.p q p. Reduce AND TRUE FALSE and AND FALSE TRUE.",
+      "hint": "Function application supplies the two alternatives to the boolean.",
+      "steps": [
+        "AND TRUE FALSE→TRUE FALSE TRUE→FALSE.",
+        "AND FALSE TRUE→FALSE TRUE FALSE→FALSE.",
+        "TRUE returns its first argument and FALSE returns its second. With these encodings AND implements conjunction."
+      ],
+      "rubric": [
+        "First reduction",
+        "Second reduction",
+        "Selection explanation"
+      ],
+      "pages": "18",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "T12",
+      "topic": "proof",
+      "title": "Construct conjunction and disjunction proofs",
+      "kind": "Natural deduction",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "Prove (A∧B)→(B∧A). Then prove (A∨B)→(B∨A) using disjunction elimination.",
+      "hint": "The second proof needs a branch for each possible disjunct.",
+      "steps": [
+        "For conjunction, assume A∧B, eliminate to obtain A and B, introduce B∧A, then discharge the assumption.",
+        "For disjunction, assume A∨B. In the A branch introduce B∨A by right injection; in the B branch introduce B∨A by left injection.",
+        "Apply ∨ elimination to the two branches, then discharge the outer assumption. Both branches prove the same target formula."
+      ],
+      "rubric": [
+        "Conjunction derivation",
+        "Two disjunction branches",
+        "Elimination and discharge"
+      ],
+      "pages": "21–24",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "T13",
+      "topic": "proof",
+      "title": "Why excluded middle matters to this existence proof",
+      "kind": "Explanation",
+      "minutes": 11,
+      "points": 3,
+      "prompt": "Let x=(√2)^(√2). Explain the classical proof that irrational a,b exist with a^b rational, and why this proof does not select one of its two candidate witnesses constructively.",
+      "hint": "Split on whether x is rational; do not claim that x is known rational.",
+      "steps": [
+        "If x is rational choose a=b=√2; their power is x.",
+        "Otherwise choose a=x and b=√2. Both are irrational and a^b=(√2)^2=2.",
+        "This proof uses excluded middle on x being rational but does not decide that case. It establishes existence without selecting the corresponding pair by this argument alone."
+      ],
+      "rubric": [
+        "First conditional pair",
+        "Second pair and value",
+        "Nonconstructive choice"
+      ],
+      "pages": "27",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "T14",
+      "topic": "proof",
+      "title": "Incompleteness is not unsoundness",
+      "kind": "Concepts",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "State the relevant limits of a consistent effectively axiomatized theory strong enough for arithmetic. Explain why those limits do not stop a proof assistant from checking a supplied finite proof.",
+      "hint": "Separate all true statements from each finite derivation.",
+      "steps": [
+        "Under the first incompleteness theorem’s conditions, the theory cannot prove every arithmetical truth; some statement is undecidable in the theory.",
+        "The second theorem, under its standard derivability conditions, prevents a consistent such theory from proving its own formalized consistency. These are not claims that every logic is incomplete or that the theory is inconsistent.",
+        "A kernel can still check each supplied finite proof by mechanical rules; incompleteness limits what can be proved, not the verification of a valid derivation."
+      ],
+      "rubric": [
+        "Qualified first theorem",
+        "Qualified second theorem",
+        "Checking distinction"
+      ],
+      "pages": "9–14, 28",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "D8",
+      "topic": "dl",
+      "title": "Qualified cardinality restrictions",
+      "kind": "Translation",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "Translate “a human who has at least two professor children and at most four children in total.” Explain why two different child names in the ABox do not alone establish the lower bound.",
+      "hint": "Qualify the lower bound but use ⊤ for the upper bound.",
+      "steps": [
+        "Human⊓(≥2 hasChild.Professor)⊓(≤4 hasChild.⊤).",
+        "The ≥2 restriction requires two distinct domain elements that are professor children.",
+        "Without a unique-name assumption or an explicit inequality assertion, two individual names may refer to the same element; two names alone do not prove distinctness."
+      ],
+      "rubric": [
+        "Correct qualified/unqualified bounds",
+        "Semantic distinctness",
+        "Name versus individual distinction"
+      ],
+      "pages": "21–22",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "D9",
+      "topic": "dl",
+      "title": "Use inverse roles, subroles and transitivity",
+      "kind": "Entailment",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "Suppose hasParent⊑hasAncestor, hasAncestor is transitive, and hasChild=hasParent inverse. Facts: hasParent(a,b), hasParent(b,c). List forced ancestor edges and one forced child edge. Is hasParent(a,c) forced?",
+      "hint": "Subrole inclusion goes only from the smaller role to the larger.",
+      "steps": [
+        "hasAncestor(a,b), hasAncestor(b,c) follow by inclusion; hasAncestor(a,c) follows by transitivity.",
+        "The inverse gives hasChild(b,a) and hasChild(c,b).",
+        "hasParent(a,c) is not forced. A model where hasParent has only the two asserted edges and hasAncestor additionally has (a,c) is a countermodel."
+      ],
+      "rubric": [
+        "Three ancestor edges",
+        "Inverse edges",
+        "No converse role inclusion"
+      ],
+      "pages": "22, 52–54",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "D10",
+      "topic": "dl",
+      "title": "Negate restrictions correctly",
+      "kind": "Transformation",
+      "minutes": 9,
+      "points": 3,
+      "prompt": "Push negation inward in ¬(A⊓∃r.B) and ¬∀r.(A⊔B). Explain the quantifier duality.",
+      "hint": "Use ¬∃r.C=∀r.¬C and ¬∀r.C=∃r.¬C.",
+      "steps": [
+        "¬(A⊓∃r.B)=¬A⊔∀r.¬B.",
+        "¬∀r.(A⊔B)=∃r.¬(A⊔B)=∃r.(¬A⊓¬B).",
+        "Negating “all successors satisfy C” requires one successor failing C; negating “some successor satisfies C” means every successor fails C, including vacuous cases."
+      ],
+      "rubric": [
+        "First NNF",
+        "Second NNF",
+        "Semantic duality"
+      ],
+      "pages": "9–18, 35–44",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "D11",
+      "topic": "dl",
+      "title": "One open tableau branch is enough",
+      "kind": "Tableau",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "Is (A⊔B)⊓¬A⊓∃r.C satisfiable? Show both root branches and a finite model for an open branch.",
+      "hint": "The existential is independent of the A/B choice.",
+      "steps": [
+        "Branch on A⊔B. The A branch clashes with ¬A.",
+        "The B branch contains B,¬A and an r-successor y in C; there is no clash.",
+        "A model: domain {x,y}, A=∅, B={x}, C={y}, r={(x,y)}. x satisfies the whole concept. One closed branch does not make the concept unsatisfiable."
+      ],
+      "rubric": [
+        "Closed branch",
+        "Open branch",
+        "Explicit model"
+      ],
+      "pages": "35–46",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "D12",
+      "topic": "dl",
+      "title": "Build the full interpretation",
+      "kind": "Semantics",
+      "minutes": 12,
+      "points": 3,
+      "prompt": "Domain={a,b,c}; A={a,b}, B={b}, r={(a,b),(a,c),(b,b)}. Compute A⊓B, ∃r.B, ∀r.B and ∃r.¬B.",
+      "hint": "Check every outgoing successor for the universal, including none.",
+      "steps": [
+        "A⊓B={b}. ∃r.B={a,b}, since both have an edge to b.",
+        "∀r.B={b,c}; all b successors are in B, and c has no successors. a fails because c∉B.",
+        "∃r.¬B={a}, because a has successor c outside B. Neither b nor c has an outside-B successor."
+      ],
+      "rubric": [
+        "Intersection/existential",
+        "Universal with vacuity",
+        "Negated-filler existential"
+      ],
+      "pages": "9–18",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "D13",
+      "topic": "dl",
+      "title": "Ontology modelling choices",
+      "kind": "Modelling",
+      "minutes": 10,
+      "points": 3,
+      "prompt": "Should Student, hasSupervisor and ada be a concept, role or individual? Give one TBox and two ABox assertions using them. What does a domain restriction on hasSupervisor mean?",
+      "hint": "Domain is an implication about subjects of role edges, not a filter rejecting unexpected data by default.",
+      "steps": [
+        "Student is a concept; hasSupervisor a role; ada an individual. Example TBox: Student⊑Person. ABox: Student(ada), hasSupervisor(ada,ben).",
+        "A domain axiom ∃hasSupervisor.⊤⊑Student classifies every subject of a hasSupervisor edge as Student.",
+        "It is a logical inference condition, not automatically a closed-world input-validation rule. A range axiom ⊤⊑∀hasSupervisor.Person would classify role objects as Person."
+      ],
+      "rubric": [
+        "Vocabulary categories",
+        "TBox/ABox examples",
+        "Domain/range inference"
+      ],
+      "pages": "2–8, 49–65",
+      "origin": "Original practice · mapped to current lecture"
+    },
+    {
+      "id": "D14",
+      "topic": "dl",
+      "title": "Subsumption with universal restrictions",
+      "kind": "Proof",
+      "minutes": 11,
+      "points": 3,
+      "prompt": "Given A⊑B, prove ∀r.A⊑∀r.B. Does ∀r.A⊑A follow without further assumptions?",
+      "hint": "Inspect all successors, then construct a no-edge countermodel for the second claim.",
+      "steps": [
+        "If every r-successor of x is in A, every such successor is in B because A⊑B. Thus x∈∀r.B.",
+        "The second claim fails: domain {x}, A=B=∅, r=∅. x∈∀r.A but x∉A.",
+        "Restrictions constrain successors rather than the source individual, and may hold vacuously."
+      ],
+      "rubric": [
+        "Universal subsumption proof",
+        "Explicit countermodel",
+        "Source/successor distinction"
+      ],
+      "pages": "9–19, 30–34",
+      "origin": "Original practice · mapped to current lecture"
+    }
+  ],
+  "sources": [
+    {
+      "label": "Current course · Moodle 2026–2027",
+      "url": "https://moodle.ip-paris.fr/course/view.php?id=24442",
+      "type": "Current syllabus",
+      "note": "Seven visible topic sections checked on 24 October 2026. Assessment notice: a written exam covering lectures and practical sessions. Practice here uses paper reasoning about those concepts, with no software setup."
+    },
+    {
+      "label": "IA301 exam · 29 October 2021",
+      "url": "https://perso.telecom-paristech.fr/bloch/OptionIA/IA301-2021.pdf",
+      "type": "Verified historical exam",
+      "note": "Official lecturer-hosted paper; 3 pages, 2-hour sitting. Topics include propositional and first-order logic, modal logic, association rules and FCA. It also includes knowledge revision. Its scope and allowed-note policy belong to 2021, not the current exam."
+    },
+    {
+      "label": "Official older course page",
+      "url": "https://perso.telecom-paristech.fr/bloch/OptionIA/Logics-SymbolicAI.html",
+      "type": "Provenance",
+      "note": "Isabelle Bloch’s page links the historical exam as “Example of exam”. Older assessment arrangements are not current instructions."
+    },
+    {
+      "label": "Exercises · 2020 collection",
+      "url": "https://perso.telecom-paristech.fr/bloch/OptionIA/Exercices-2020.pdf",
+      "type": "Historical practice",
+      "note": "Nine-page lecturer-hosted exercise collection. Broader older syllabus; use overlapping subjects, rather than treating it as a current exam blueprint."
+    }
+  ],
+  "mocks": [
+    {
+      "id": "mock-a",
+      "title": "Paper A · foundations to models",
+      "minutes": 120,
+      "questions": [
+        {
+          "id": "P1",
+          "marks": 3
+        },
+        {
+          "id": "F1",
+          "marks": 3
+        },
+        {
+          "id": "A1",
+          "marks": 3
+        },
+        {
+          "id": "C2",
+          "marks": 3
+        },
+        {
+          "id": "Z1",
+          "marks": 2
+        },
+        {
+          "id": "T1",
+          "marks": 3
+        },
+        {
+          "id": "D3",
+          "marks": 3
+        }
+      ]
+    },
+    {
+      "id": "mock-b",
+      "title": "Paper B · reasoning under constraints",
+      "minutes": 120,
+      "questions": [
+        {
+          "id": "P7",
+          "marks": 3
+        },
+        {
+          "id": "F2",
+          "marks": 3
+        },
+        {
+          "id": "A3",
+          "marks": 3
+        },
+        {
+          "id": "C3",
+          "marks": 3
+        },
+        {
+          "id": "Z4",
+          "marks": 3
+        },
+        {
+          "id": "T2",
+          "marks": 3
+        },
+        {
+          "id": "D7",
+          "marks": 2
+        }
+      ]
+    },
+    {
+      "id": "mock-c",
+      "title": "Paper C · derivations and structure",
+      "minutes": 120,
+      "questions": [
+        {
+          "id": "P8",
+          "marks": 3
+        },
+        {
+          "id": "F11",
+          "marks": 3
+        },
+        {
+          "id": "A8",
+          "marks": 3
+        },
+        {
+          "id": "C8",
+          "marks": 3
+        },
+        {
+          "id": "Z12",
+          "marks": 3
+        },
+        {
+          "id": "T12",
+          "marks": 3
+        },
+        {
+          "id": "D8",
+          "marks": 2
+        }
+      ]
+    },
+    {
+      "id": "mock-d",
+      "title": "Paper D · semantics and synthesis",
+      "minutes": 120,
+      "questions": [
+        {
+          "id": "P13",
+          "marks": 2
+        },
+        {
+          "id": "F10",
+          "marks": 3
+        },
+        {
+          "id": "A13",
+          "marks": 2
+        },
+        {
+          "id": "C13",
+          "marks": 4
+        },
+        {
+          "id": "Z13",
+          "marks": 3
+        },
+        {
+          "id": "T14",
+          "marks": 3
+        },
+        {
+          "id": "D12",
+          "marks": 3
+        }
+      ]
+    }
+  ],
+  "coverage_note": "The seven current Moodle sections are the coverage spine. Modal logic and revision appear in the historical paper but are not separate current Moodle sections; consult your teacher before expanding revision scope. No recent official paper was located in the checked Moodle resources or public lecturer sources.",
+  "updated": "24 October 2026",
+  "masteryNote": "The exercise bank covers the skills mapped from all seven current lecture sections. Use the coverage checklist and fresh mock-paper attempts to find gaps. Completing questions alone does not certify mastery or predict an exam score.",
+  "slides": [
+    {
+      "topic": "prop",
+      "title": "Propositional logic",
+      "url": "slides/propositional-logic.pdf",
+      "pages": 37,
+      "format": "pdf",
+      "filename": "propositional-logic.pdf"
+    },
+    {
+      "topic": "fol",
+      "title": "First-order logic",
+      "url": "slides/predicate-logic.pdf",
+      "pages": 49,
+      "format": "pdf",
+      "filename": "predicate-logic.pdf"
+    },
+    {
+      "topic": "plan",
+      "title": "Planning · current 2026 lecture",
+      "url": "slides/planning.pdf",
+      "pages": 36,
+      "format": "pdf",
+      "filename": "planning.pdf"
+    },
+    {
+      "topic": "fca",
+      "title": "Formal concepts & association rules",
+      "url": "slides/formal-concepts-association-rules.pdf",
+      "pages": 94,
+      "format": "pdf",
+      "filename": "formal-concepts-association-rules.pdf"
+    },
+    {
+      "topic": "fuzzy",
+      "title": "Fuzzy logic · HTML deck",
+      "url": "slides/fuzzy-logic.html",
+      "pages": null,
+      "format": "html",
+      "filename": "fuzzy-logic.html"
+    },
+    {
+      "topic": "fuzzy",
+      "title": "Probabilistic soft logic · HTML deck",
+      "url": "slides/probabilistic-soft-logic.html",
+      "pages": null,
+      "format": "html",
+      "filename": "probabilistic-soft-logic.html"
+    },
+    {
+      "topic": "proof",
+      "title": "Theorem proving",
+      "url": "slides/theorem-proving.pdf",
+      "pages": 28,
+      "format": "pdf",
+      "filename": "theorem-proving.pdf"
+    },
+    {
+      "topic": "dl",
+      "title": "Description logic · current Moodle file",
+      "url": "slides/description-logic.pdf",
+      "pages": 65,
+      "format": "pdf",
+      "filename": "description-logic.pdf"
+    }
+  ],
+  "handouts": [
+    {
+      "topic": "prop",
+      "title": "Datalog · rule reasoning handout",
+      "url": "slides/datalog-handout.pdf",
+      "filename": "datalog-handout.pdf",
+      "format": "pdf"
+    },
+    {
+      "topic": "fol",
+      "title": "Natural deduction · reference rules",
+      "url": "slides/natural-deduction-rules.pdf",
+      "filename": "natural-deduction-rules.pdf",
+      "format": "pdf"
+    },
+    {
+      "topic": "proof",
+      "title": "Lambda calculus · course exercise sheet",
+      "url": "slides/lambda-exercises.pdf",
+      "filename": "lambda-exercises.pdf",
+      "format": "pdf"
+    }
+  ]
+}
