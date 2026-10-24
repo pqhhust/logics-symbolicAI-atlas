@@ -7,3 +7,7 @@
 
 .challenge-badge{color:#9e672b;background:#b8905011;border-color:#b8905055}.challenge-guide{display:flex;gap:15px;flex-wrap:wrap;margin:20px 0 26px;font:11px var(--serif);color:var(--muted)}.challenge-entry{border-color:#ad965b;color:#8c6e30}.atlas-study-links{flex-wrap:wrap}.topbar nav{gap:22px}@media(max-width:1100px){.topbar nav{gap:14px}}
 .prompt,.solution li,.concept p{overflow-wrap:anywhere}
+
+.question-part{font-size:1rem;margin:1.4rem 0 .5rem}.question-part span{font-family:var(--sans);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:.6rem}.synthesis-task{border-left:3px solid var(--accent,#397575);padding:.1rem 1.2rem;margin:1.4rem 0;background:rgba(57,117,117,.04)}.exercise-provenance{font-size:.85rem;line-height:1.65;border-top:1px solid var(--line,#ddd);padding:.8rem 0;margin-bottom:1rem}.exercise-provenance>summary{cursor:pointer;display:block;font-size:.85rem;color:var(--muted)}.exercise-provenance p{margin:.7rem 0}.published-practice{margin:2rem 0 3rem}.rubric p{font-size:.85rem;line-height:1.5}.prompt,.solution li,.exercise-provenance{overflow-wrap:anywhere}@media print{.exercise-provenance{display:none}.synthesis-task{border-left:2px solid #777;background:none;break-inside:avoid}}
+
+.exercise[open] .exercise-provenance>summary:after{content:"+"}.exercise[open] .exercise-provenance[open]>summary:after{content:"−"}
