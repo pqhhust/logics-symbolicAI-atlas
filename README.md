@@ -2,7 +2,8 @@
 
 A public written-exam review atlas for CSC_5AI01_TP (2026–2027):
 
-- 7 topic guides, 112 demanding written problems with required synthesis parts, and 7 interactive examples.
+- 7 topic guides, 147 written problems, and 7 interactive examples.
+- 35 added lecture/definition problems, 43 slide-task groups and 67 definition/notation groups linked to exact source pages.
 - 6 complete 20-point papers: 4 exam-depth papers (180–210 minutes) and 2 extended olympiad-style workshops (420–435 minutes, suitable for two sittings).
 - Worked arguments, explicit partial-credit criteria and syllabus-mapped links to selected professor-published exercises.
 - 8 lecture decks and 3 course reference handouts.
