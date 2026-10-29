@@ -1,0 +1,839 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Description logic</title><style>body{margin:0;background:#eceeea;color:#21362c;font:15px system-ui}header{position:sticky;top:0;z-index:2;background:#f9faf7;border-bottom:1px solid #ccd5ca;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}h1{font-size:16px;margin:0;margin-right:auto}a{color:#285b47}select,button{font:inherit;padding:5px}main{max-width:1500px;margin:auto;padding:10px}section{scroll-margin-top:90px;margin-bottom:24px}h2{font-size:12px;color:#526355;margin:10px 0}img{display:block;width:100%;height:auto;background:white;box-shadow:0 2px 10px #0002}details{background:white;padding:10px;margin-top:5px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 system-ui}button:disabled{opacity:.4}@media print{header,details{display:none}section{break-after:page}img{box-shadow:none}}</style></head><body><header><h1>Description logic</h1><button id="prev" aria-label="Previous slide">←</button><label>Slide <select id="page"><option value="1">1 / 65</option><option value="2">2 / 65</option><option value="3">3 / 65</option><option value="4">4 / 65</option><option value="5">5 / 65</option><option value="6">6 / 65</option><option value="7">7 / 65</option><option value="8">8 / 65</option><option value="9">9 / 65</option><option value="10">10 / 65</option><option value="11">11 / 65</option><option value="12">12 / 65</option><option value="13">13 / 65</option><option value="14">14 / 65</option><option value="15">15 / 65</option><option value="16">16 / 65</option><option value="17">17 / 65</option><option value="18">18 / 65</option><option value="19">19 / 65</option><option value="20">20 / 65</option><option value="21">21 / 65</option><option value="22">22 / 65</option><option value="23">23 / 65</option><option value="24">24 / 65</option><option value="25">25 / 65</option><option value="26">26 / 65</option><option value="27">27 / 65</option><option value="28">28 / 65</option><option value="29">29 / 65</option><option value="30">30 / 65</option><option value="31">31 / 65</option><option value="32">32 / 65</option><option value="33">33 / 65</option><option value="34">34 / 65</option><option value="35">35 / 65</option><option value="36">36 / 65</option><option value="37">37 / 65</option><option value="38">38 / 65</option><option value="39">39 / 65</option><option value="40">40 / 65</option><option value="41">41 / 65</option><option value="42">42 / 65</option><option value="43">43 / 65</option><option value="44">44 / 65</option><option value="45">45 / 65</option><option value="46">46 / 65</option><option value="47">47 / 65</option><option value="48">48 / 65</option><option value="49">49 / 65</option><option value="50">50 / 65</option><option value="51">51 / 65</option><option value="52">52 / 65</option><option value="53">53 / 65</option><option value="54">54 / 65</option><option value="55">55 / 65</option><option value="56">56 / 65</option><option value="57">57 / 65</option><option value="58">58 / 65</option><option value="59">59 / 65</option><option value="60">60 / 65</option><option value="61">61 / 65</option><option value="62">62 / 65</option><option value="63">63 / 65</option><option value="64">64 / 65</option><option value="65">65 / 65</option></select></label><button id="next" aria-label="Next slide">→</button><a href="../description-logic.pdf?v=complete-20261029" target="_blank" rel="noopener">Download PDF</a></header><main><section id="page-1" aria-label="Slide 1"><h2>Slide 1 / 65</h2><img src="page-01.webp" width="1296" height="972" alt="Description logic slide 1" loading="lazy"><details><summary>Slide text</summary><pre>Ontologies and 
+Description Logic
+Amel Bouzeghoub
+</pre></details></section><section id="page-2" aria-label="Slide 2"><h2>Slide 2 / 65</h2><img src="page-02.webp" width="1296" height="972" alt="Description logic slide 2" loading="lazy"><details><summary>Slide text</summary><pre>What is Description Logic
+A family of  formal (logic-based) knowledge 
+representation languages to represent the knowledge 
+of an application domain in a
+ structured and well- understood way.
+Page 2
+</pre></details></section><section id="page-3" aria-label="Slide 3"><h2>Slide 3 / 65</h2><img src="page-03.webp" width="1296" height="972" alt="Description logic slide 3" loading="lazy"><details><summary>Slide text</summary><pre>Why the name DL?
+●Application domain (world) are described by concept 
+description i.e expressions are built from atomic concepts 
+(classes),  atomic roles (relationships) and individuals.
+●Equipped with formal logic based semantics 
+Page 3
+</pre></details></section><section id="page-4" aria-label="Slide 4"><h2>Slide 4 / 65</h2><img src="page-04.webp" width="1296" height="972" alt="Description logic slide 4" loading="lazy"><details><summary>Slide text</summary><pre>Why DL rather than Predicate 
+Logic?
+●DL has variable-free syntax.
+●Easier to read than corresponding Predicate logic formulae.
+●Combine means of expressiveness with decidability of the 
+important reasoning problems.
+●Most DL are decidable fragments of FOL designed for 
+decidability and efficient reasoning.
+●FOL: expressive but undecidable.
+Page 4
+</pre></details></section><section id="page-5" aria-label="Slide 5"><h2>Slide 5 / 65</h2><img src="page-05.webp" width="1296" height="972" alt="Description logic slide 5" loading="lazy"><details><summary>Slide text</summary><pre>About Description Logics
+●Description Logics (DLs) - knowledge representation 
+formalisms that
+○represent the knowledge of an application domain (the world)
+○by deﬁning the relevant concepts of the domain (its 
+terminology)
+○and then using these concepts to specify properties of 
+individuals occurring in the domain (the world description).
+●Inferences: classiﬁcation of
+○concepts - subconcept/superconcept relationships 
+(subsumption)
+○individuals - whether a given individual is always an instance of 
+a concept
+Page 5
+</pre></details></section><section id="page-6" aria-label="Slide 6"><h2>Slide 6 / 65</h2><img src="page-06.webp" width="1296" height="972" alt="Description logic slide 6" loading="lazy"><details><summary>Slide text</summary><pre>A DL system
+Page 6
+TBox – the terminology, i.e., the vocabulary of an application domain
+= concepts (set of individuals) + roles
+ABox – assertions about named individuals in terms of this vocabulary 
+6
+TBox
+ABox
+Description
+Language
+Reasoning
+KB
+Application
+Programs
+Rules
+TBox:
+  Mother ≡ Woman ⊓ ∃hasChild.⊤
+ABox:
+  Woman(Alice), hasChild(Alice, Bob)
+⇒ Mother(Alice)
+</pre></details></section><section id="page-7" aria-label="Slide 7"><h2>Slide 7 / 65</h2><img src="page-07.webp" width="1296" height="972" alt="Description logic slide 7" loading="lazy"><details><summary>Slide text</summary><pre>Inference services
+●Typical reasoning tasks:
+○Whether a TBox description is satisﬁable (i.e., 
+non-contradictory)
+○Whether one description subsumes another one in a 
+TBox - organize the concepts of a terminology into a 
+hierarchy according to their generality
+○Find out whether the set of assertions in a ABox is 
+consistent (has a model)
+○Whether the assertions in the ABox entail that a 
+particular individual is an instance of a given concept 
+description
+○A concept description can also be conceived as a query 
+- retrieve the individuals that satisfy the query.
+Page 7
+</pre></details></section><section id="page-8" aria-label="Slide 8"><h2>Slide 8 / 65</h2><img src="page-08.webp" width="1296" height="972" alt="Description logic slide 8" loading="lazy"><details><summary>Slide text</summary><pre>Syntax of DL Concept Description
+A, B, C, D → atomic concepts
+R → atomic role
+Basic constructors (AL):
+●
+⊤ : universal concept (all individuals) (Top concept)
+●
+⊥ : bottom concept (no individuals)
+●
+¬A : atomic negation (only for atomic concepts)
+●
+C ⊓ D : intersection
+●
+∀R.C : value restriction (all R-successors are in C)
+●
+∃R.⊤ : limited existential quantification
+Extensions:
+●
+ALU: adds union (C ⊔ D)
+●
+ALE: adds full existential restriction (∃R.C)
+●
+ALC: adds full negation (¬C)
+●
+ALN: adds number restrictions (≤n R, ≥n R)
+AL ⊆ ALE ⊆ ALC ⊆ SHOIN ⊆ SROIQ (OWL 2 DL)
+8
+</pre></details></section><section id="page-9" aria-label="Slide 9"><h2>Slide 9 / 65</h2><img src="page-09.webp" width="1296" height="972" alt="Description logic slide 9" loading="lazy"><details><summary>Slide text</summary><pre>Examples
+9
+DL Expression
+Meaning
+Person ⊓ Female
+Females who are persons
+∃hasChild.⊤
+Those who have at least one child (of any type)
+∃hasChild.Person
+Has at least one child who is a person
+Person ⊓ ∃hasChild.⊤
+Persons who have at least one child
+Person ⊓ ∀hasChild.Female
+Persons whose all children are female
+Person ⊓ ∀hasChild.⊥
+Persons with no children
+Person ⊓ Female ⊓ ≥3 hasChild
+Female persons with at least three children
+</pre></details></section><section id="page-10" aria-label="Slide 10"><h2>Slide 10 / 65</h2><img src="page-10.webp" width="1296" height="972" alt="Description logic slide 10" loading="lazy"><details><summary>Slide text</summary><pre>Semantics
+Semantics of DL
+●
+An interpretation 𝕀 = (Δᴵ, ⋅ᴵ) consists of:
+○
+a domain Δᴵ (non-empty set)
+○
+an interpretation function ⋅ᴵ that maps:
+■
+each atomic concept A → a subset Aᴵ ⊆ Δᴵ
+■
+each atomic role R → a relation Rᴵ ⊆ Δᴵ × Δᴵ
+●
+The semantics of complex expressions are defined recursively:
+○
+(C ⊓ D)ᴵ = Cᴵ ∩ Dᴵ
+○
+(¬C)ᴵ = Δᴵ \ Cᴵ
+○
+(∀R.C)ᴵ = { x ∈ Δᴵ | ∀y, (x,y) ∈ Rᴵ → y ∈ Cᴵ }
+○
+(∃R.C)ᴵ = { x ∈ Δᴵ | ∃y, (x,y) ∈ Rᴵ ∧ y ∈ Cᴵ }
+10
+</pre></details></section><section id="page-11" aria-label="Slide 11"><h2>Slide 11 / 65</h2><img src="page-11.webp" width="1296" height="972" alt="Description logic slide 11" loading="lazy"><details><summary>Slide text</summary><pre>Example
+Let’s interpret the concept:
+Parent ≡ Person ⊓ ∃hasChild.Person
+Semantically:
+ParentI={x∈ΔI∣x∈PersonI and ∃y.(x,y)
+∈hasChildI∧y∈PersonI}
+→ “The set of all individuals who are persons and have at 
+least one child who is also a person.”
+In FOL:
+∀x.Parent(x)↔(Person(x)∧∃y.(hasChild(x,y)∧Person(y)))
+11
+</pre></details></section><section id="page-12" aria-label="Slide 12"><h2>Slide 12 / 65</h2><img src="page-12.webp" width="1296" height="972" alt="Description logic slide 12" loading="lazy"><details><summary>Slide text</summary><pre>Terminologies (TBox)
+●
+Defines relationships between concepts (and roles).
+●
+Axioms:
+○
+Inclusion: C ⊑ D (“C is a subclass of D”) 
+○
+Equivalence: C ≡ D (“C and D have the same instances”) 
+●
+If T is a set of axioms, then I satisﬁes T iﬀ I satisﬁes each element of T 
+– I is a model of T
+○
+I ⊨T iff ∀(C⊑D or C≡D) ∈T, I ⊨ that axiom. So a model of T is an 
+interpretation in which all the inclusions and equivalences in T 
+hold.
+○
+Example:
+○
+If T = { Parent ⊑ Person, Mother ≡ Woman ⊓ ∃hasChild.Person },
+○
+then 𝕀 is a model of T if both those relationships are true in 𝕀.
+12
+</pre></details></section><section id="page-13" aria-label="Slide 13"><h2>Slide 13 / 65</h2><img src="page-13.webp" width="1296" height="972" alt="Description logic slide 13" loading="lazy"><details><summary>Slide text</summary><pre>Example of TBox
+Woman ≡ Person ⊓ Female
+Man ≡ Person ⊓ ¬Woman
+Mother ≡ Woman ⊓ ∃hasChild.Person
+Father ≡ Man ⊓ ∃hasChild.Person
+Parent ≡ Father ⊔ Mother
+Grandmother ≡ Mother ⊓ ∃hasChild.Parent
+MotherWithManyChildren ≡ Mother ⊓ ≥3 hasChild
+MotherWithoutDaughter ≡ Mother ⊓ ∀hasChild.¬Woman
+Wife ≡ Woman ⊓ ∃hasHusband.Man
+13
+</pre></details></section><section id="page-14" aria-label="Slide 14"><h2>Slide 14 / 65</h2><img src="page-14.webp" width="1296" height="972" alt="Description logic slide 14" loading="lazy"><details><summary>Slide text</summary><pre>World descriptions (ABox)
+●
+ABox introduce individuals, by giving them names, and asserts 
+properties of these individuals
+●
+Describe a concrete situation by stating properties of individuals
+○
+Individuals: a, b, c
+○
+C(a) - concept assertions - a belongs to (the interpretation of) C 
+○
+R(b,c) - role assertions - c is a ﬁller of the role R for b.
+14
+MotherWithoutDaughter(Mary)
+Father(Peter) 
+hasChild(Mary, Peter)
+hasChild(Peter, Harry) 
+hasChild(Mary, Paul) 
+</pre></details></section><section id="page-15" aria-label="Slide 15"><h2>Slide 15 / 65</h2><img src="page-15.webp" width="1296" height="972" alt="Description logic slide 15" loading="lazy"><details><summary>Slide text</summary><pre>ABox Semantics
+▪An interpretation I satisfies C(a) if aI ∈ CI
+▪An interpretation I satisfies R(a,b) if (aI ,bI) ∈ RI
+▪An interpretation I satisfies an ABox if it satisfies 
+each assertion in the ABox – I is a model of A
+▪An interpretation I satisfies an ABox A with 
+respect to a TBox T if it is a model of T and a 
+model of A
+15
+</pre></details></section><section id="page-16" aria-label="Slide 16"><h2>Slide 16 / 65</h2><img src="page-16.webp" width="1296" height="972" alt="Description logic slide 16" loading="lazy"><details><summary>Slide text</summary><pre>Reasoning tasks for TBox
+▪Satisﬁability: A concept C is satisﬁable with respect to T if 
+there exists a model I of T such that CI is nonempty (I is 
+a model of C)
+▪Subsumption: A concept C is subsumed by a concept D 
+with respect to T if CI ⊆DI for every model I of T
+C ⊑D    or    T|= C ⊑ D.
+▪Equivalence: Two concepts C and D are equivalent with 
+respect to T if CI = DI for every model I of T
+C ≡T D    or    T |= C ≡ D
+▪Disjointness: Two concepts C and D are disjoint with 
+respect to T if CI ∩ DI = ∅ for every model I of T
+16
+</pre></details></section><section id="page-17" aria-label="Slide 17"><h2>Slide 17 / 65</h2><img src="page-17.webp" width="1296" height="972" alt="Description logic slide 17" loading="lazy"><details><summary>Slide text</summary><pre>Properties
+Reduction to Subsumption
+▪C is unsatisﬁable ⇔ C is subsumed by ⊥ 
+▪C and D are equivalent ⇔ C is subsumed by D and D is 
+subsumed by C
+▪C and D are disjoint ⇔ C ⊓ D is subsumed by ⊥
+Reduction to Unsatisﬁability
+▪C is subsumed by D ⇔ C ⊓ ¬D is unsatisﬁable 
+▪C and D are equivalent ⇔ both (C ⊓ ¬D) and
+(¬C ⊓ D) are unsatisﬁable
+▪C and D are disjoint ⇔ C ⊓ D is unsatisﬁable
+17
+</pre></details></section><section id="page-18" aria-label="Slide 18"><h2>Slide 18 / 65</h2><img src="page-18.webp" width="1296" height="972" alt="Description logic slide 18" loading="lazy"><details><summary>Slide text</summary><pre>Reasoning tasks for ABox
+1. Consistency of an ABox
+a. An ABox A is consistent with respect to a 
+TBox T, if ∃I that is a model of both A and T 
+b. A is consistent if it is consistent with respect to 
+the empty TBox. 
+{ Mother(mary), Father(mary) } 
+18
+Father ⊑ Man, Mother ⊑ Woman, Man ⊓ Woman ⊑ ⊥   # a person cannot be 
+both a man and a woman
+Mother(Mary), Maryᴵ ∈ Motherᴵ ⊆ Womanᴵ
+Father(Mary), Maryᴵ ∈ Fatherᴵ ⊆ Manᴵ
+Man ⊓ Woman ⊑ ⊥, Manᴵ ∩ Womanᴵ = ∅ ⇒ A is inconsistent w.r.t. T
+</pre></details></section><section id="page-19" aria-label="Slide 19"><h2>Slide 19 / 65</h2><img src="page-19.webp" width="1296" height="972" alt="Description logic slide 19" loading="lazy"><details><summary>Slide text</summary><pre>Reasoning tasks for ABox
+2. Instance check
+a. An assertion C(a) is entailed by A if ∀I that satisﬁes A 
+also satisﬁes C(a) (A|= C(a))
+A|= C(a) iﬀ A ∪ {¬C(a)} is inconsistent 
+3. Retrieval problem
+a. Given an ABox A and a concept C, ﬁnd all individuals a 
+such that A|= C(a)
+4. Realization problem
+a. Given an individual a and a set of concepts, ﬁnd the 
+most speciﬁc concepts C from the set such that A|= C(a)
+The most speciﬁc concepts are those that are minimal with 
+respect to the subsumption ordering 
+19
+</pre></details></section><section id="page-20" aria-label="Slide 20"><h2>Slide 20 / 65</h2><img src="page-20.webp" width="1296" height="972" alt="Description logic slide 20" loading="lazy"><details><summary>Slide text</summary><pre>DL Architecture
+Page 20
+</pre></details></section><section id="page-21" aria-label="Slide 21"><h2>Slide 21 / 65</h2><img src="page-21.webp" width="1296" height="972" alt="Description logic slide 21" loading="lazy"><details><summary>Slide text</summary><pre>Important Extensions of ALC 
+●
+We may want to define a HappyMan concept with the instance of having children 
+between two and four
+HappyMan ≡ Human⊓¬Female ⊓
+(∃married.Doctor) ⊓
+(∀hasChild.(Doctor⊔Professor))⊓
+(≥2hasChild⊓≤4hasChild)
+●
+Qualified number restrictions:
+The definition of the HappyMan concept can be extended by including the instances 
+of the having at least two children who are professors.
+HappyMan ≡ Human⊓¬Female ⊓
+(∃married.Doctor) ⊓
+(∀hasChild.(Doctor⊔Professor))⊓
+(≥2hasChild.Professor ⊓≤4hasChild)
+</pre></details></section><section id="page-22" aria-label="Slide 22"><h2>Slide 22 / 65</h2><img src="page-22.webp" width="1296" height="972" alt="Description logic slide 22" loading="lazy"><details><summary>Slide text</summary><pre>Important Extensions of ALC cont.
+●Inverse roles:
+○the role hasChild has a inverse role 
+has.Parent.
+●Transitive roles:
+○a role is transitive, e.g to capture hasAncestor 
+●Subroles:
+○one role is a subrole of another role, e.g 
+hasParent is a subrole of hasAncestor
+●Concrete domains:
+○Integrate DL with Real numbers, Integers, Strings, 
+Concrete predicates
+Page 22
+</pre></details></section><section id="page-23" aria-label="Slide 23"><h2>Slide 23 / 65</h2><img src="page-23.webp" width="1296" height="972" alt="Description logic slide 23" loading="lazy"><details><summary>Slide text</summary><pre>DLs and First Order Predicate Logic 
+(FOL)
+Page 23
+DL Syntax
+Meaning
+FOL Equivalent
+⊤, ⊥
+universal / 
+empty concept
+∀x.⊤, ∀x.⊥
+¬C
+negation
+¬C(x)
+C ⊓ D
+conjunction
+C(x) ∧ D(x)
+C ⊔ D
+disjunction
+C(x) ∨ D(x)
+C ⊑ D 
+∀x. C(x) → D(x)
+∃R.C
+existential 
+restriction
+∃y. R(x,y) ∧ C(y)
+∀R.C
+universal 
+restriction
+∀y. R(x,y) → C(y)
+R1 ∘ R2 ⊑ R3
+Property chain
+∀x,y,z. R1(x,y) ∧ R2(y,z) → R3(x,z)
+</pre></details></section><section id="page-24" aria-label="Slide 24"><h2>Slide 24 / 65</h2><img src="page-24.webp" width="1296" height="972" alt="Description logic slide 24" loading="lazy"><details><summary>Slide text</summary><pre>From DL to OWL
+OWL as a DL-based ontology language
+OWL = Web Ontology Language.
+Built on DL semantics (e.g., OWL 2 DL = SROIQ(D)).
+Allows automated reasoning on web ontologies.
+OWL reasoners (HermiT, Pellet, FaCT++) Integrated in Protégé
+In Python: Owlready2, owlrl
+Page 24
+</pre></details></section><section id="page-25" aria-label="Slide 25"><h2>Slide 25 / 65</h2><img src="page-25.webp" width="1296" height="972" alt="Description logic slide 25" loading="lazy"><details><summary>Slide text</summary><pre>Ontologies
+</pre></details></section><section id="page-26" aria-label="Slide 26"><h2>Slide 26 / 65</h2><img src="page-26.webp" width="1296" height="972" alt="Description logic slide 26" loading="lazy"><details><summary>Slide text</summary><pre>What is an ontology ?
+●No exact definition
+●A tool to help organize knowledge 
+●Or a way to convey a theory on how to represent a class of 
+things
+●The term ontology is originated from philosophy. 
+the study of the nature of existence.
+Page 26
+</pre></details></section><section id="page-27" aria-label="Slide 27"><h2>Slide 27 / 65</h2><img src="page-27.webp" width="1296" height="972" alt="Description logic slide 27" loading="lazy"><details><summary>Slide text</summary><pre>Definitions
+●
+Webster’s Third New International Dictionary defines 
+Ontology
+○
+A science or study of being specifically, a branch of 
+metaphysics relating to the nature and relations of 
+being. 
+○
+A theory concerning the kinds of entities and specifically 
+the kinds of abstract entities that are to be admitted to a 
+language system.
+●An ontology in Computer Sciences
+• « explicit formal specifications of the terms in the domain 
+and relations among them » (Gruber 1993)
+• Semantic Relations
+• Composition and inheritance relationships
+Page 27
+</pre></details></section><section id="page-28" aria-label="Slide 28"><h2>Slide 28 / 65</h2><img src="page-28.webp" width="1296" height="972" alt="Description logic slide 28" loading="lazy"><details><summary>Slide text</summary><pre>Definition (Hudelot 2006)
+●An ontology is a formal and explicit specification of a 
+shared conceptualization of a field of knowledge.
+●Conceptualization: a certain view of the world in relation 
+to a domain, often conceived as a set of concepts, their 
+definition, their interrelationships.
+●Explicit: explicit definition of the types of concepts used 
+and constraints on their use.
+●Formal: understandable by the machine.
+●Shared: consensus, knowledge accepted by a group.
+Page 28
+</pre></details></section><section id="page-29" aria-label="Slide 29"><h2>Slide 29 / 65</h2><img src="page-29.webp" width="1296" height="972" alt="Description logic slide 29" loading="lazy"><details><summary>Slide text</summary><pre>The Role of an Ontology
+●Basic Role
+○To provide a language which allows a group of people to 
+share information reliably in a chosen area of work 
+○Reuse
+■Create and maintain reusable knowledge bases
+■Build knowledge bases from reusable modules
+○Knowledge sharing and communication
+■Ensure interoperability between systems
+■Enable knowledge exchange between systems
+Page 29
+</pre></details></section><section id="page-30" aria-label="Slide 30"><h2>Slide 30 / 65</h2><img src="page-30.webp" width="1296" height="972" alt="Description logic slide 30" loading="lazy"><details><summary>Slide text</summary><pre>Why do I need to develop an 
+ontology?
+●To provide more precise definition to resources and make 
+them more suitable to machine processing
+●To separate domain knowledge from operational knowledge
+○Re-use domain and operational knowledge separately
+●A common reference to define concepts and relationships 
+between concepts and other axioms in a domain
+●To share a consistent understanding of a domain
+●Reasoning / inference
+○Building and discovering new information and/or knowledge from 
+existing ontologies and resources
+●To support explainable and trustworthy AI
+Page 30
+</pre></details></section><section id="page-31" aria-label="Slide 31"><h2>Slide 31 / 65</h2><img src="page-31.webp" width="1296" height="972" alt="Description logic slide 31" loading="lazy"><details><summary>Slide text</summary><pre>Example
+Page 31
+https://timbr.ai/introducing-timbr-sql-kg/
+</pre></details></section><section id="page-32" aria-label="Slide 32"><h2>Slide 32 / 65</h2><img src="page-32.webp" width="1296" height="972" alt="Description logic slide 32" loading="lazy"><details><summary>Slide text</summary><pre>Knowledge Graphs vs Ontologies
+●A Knowledge Graph stores data as a graph
+○A knowledge graph = data organized as triples 
+(subject–predicate–object).
+○The Knowledge Graph is the instance level (ABOX)
+●But a Knowledge Graph needs meaning → that comes 
+from the Ontology
+○Ontology = the schema / vocabulary / logic of the 
+knowledge graph.
+○The Ontology is the concept level (TBOX)
+●The Ontology enables reasoning on the Knowledge 
+Graph
+Page 32
+</pre></details></section><section id="page-33" aria-label="Slide 33"><h2>Slide 33 / 65</h2><img src="page-33.webp" width="1296" height="972" alt="Description logic slide 33" loading="lazy"><details><summary>Slide text</summary><pre>●An ontology structure is a quintuplet O := {C, R , HC , Rel , 
+AO }
+○C and R : disjointed sets of concepts and relations 
+○HC hierarchy (taxonomy) of concepts : HC ⊆ C x C , HC(C1, C2) 
+means that C1 is a sub-concept of C2 (oriented relation)
+○Rel : relation rel: R → C x C (defines non-taxonomic semantic 
+relations) with 2 associated functions
+■dom : R → C with dom(R):= ∏1(rel(R))
+■range : R → C with range(R):= ∏2(rel(R)) co-domaine
+■rel(R) = (C1,C2) or R(C1,C2)
+○AO : set of axioms, expressed in an adapted logical language 
+(description logic, 1st order logic)
+Ontology Structure
+</pre></details></section><section id="page-34" aria-label="Slide 34"><h2>Slide 34 / 65</h2><img src="page-34.webp" width="1296" height="972" alt="Description logic slide 34" loading="lazy"><details><summary>Slide text</summary><pre>Knowledge Base
+●
+Structure of a knowledge base : quadruplet KB:= {O, I, inst, instr} 
+○O:= {C, R, HC, rel, AO} is an ontology 
+○I is a set of individual
+○inst : C-&gt; 2I Concept instantiation
+○Instr : R -&gt; 2IxI Relationship instantiation 
+●
+Lexicon of a knowledge base LKB := (LI,J)
+</pre></details></section><section id="page-35" aria-label="Slide 35"><h2>Slide 35 / 65</h2><img src="page-35.webp" width="1296" height="972" alt="Description logic slide 35" loading="lazy"><details><summary>Slide text</summary><pre>Different types of ontologies
+ [Guarino, 98]
+Describe very general concepts like space, time, event, which 
+are independent of a particular problem or domain. It seems 
+reasonable to have unified top-level ontologies for large 
+communities of users. 
+Describe the 
+vocabulary related 
+to a generic 
+domain by 
+specializing the 
+concepts introduced 
+in the top-level 
+ontology.
+Describe the 
+vocabulary 
+related to a 
+generic task or 
+activity by 
+specializing the 
+top-level 
+ontologies.
+These are the most specific ontologies. Concepts in application 
+ontologies often correspond to roles played by domain entities 
+while performing a certain activity.
+</pre></details></section><section id="page-36" aria-label="Slide 36"><h2>Slide 36 / 65</h2><img src="page-36.webp" width="1296" height="972" alt="Description logic slide 36" loading="lazy"><details><summary>Slide text</summary><pre>Heavyweight vs. Lightweight
+●They differ in their expressiveness, reasoning capacity, 
+complexity, decidability.
+○Lightweight
+■E-R diagrams, UML
+○Heavyweight 
+■Description logic (DL), 1st order logic
+●There are standards for each case (RDF, RDF Schema, 
+OWL)
+</pre></details></section><section id="page-37" aria-label="Slide 37"><h2>Slide 37 / 65</h2><img src="page-37.webp" width="1296" height="972" alt="Description logic slide 37" loading="lazy"><details><summary>Slide text</summary><pre>Life cycle of an ontology
+Create/Select
+Development and/or Selection
+Populate
+Knowledge Base Generation
+Validate
+Consistency Checks
+Evolve
+Extension, Modification
+Maintain
+Usability Tests
+Deploy
+Knowledge Retrieval
+</pre></details></section><section id="page-38" aria-label="Slide 38"><h2>Slide 38 / 65</h2><img src="page-38.webp" width="1296" height="972" alt="Description logic slide 38" loading="lazy"><details><summary>Slide text</summary><pre>Reasoning: rules of inference
+●Modus ponens
+●Modus tollens
+●
+●…
+A , A → B
+     B
+¬B , A → B
+     ¬A
+</pre></details></section><section id="page-39" aria-label="Slide 39"><h2>Slide 39 / 65</h2><img src="page-39.webp" width="1296" height="972" alt="Description logic slide 39" loading="lazy"><details><summary>Slide text</summary><pre>Reasoning: the basic cycle
+●Detection
+○Determines the rules and relevant facts by means of &quot;pattern matching&quot; 
+unifications
+●Choice
+○Decides which of the applicable rules should actually be triggered
+●Execution
+○Executes the action part of the rule.
+○Updates the Knowledge base.
+</pre></details></section><section id="page-40" aria-label="Slide 40"><h2>Slide 40 / 65</h2><img src="page-40.webp" width="1296" height="972" alt="Description logic slide 40" loading="lazy"><details><summary>Slide text</summary><pre>The selection phase
+●Selects a rule from the set of applicable rules
+●Methods:
+○The first applicable rule (e.g. Prolog)
+○The most specific rule
+○The most useful rule (according to a utility value to be calculated)
+●The metarules
+○Rules controlling the selection of rules to be applied
+</pre></details></section><section id="page-41" aria-label="Slide 41"><h2>Slide 41 / 65</h2><img src="page-41.webp" width="1296" height="972" alt="Description logic slide 41" loading="lazy"><details><summary>Slide text</summary><pre>The triggering phase
+●Three inference algorithms :
+○Forward chaining (data driven)
+■to deduce a particular fact: the rules whose premises are known are triggered - up to - 
+the fact to be deducted is also known - or that no rule can be triggered any more
+○Backward chaining (goal oriented)
+■start from the fact to prove, 
+■search for all the rules that conclude on that fact, 
+■draw up a list of facts that need only be proved in order for them to be triggered and 
+then 
+■apply recursively the same mechanism to the facts contained in those lists
+■These facts in turn become facts to be proven. 
+■Recursion stops when the goal to prove belongs to the fact base
+○Mixed chaining
+A , A → B
+B
+B , A → B
+A
+</pre></details></section><section id="page-42" aria-label="Slide 42"><h2>Slide 42 / 65</h2><img src="page-42.webp" width="1296" height="972" alt="Description logic slide 42" loading="lazy"><details><summary>Slide text</summary><pre>Forward Chaining Example
+R1: B et D et E → F
+R2: D et G → A
+R3: C et F → A
+R4: C → D
+R5: D → E
+R6: A → H
+R7: B → X
+R8: X et C → A
+B True
+C True
+H ?
+ Strategy 1: the first rule
+B, C ____ B, C, D ____ B, C, D, E ____ B, C, D, E, F ____
+B, C, D, E, F, A ____ B, C, D, E, F, A, H
+Strategy 2: the last rule
+B, C ____ B, C, X ____ B, C, X, A ____ B, C, X, A, H
+</pre></details></section><section id="page-43" aria-label="Slide 43"><h2>Slide 43 / 65</h2><img src="page-43.webp" width="1296" height="972" alt="Description logic slide 43" loading="lazy"><details><summary>Slide text</summary><pre>Backward Chaining Example
+R1: B et D et E → F
+R2: D et G → A
+R3: C et F → A
+R4: C → D
+R5: D → E
+R6: A → H
+R7: B → X
+R8: X et C → A
+B True
+C True
+H ?
+B
+D
+E
+H
+D
+G
+OR
+C
+F
+X
+C
+C
+Fail
+C
+D
+C
+B
+A
+</pre></details></section><section id="page-44" aria-label="Slide 44"><h2>Slide 44 / 65</h2><img src="page-44.webp" width="1296" height="972" alt="Description logic slide 44" loading="lazy"><details><summary>Slide text</summary><pre>Example
+The law states that it is a crime for an American to sell arms 
+to hostile nations. The country Nono, an enemy of America, 
+has some missiles, and all of its missiles were sold to it by 
+Colonel West, who is American. 
+⇒ Let&#x27;s prove that West is a criminal 
+Page 44
+</pre></details></section><section id="page-45" aria-label="Slide 45"><h2>Slide 45 / 65</h2><img src="page-45.webp" width="1296" height="972" alt="Description logic slide 45" loading="lazy"><details><summary>Slide text</summary><pre>Example
+“... it is a crime for an American to sell arms to hostile nations.”: 
+• American(x) ∧ Arm(y) ∧ Sells(x, y, z) ∧ Hostile(z) ⇒ Criminal(x) 
+“Nono ... has some missiles”:i.e∃x Missile(x) ∧ Owns(Nono, x) 
+• Own(Nono, M1) ∧ Missile (M 1)
+“.. all of its missiles were sold to it by Colonel West” : 
+• ∀x Missile(x) ∧ Owns(Nono, x) ⇒ Sells(West, x, Nono) 
+Missiles are armes :
+• ∀x Missile(x) ⇒ Arme(x) 
+An enemy of America count as « hostile » : 
+• ∀x Enemy(x, America) ⇒ Hostile(x)
+“…West, who is American”:
+• American(West)
+“The country Nono, an enemy of America” : 
+• Enemy(Nono, America) 
+Page 45
+</pre></details></section><section id="page-46" aria-label="Slide 46"><h2>Slide 46 / 65</h2><img src="page-46.webp" width="1296" height="972" alt="Description logic slide 46" loading="lazy"><details><summary>Slide text</summary><pre>Forward Chaining Proof
+Page 46
+American(West)
+Missile(M1)
+Owns(Nono, M1)
+Enemy(Nono, America)
+Sells(West, M1, Nono) 
+Hostile(Nono)
+Criminal(West)
+Arm(M1)
+American(x) ∧ Arm (y) ∧ Sells(x,y,z) ∧ Hostile(z) ⇒ Criminal(x)
+Owns(Nono,M1) ∧ Missile(M1)
+Missile(x) ∧ Owns(Nono,x) ⇒ Sells(West,x,Nono)
+Missile(x) ⇒ Arme)
+Enemy(x,America) ⇒ Hostile(x)
+American(West)
+Enemy(Nono,America)
+</pre></details></section><section id="page-47" aria-label="Slide 47"><h2>Slide 47 / 65</h2><img src="page-47.webp" width="1296" height="972" alt="Description logic slide 47" loading="lazy"><details><summary>Slide text</summary><pre>Page 47
+Backward Chaining Proof
+American(x)
+Missile(y)
+Owns(z, y)
+Enemy(z, America)
+Sells(x,y,z) 
+Hostile(z)
+Criminal(West)
+Arm(y)
+x/West
+American(x) ∧ Arm (y) ∧ Sells(x,y,z) ∧ Hostile(z) ⇒ Criminal(x)
+Owns(Nono,M1) ∧ Missile(M1)
+Missile(x) ∧ Owns(Nono,x) ⇒ Sells(West,x,Nono)
+Missile(x) ⇒ Arme)
+Enemy(x,America) ⇒ Hostile(x)
+American(West)
+Enemy(Nono,America)
+</pre></details></section><section id="page-48" aria-label="Slide 48"><h2>Slide 48 / 65</h2><img src="page-48.webp" width="1296" height="972" alt="Description logic slide 48" loading="lazy"><details><summary>Slide text</summary><pre>Page 48
+Backward Chaining Proof
+American(West)
+Missile(M1)
+Owns(z, M1)
+Enemy(z, America)
+Sells(West,M1,z) 
+Hostile(z)
+Criminal(West)
+Arm(y)
+x/West, y/M1
+American(x) ∧ Arm (y) ∧ Sells(x,y,z) ∧ Hostile(z) ⇒ Criminal(x)
+Owns(Nono,M1) ∧ Missile(M1)
+Missile(x) ∧ Owns(Nono,x) ⇒ Sells(West,x,Nono)
+Missile(x) ⇒ Arme)
+Enemy(x,America) ⇒ Hostile(x)
+American(West)
+Enemy(Nono,America)
+</pre></details></section><section id="page-49" aria-label="Slide 49"><h2>Slide 49 / 65</h2><img src="page-49.webp" width="1296" height="972" alt="Description logic slide 49" loading="lazy"><details><summary>Slide text</summary><pre>Page 49
+Backward Chaining Proof
+American(West)
+Missile(M1)
+Owns(z, M1)
+Enemy(Nono, America)
+Sells(West,M1,Nono) 
+Hostile(Nono)
+Criminal(West)
+Arm(y)
+{x/West, y/M1, z/Nono}
+American(x) ∧ Arm (y) ∧ Sells(x,y,z) ∧ Hostile(z) ⇒ Criminal(x)
+Owns(Nono,M1) ∧ Missile(M1)
+Missile(x) ∧ Owns(Nono,x) ⇒ Sells(West,x,Nono)
+Missile(x) ⇒ Arme)
+Enemy(x,America) ⇒ Hostile(x)
+American(West)
+Enemy(Nono,America)
+</pre></details></section><section id="page-50" aria-label="Slide 50"><h2>Slide 50 / 65</h2><img src="page-50.webp" width="1296" height="972" alt="Description logic slide 50" loading="lazy"><details><summary>Slide text</summary><pre>OWL
+</pre></details></section><section id="page-51" aria-label="Slide 51"><h2>Slide 51 / 65</h2><img src="page-51.webp" width="1296" height="972" alt="Description logic slide 51" loading="lazy"><details><summary>Slide text</summary><pre>Introduction
+●is based on research carried out in the field of 
+description logic 
+●used to describe ontologies, i.e. it enables terminologies 
+to be defined to describe concrete domains  
+●is an important step forward in the representation and 
+organisation of knowledge available on the Web  
+●is designed as an extension of the Resource Description 
+Framework (RDF) and RDF Schema (RDFS). 
+</pre></details></section><section id="page-52" aria-label="Slide 52"><h2>Slide 52 / 65</h2><img src="page-52.webp" width="1296" height="972" alt="Description logic slide 52" loading="lazy"><details><summary>Slide text</summary><pre>Introduction
+●RDF and RDFs alone are too limited :
+○Cannot specify the nature of the relationships between 
+resources (reflexivity, etc.)
+○No capacity for reasoning
+○Very limited logic
+●The need for OWL :
+○Derives from RDF + RDFS
+○Logical connectors between classes (union, intersection, 
+etc.)
+○Cardinality on properties
+○Characterization of properties (transitivity, inverse, etc.)
+OWL
+RDF + RDF Schema
+XML + Schema 
+XML
+Metadata
+Syntax
+Logc
+</pre></details></section><section id="page-53" aria-label="Slide 53"><h2>Slide 53 / 65</h2><img src="page-53.webp" width="1296" height="972" alt="Description logic slide 53" loading="lazy"><details><summary>Slide text</summary><pre>Main advantages
+●Brings better integration, evolution, sharing and easier 
+inference of ontologies 
+●Adds the concepts of equivalent classes, equivalent 
+properties, equality of two resources, their differences, the 
+opposite, symmetry and cardinality 
+●Thanks to its formal semantics based on a widely studied 
+logical foundation, allows to define more complex 
+associations of resources as well as the properties of their 
+respective classes 
+●Is suitable for the Semantic Web, as it offers a strictly defined 
+syntax, and depending on the level can allow automated 
+reasoning on knowledge inferences and conclusions 
+</pre></details></section><section id="page-54" aria-label="Slide 54"><h2>Slide 54 / 65</h2><img src="page-54.webp" width="1296" height="972" alt="Description logic slide 54" loading="lazy"><details><summary>Slide text</summary><pre>OWL sub-languages
+OWL 
+Lite
+OWL DL
+OWL Full
+</pre></details></section><section id="page-55" aria-label="Slide 55"><h2>Slide 55 / 65</h2><img src="page-55.webp" width="1296" height="972" alt="Description logic slide 55" loading="lazy"><details><summary>Slide text</summary><pre>Definition of OWL classes 
+●A class can be declared in several ways:
+○By naming the class or,
+○By enumeration of its individuals
+○By restricting the properties of its individuals
+○By intersection (AND), union (OR) or complement (NOT) of another 
+class
+==&gt; Anonymous Classes: The members of an anonymous class are the 
+set of Individuals that satisfy its logical definition
+●There is an inheritance mechanism (&lt;owl:subClassOf&gt;)
+●The superclass owl:Thing is the mother of all the other 
+classes
+●owl:Nothing is subclass of all classes
+●In OWL Full, a class can be an instance of another class 
+(a &quot;metaclass&quot;).
+●The set of instances of a class is called &quot;the extension&quot;.
+</pre></details></section><section id="page-56" aria-label="Slide 56"><h2>Slide 56 / 65</h2><img src="page-56.webp" width="1296" height="972" alt="Description logic slide 56" loading="lazy"><details><summary>Slide text</summary><pre>Restriction Types
+∃
+Existential, 
+someValuesFrom
+“Some”, “At least one”
+∀
+Universal, 
+allValuesFrom
+“Only”
+∍
+hasValue
+“equals x”
+=
+Cardinality
+“Exactly n”
+≤
+Max Cardinality
+“At most n”
+≥
+Min Cardinality
+“At least n”
+</pre></details></section><section id="page-57" aria-label="Slide 57"><h2>Slide 57 / 65</h2><img src="page-57.webp" width="1296" height="972" alt="Description logic slide 57" loading="lazy"><details><summary>Slide text</summary><pre>Property Characteristics
+●Domain and range can be set
+●OWL offers a mechanism for property inheritance:
+owl:ObjectProperty rdf:ID=&quot;hasBrother&quot;&gt;
+&lt;rdfs:subPropertyOf rdf:resource=&quot;#isSibling&quot; /&gt;
+&lt;rdfs:range rdf:resource=&quot;#Person&quot; /&gt;
+&lt;rdfs:domain rdf:resource=&quot;#Person&quot; /&gt;
+&lt;/owl:ObjectProperty&gt;
+●Properties can be characterized:
+○Inverse 
+○Transitive
+○Symetric
+○Functional
+○Inverse Functional
+</pre></details></section><section id="page-58" aria-label="Slide 58"><h2>Slide 58 / 65</h2><img src="page-58.webp" width="1296" height="972" alt="Description logic slide 58" loading="lazy"><details><summary>Slide text</summary><pre>Inverse Property
+P1(X ,Y) iff P2(Y , X)
+X isParentOf Y iff Y isSonOf X
+isSonOf
+X
+Y
+isParentOf
+isParentOf
+</pre></details></section><section id="page-59" aria-label="Slide 59"><h2>Slide 59 / 65</h2><img src="page-59.webp" width="1296" height="972" alt="Description logic slide 59" loading="lazy"><details><summary>Slide text</summary><pre>Transitive Property
+If P(X,Y) and P(Y,Z) then P(X,Z)
+X isTheAncestorOf Y, Y isTheAncestorOf Z, then X 
+isTheAncestorOf Z
+isTheAncestorOf
+X
+Y
+isTheAncestorOf
+Z
+isTheAncestorOf
+isTheAncestorOf
+</pre></details></section><section id="page-60" aria-label="Slide 60"><h2>Slide 60 / 65</h2><img src="page-60.webp" width="1296" height="972" alt="Description logic slide 60" loading="lazy"><details><summary>Slide text</summary><pre>Symmetric Property
+P(X,Y) iff P(Y,X)
+X isBrotherOf Y iff Y isBrotherOf X
+isBrotherOf
+X
+Y
+isBrotherOf
+isBrotherOf
+</pre></details></section><section id="page-61" aria-label="Slide 61"><h2>Slide 61 / 65</h2><img src="page-61.webp" width="1296" height="972" alt="Description logic slide 61" loading="lazy"><details><summary>Slide text</summary><pre>Functional Property
+Unicity
+Only one instance can be linked 
+If P(X,Y) and P(X,Z) then Y=Z
+• If X hasAsMother Y and X hasAsMother Z then Y=Z
+X
+Y
+hasAsMother
+Z
+hasAsMother
+=
+</pre></details></section><section id="page-62" aria-label="Slide 62"><h2>Slide 62 / 65</h2><img src="page-62.webp" width="1296" height="972" alt="Description logic slide 62" loading="lazy"><details><summary>Slide text</summary><pre>Inverse Functional Property
+P(Y,X) and P(Z,X) then Y=Z
+Y hasPasseportNumber X and Z hasPasseportNumber 
+X then Y=Z
+X
+Y
+hasPasseportNumber
+Z
+hasPasseportNumber
+=
+</pre></details></section><section id="page-63" aria-label="Slide 63"><h2>Slide 63 / 65</h2><img src="page-63.webp" width="1296" height="972" alt="Description logic slide 63" loading="lazy"><details><summary>Slide text</summary><pre>OWL Class Constructors
+Page 63
+</pre></details></section><section id="page-64" aria-label="Slide 64"><h2>Slide 64 / 65</h2><img src="page-64.webp" width="1296" height="972" alt="Description logic slide 64" loading="lazy"><details><summary>Slide text</summary><pre>What’s Next ?
+1. Hands-on Modeling in Protégé
+Build class hierarchies
+Declare roles (object properties &amp; data properties)
+Create individuals
+Understand asserted vs inferred knowledge
+2. Reasoning with OWL / Description Logics
+Use class expressions and restrictions
+Define necessary &amp; sufficient conditions (EquivalentTo)
+Run a reasoner (HermiT / Pellet) to:
+Infer new facts
+Detect inconsistencies
+Validate modeling choices
+3. Extending Expressiveness with SWRL when OWL alone cannot infer relationship 
+patterns
+4. Querying the Knowledge with SPARQL
+Compare asserted vs inferred query results
+Let’s go to the lab!
+Page 64
+</pre></details></section><section id="page-65" aria-label="Slide 65"><h2>Slide 65 / 65</h2><img src="page-65.webp" width="1296" height="972" alt="Description logic slide 65" loading="lazy"><details><summary>Slide text</summary><pre>Let’s go to the lab!
+</pre></details></section></main><script>const count=65,sel=document.querySelector('#page');function current(){return Math.max(1,Math.min(count,Number(location.hash.replace('#page-',''))||1))}function sync(){const n=current();sel.value=n;document.querySelector('#prev').disabled=n===1;document.querySelector('#next').disabled=n===count;document.querySelector('#page-'+n).scrollIntoView()}sel.onchange=()=>location.hash='page-'+sel.value;document.querySelector('#prev').onclick=()=>location.hash='page-'+(current()-1);document.querySelector('#next').onclick=()=>location.hash='page-'+(current()+1);addEventListener('hashchange',sync);addEventListener('load',sync);</script></body></html>

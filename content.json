@@ -844,7 +844,8 @@
           "url": "slides/theorem-proving.pdf",
           "pages": 28,
           "format": "pdf",
-          "filename": "theorem-proving.pdf"
+          "filename": "theorem-proving.pdf",
+          "readerUrl": "slides/theorem-proving-reader/index.html"
         }
       ]
     },
@@ -966,11 +967,12 @@
       "slides": [
         {
           "topic": "dl",
-          "title": "Description logic · current Moodle file",
+          "title": "Description logic",
           "url": "slides/description-logic.pdf",
           "pages": 65,
           "format": "pdf",
-          "filename": "description-logic.pdf"
+          "filename": "description-logic.pdf",
+          "readerUrl": "slides/description-logic-reader/index.html"
         }
       ]
     }
@@ -8375,15 +8377,17 @@
       "url": "slides/theorem-proving.pdf",
       "pages": 28,
       "format": "pdf",
-      "filename": "theorem-proving.pdf"
+      "filename": "theorem-proving.pdf",
+      "readerUrl": "slides/theorem-proving-reader/index.html"
     },
     {
       "topic": "dl",
-      "title": "Description logic · current Moodle file",
+      "title": "Description logic",
       "url": "slides/description-logic.pdf",
       "pages": 65,
       "format": "pdf",
-      "filename": "description-logic.pdf"
+      "filename": "description-logic.pdf",
+      "readerUrl": "slides/description-logic-reader/index.html"
     }
   ],
   "handouts": [

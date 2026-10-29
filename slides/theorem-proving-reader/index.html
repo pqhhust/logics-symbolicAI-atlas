@@ -1,0 +1,372 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Theorem proving</title><style>body{margin:0;background:#eceeea;color:#21362c;font:15px system-ui}header{position:sticky;top:0;z-index:2;background:#f9faf7;border-bottom:1px solid #ccd5ca;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}h1{font-size:16px;margin:0;margin-right:auto}a{color:#285b47}select,button{font:inherit;padding:5px}main{max-width:1500px;margin:auto;padding:10px}section{scroll-margin-top:90px;margin-bottom:24px}h2{font-size:12px;color:#526355;margin:10px 0}img{display:block;width:100%;height:auto;background:white;box-shadow:0 2px 10px #0002}details{background:white;padding:10px;margin-top:5px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 system-ui}button:disabled{opacity:.4}@media print{header,details{display:none}section{break-after:page}img{box-shadow:none}}</style></head><body><header><h1>Theorem proving</h1><button id="prev" aria-label="Previous slide">←</button><label>Slide <select id="page"><option value="1">1 / 28</option><option value="2">2 / 28</option><option value="3">3 / 28</option><option value="4">4 / 28</option><option value="5">5 / 28</option><option value="6">6 / 28</option><option value="7">7 / 28</option><option value="8">8 / 28</option><option value="9">9 / 28</option><option value="10">10 / 28</option><option value="11">11 / 28</option><option value="12">12 / 28</option><option value="13">13 / 28</option><option value="14">14 / 28</option><option value="15">15 / 28</option><option value="16">16 / 28</option><option value="17">17 / 28</option><option value="18">18 / 28</option><option value="19">19 / 28</option><option value="20">20 / 28</option><option value="21">21 / 28</option><option value="22">22 / 28</option><option value="23">23 / 28</option><option value="24">24 / 28</option><option value="25">25 / 28</option><option value="26">26 / 28</option><option value="27">27 / 28</option><option value="28">28 / 28</option></select></label><button id="next" aria-label="Next slide">→</button><a href="../theorem-proving.pdf?v=complete-20261029" target="_blank" rel="noopener">Download PDF</a></header><main><section id="page-1" aria-label="Slide 1"><h2>Slide 1 / 28</h2><img src="page-01.webp" width="654" height="490" alt="Theorem proving slide 1" loading="lazy"><details><summary>Slide text</summary><pre>Logics and Symbolic AI
+Theorem Proving
+Thomas Bonald
+2026 – 2027
+</pre></details></section><section id="page-2" aria-label="Slide 2"><h2>Slide 2 / 28</h2><img src="page-02.webp" width="654" height="490" alt="Theorem proving slide 2" loading="lazy"><details><summary>Slide text</summary><pre>Catalan’s constant
+G = 1 −1
+32 + 1
+52 −1
+72 + . . .
+Theorem: G is irrational
+Proved by OpenAI on October 7, 2026
+</pre></details></section><section id="page-3" aria-label="Slide 3"><h2>Slide 3 / 28</h2><img src="page-03.webp" width="654" height="490" alt="Theorem proving slide 3" loading="lazy"><details><summary>Slide text</summary><pre>The AI Singularity in Mathematics
+Since Antiquity, mathematics has been developed by humans
+Euclide (300 BC)
+</pre></details></section><section id="page-4" aria-label="Slide 4"><h2>Slide 4 / 28</h2><img src="page-04.webp" width="654" height="490" alt="Theorem proving slide 4" loading="lazy"><details><summary>Slide text</summary><pre>The AI Singularity in Mathematics
+Since Antiquity, mathematics has been developed by humans
+Last summer, some major theorems are proved by AI, including
+the Navier-Stockes Millenium problem.
+Source: OpenAI
+</pre></details></section><section id="page-5" aria-label="Slide 5"><h2>Slide 5 / 28</h2><img src="page-05.webp" width="654" height="490" alt="Theorem proving slide 5" loading="lazy"><details><summary>Slide text</summary><pre>The AI Singularity in Mathematics
+Since Antiquity, mathematics has been developed by humans
+Last summer, some major theorems are proved by AI, including
+the Navier-Stockes Millenium problem.
+On October 7, 2026, 722 manuscripts are released by OpenAI, on
+▶number theory
+▶geometry
+▶analysis
+▶algebra
+▶probability
+About 300 of them are formalized in LEAN.
+</pre></details></section><section id="page-6" aria-label="Slide 6"><h2>Slide 6 / 28</h2><img src="page-06.webp" width="654" height="490" alt="Theorem proving slide 6" loading="lazy"><details><summary>Slide text</summary><pre>Motivation
+Theorem Proving is used in:
+▶Mathematics, to write formal proofs
+cf. Hilbert’s program (1920s)
+▶Computer Science &amp; Engineering, to check code
+cf. critical systems (aviation, protocols, hardware, security)
+Main tools:
+▶LEAN (Microsoft)
+▶Isabelle (Cambridge / TUM)
+▶Coq / Rocq (Inria)
+</pre></details></section><section id="page-7" aria-label="Slide 7"><h2>Slide 7 / 28</h2><img src="page-07.webp" width="654" height="490" alt="Theorem proving slide 7" loading="lazy"><details><summary>Slide text</summary><pre>A proof
+√
+2
+1
+1
+Theorem
+√
+2 is irrational
+Proof
+▶If
+√
+2 is rational, then
+√
+2 = a
+b for some coprime numbers a, b
+▶Thus a2 = 2b2, so that a2 is even, and a is even, say a = 2k
+▶Thus 2k2 = b2, so that b2 is even, and b is even
+▶This is a contradiction, as a and b are coprime
+How to make this proof formal / verifiable?
+</pre></details></section><section id="page-8" aria-label="Slide 8"><h2>Slide 8 / 28</h2><img src="page-08.webp" width="654" height="490" alt="Theorem proving slide 8" loading="lazy"><details><summary>Slide text</summary><pre>The language of mathematics
+All men are mortal.
+Socrates is a man.
+Therefore, Socrates is mortal
+Aristotle (350 BC)
+Proofs are based on logic:
+A →B
+A ∧B
+A ∨B
+∀x, A
+∃x, A
+In principle, they can be checked automatically based on some
+finite set of axioms and inference rules.
+</pre></details></section><section id="page-9" aria-label="Slide 9"><h2>Slide 9 / 28</h2><img src="page-09.webp" width="654" height="490" alt="Theorem proving slide 9" loading="lazy"><details><summary>Slide text</summary><pre>Hilbert’s program (1920s)
+Objective: To found mathematics on a finite set of axioms,
+ensuring the formal system is consistent1, complete2, and
+decidable3.
+1No contradiction.
+2Either P or ¬P has a proof.
+3There is a program deciding in finite time whether P or ¬P has a proof.
+</pre></details></section><section id="page-10" aria-label="Slide 10"><h2>Slide 10 / 28</h2><img src="page-10.webp" width="654" height="490" alt="Theorem proving slide 10" loading="lazy"><details><summary>Slide text</summary><pre>Then came G¨odel...
+First Incompleteness Theorem (G¨odel, 1931)
+Any consistent formal system containing arithmetic is
+incomplete.
+Consequence: Hilbert’s program is infeasible!
+Relativity (Escher, 1953)
+</pre></details></section><section id="page-11" aria-label="Slide 11"><h2>Slide 11 / 28</h2><img src="page-11.webp" width="654" height="490" alt="Theorem proving slide 11" loading="lazy"><details><summary>Slide text</summary><pre>What remains?
+We can still expect a consistent set of axioms (like ZF).
+Second Incompleteness Theorem (G¨odel, 1931)
+Any formal system containing arithmetic cannot prove its own
+consistency.
+Drawing Hands (Escher, 1948)
+</pre></details></section><section id="page-12" aria-label="Slide 12"><h2>Slide 12 / 28</h2><img src="page-12.webp" width="654" height="490" alt="Theorem proving slide 12" loading="lazy"><details><summary>Slide text</summary><pre>Mathlib
+The largest formal mathematical library, coded in LEAN
+∼275k theorems... including G¨odel’s :-)
+Less than 1% of all mathematics?
+Import graph of Mathlib
+</pre></details></section><section id="page-13" aria-label="Slide 13"><h2>Slide 13 / 28</h2><img src="page-13.webp" width="654" height="490" alt="Theorem proving slide 13" loading="lazy"><details><summary>Slide text</summary><pre>Example
+√
+2
+1
+1
+</pre></details></section><section id="page-14" aria-label="Slide 14"><h2>Slide 14 / 28</h2><img src="page-14.webp" width="654" height="490" alt="Theorem proving slide 14" loading="lazy"><details><summary>Slide text</summary><pre>Morality
+Proofs ↔Programs
+Known as the Curry-Howard correspondance
+Key ingredients:
+▶λ-calculus
+▶Type theory
+▶Propositional logic
+</pre></details></section><section id="page-15" aria-label="Slide 15"><h2>Slide 15 / 28</h2><img src="page-15.webp" width="654" height="490" alt="Theorem proving slide 15" loading="lazy"><details><summary>Slide text</summary><pre>λ-calculus
+A (universal) model of computation based on anonymous
+functions:
+λx.y
+Valid terms defined inductively by:
+▶Variables: x, y, z, f , . . .
+▶Abstraction: λx.y creates the function x 7→y
+▶Application: fx applies the function f to x
+Examples:
+λx.x
+λf .λx.fx
+λf .λx.f (f (fx)))
+λx.λy.λz((xz)(yz))
+Note: Variables are not typed!
+</pre></details></section><section id="page-16" aria-label="Slide 16"><h2>Slide 16 / 28</h2><img src="page-16.webp" width="654" height="490" alt="Theorem proving slide 16" loading="lazy"><details><summary>Slide text</summary><pre>Arithmetic
+You can write arithmetic by encoding numbers and operations
+Church encoding
+Number
+λ term
+0
+λf .λx.x
+1
+λf .λx.fx
+2
+λf .λx.f (fx)
+n
+λf .λx.f nx
+Operation
+λ term
+n + 1
+λn.λf .λx.f (nfx)
+m + n
+λm.λn.λf .λx.mf (nfx)
+mn
+λm.λn.λf .λx.m(nf )x
+...
+...
+</pre></details></section><section id="page-17" aria-label="Slide 17"><h2>Slide 17 / 28</h2><img src="page-17.webp" width="654" height="490" alt="Theorem proving slide 17" loading="lazy"><details><summary>Slide text</summary><pre>A (modest) result
+Proposition
+1 + 2 = 3
+Proof
+λn.λm.λf .λx.nf (mfx)
+|
+{z
+}
++
+λf .λx.fx
+|
+{z
+}
+1
+λf .λx.f (fx)
+|
+{z
+}
+2
+= λm.λf .λx.f (mfx) λf .λx.f (fx)
+|
+{z
+}
+2
+= λf .λx.f (f (fx))
+|
+{z
+}
+3
+</pre></details></section><section id="page-18" aria-label="Slide 18"><h2>Slide 18 / 28</h2><img src="page-18.webp" width="654" height="490" alt="Theorem proving slide 18" loading="lazy"><details><summary>Slide text</summary><pre>Logic
+You can write logic by encoding booleans and connectors
+Church encoding
+Boolean
+λ term
+True
+λa.λb.a
+False
+λa.λb.b
+Connector
+λ term
+¬
+λp.p.False True
+∧
+λp.λq.pqp
+∨
+λp.λq.ppq
+...
+...
+</pre></details></section><section id="page-19" aria-label="Slide 19"><h2>Slide 19 / 28</h2><img src="page-19.webp" width="654" height="490" alt="Theorem proving slide 19" loading="lazy"><details><summary>Slide text</summary><pre>Normalization
+Expressions of the form (λx.y)z can be reduced:
+(λx.xx)y →yy
+(λx.λy.x)z →λy.z
+A λ-term that cannot be reduced is in normal form:
+λf .λx.fx
+λf .λx.f (f (fx)))
+λx.λy.λz((xz)(yz))
+Strong Normalization
+A λ-term in strongly normalizing if any possible sequence of
+reductions terminates in finite time to the normal form.
+Counter-example: (λx.xx)(λx.xx)
+</pre></details></section><section id="page-20" aria-label="Slide 20"><h2>Slide 20 / 28</h2><img src="page-20.webp" width="654" height="490" alt="Theorem proving slide 20" loading="lazy"><details><summary>Slide text</summary><pre>Typing
+Given types σ, τ, define the function type:
+σ →τ
+Terms are typed inductively by:
+▶Variables: x : σ, y : τ, . . .
+▶Abstraction: λx.y with x : σ and y : τ has type σ →τ
+▶Application: fx, defined only if f : σ →τ and x : σ,
+has type τ
+This is called simply typed λ-calculus.
+Strong Normalizing Theorem (Curry, 1930s)
+Simply typed λ-calculus is strongly normalizing.
+Note: The term (λx.xx)(λx.xx) cannot be typed!
+</pre></details></section><section id="page-21" aria-label="Slide 21"><h2>Slide 21 / 28</h2><img src="page-21.webp" width="654" height="490" alt="Theorem proving slide 21" loading="lazy"><details><summary>Slide text</summary><pre>Propositional logic
+Formulas are defined inductively as:
+▶Propositional variables A, B, . . .
+▶A →B, A ∧B, A ∨B
+▶⊤(true) and ⊥(false)
+The rules of natural deduction are:
+Introduction
+Elimination
+→
+Γ, A ⊢B
+Γ ⊢A→B
+Γ ⊢A→B
+Γ ⊢A
+Γ ⊢B
+∧
+Γ ⊢A
+Γ ⊢B
+Γ ⊢A∧B
+Γ ⊢A∧B
+Γ ⊢A
+Γ ⊢A∧B
+Γ ⊢B
+∨
+Γ ⊢A
+Γ ⊢A∨B
+Γ ⊢B
+Γ ⊢A∨B
+Γ ⊢A∨B
+Γ, A ⊢C
+Γ, B ⊢C
+Γ ⊢C
+⊤
+Γ ⊢⊤
+⊥
+Γ ⊢⊥
+Γ ⊢A
+</pre></details></section><section id="page-22" aria-label="Slide 22"><h2>Slide 22 / 28</h2><img src="page-22.webp" width="654" height="490" alt="Theorem proving slide 22" loading="lazy"><details><summary>Slide text</summary><pre>Curry-Howard correspondance
+Proofs ↔Programs
+Natural deduction
+Simply typed λ-calculus
+Γ, A ⊢B
+Γ ⊢A →B Intro →
+Γ, x : σ ⊢y : τ
+Γ ⊢λ(x : σ).y : σ →τ Abs
+Γ ⊢A →B
+Γ ⊢A
+Γ ⊢B
+Elim →
+Γ ⊢f : σ →τ
+Γ ⊢x : σ
+Γ ⊢fx : τ
+App
+</pre></details></section><section id="page-23" aria-label="Slide 23"><h2>Slide 23 / 28</h2><img src="page-23.webp" width="654" height="490" alt="Theorem proving slide 23" loading="lazy"><details><summary>Slide text</summary><pre>Extensions
+Other connectors correspond to extended types:
+Formula
+Type
+A →B
+σ →τ
+A ∧B
+σ × τ
+A ∨B
+σ + τ
+⊤
+1
+⊥
+0
+The corresponding typed λ-calculus remains strongly normalizing.
+</pre></details></section><section id="page-24" aria-label="Slide 24"><h2>Slide 24 / 28</h2><img src="page-24.webp" width="654" height="490" alt="Theorem proving slide 24" loading="lazy"><details><summary>Slide text</summary><pre>Summary
+Proofs ↔Programs
+Logic
+Computation
+formula
+type
+proof
+term
+→
+function type
+∧
+product type
+∨
+sum type
+⊤
+unit type
+⊥
+empty type
+∀
+dependent product type
+∃
+dependent sum type
+</pre></details></section><section id="page-25" aria-label="Slide 25"><h2>Slide 25 / 28</h2><img src="page-25.webp" width="654" height="490" alt="Theorem proving slide 25" loading="lazy"><details><summary>Slide text</summary><pre>Types in LEAN
+Any expression in LEAN has a type.
+Type
+Example
+Primitive
+Bool
+Function
+Type →Type
+Product
+Type × Type
+Sum
+Type ⊕Type
+Inductive
+Nat
+Example
+☛LEAN relies on dependent type theory.
+</pre></details></section><section id="page-26" aria-label="Slide 26"><h2>Slide 26 / 28</h2><img src="page-26.webp" width="654" height="490" alt="Theorem proving slide 26" loading="lazy"><details><summary>Slide text</summary><pre>Tactics in LEAN
+LEAN provides tactics for interactive theorem proving.
+Tactic
+Examples
+Basic
+rfl, rw, intro, exact, apply
+Induction
+induction
+Contradiction
+by contra
+Advanced
+linarith, ring, simp
+Example
+☛cf. Lab
+</pre></details></section><section id="page-27" aria-label="Slide 27"><h2>Slide 27 / 28</h2><img src="page-27.webp" width="654" height="490" alt="Theorem proving slide 27" loading="lazy"><details><summary>Slide text</summary><pre>Constructive proofs
+Theorem
+There exist irrational numbers a, b such that ab is rational.
+Proof
+Let x =
+√
+2
+√
+2
+▶If x is rational, take a = b =
+√
+2.
+▶Otherwise, take a = x, b =
+√
+2 as ab = x
+√
+2 =
+√
+2
+2 = 2.
+This proof is not constructive!
+It relies on the following axiom of classical logic:
+Law of the Excluded Middle
+P ∨¬P
+</pre></details></section><section id="page-28" aria-label="Slide 28"><h2>Slide 28 / 28</h2><img src="page-28.webp" width="654" height="490" alt="Theorem proving slide 28" loading="lazy"><details><summary>Slide text</summary><pre>AI &amp; Theorem proving
+AI can write theorems...
+1. Can we trust the proofs?
+Yes, if checked by a formal language
+(but the translation is not easy)
+2. Can we understand them?
+No (most often)
+(but AI might provide explanations)
+3. Do we still need mathematicians?
+Yes (almost surely)
+(to explore the ocean of theorems generated by AI)
+</pre></details></section></main><script>const count=28,sel=document.querySelector('#page');function current(){return Math.max(1,Math.min(count,Number(location.hash.replace('#page-',''))||1))}function sync(){const n=current();sel.value=n;document.querySelector('#prev').disabled=n===1;document.querySelector('#next').disabled=n===count;document.querySelector('#page-'+n).scrollIntoView()}sel.onchange=()=>location.hash='page-'+sel.value;document.querySelector('#prev').onclick=()=>location.hash='page-'+(current()-1);document.querySelector('#next').onclick=()=>location.hash='page-'+(current()+1);addEventListener('hashchange',sync);addEventListener('load',sync);</script></body></html>
