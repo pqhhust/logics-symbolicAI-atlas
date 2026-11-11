@@ -1,0 +1,290 @@
+% Logics & Symbolic AI (CSC_5AI01_TP) -- one A4 sheet, recto-verso cheat sheet
+% Notation follows the course slides. Build: pdflatex logic-cheatsheet.tex (twice)
+\documentclass[10pt]{article}
+\usepackage[a4paper,landscape,margin=0.32cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{array}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\columnsep}{5pt}
+\setlength{\columnseprule}{0.25pt}
+\setlength{\tabcolsep}{1.5pt}
+\renewcommand{\arraystretch}{0.92}
+\setlength{\abovedisplayskip}{1pt}\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+\setlist{nosep,leftmargin=7pt,labelsep=2pt,itemsep=0pt,topsep=0pt}
+\definecolor{h1}{HTML}{1F4E79}\definecolor{h2}{HTML}{A23B2A}\definecolor{ok}{HTML}{1B6E3A}
+\definecolor{bg}{HTML}{EEF3F8}
+\newcommand{\sect}[1]{\par\vspace{1.2pt}\noindent\colorbox{h1}{\parbox{\dimexpr\linewidth-2\fboxsep}{\bfseries\color{white}#1}}\par\vspace{0.6pt}}
+\newcommand{\sub}[1]{\par\vspace{0.6pt}{\bfseries\color{h2}#1}\ }
+\newcommand{\kw}[1]{\textbf{#1}}
+\newcommand{\ex}[1]{\par\vspace{0.5pt}\noindent\colorbox{bg}{\parbox{\dimexpr\linewidth-2\fboxsep}{#1}}\par}
+\newcommand{\impl}{\supset}
+\newcommand{\up}{^{\uparrow}}
+\newcommand{\dn}{^{\downarrow}}
+\newcommand{\gd}[1]{[#1]}
+\newcommand{\gc}[1]{\langle #1\rangle}
+\newcommand{\infr}[2]{\dfrac{#1}{#2}}
+\begin{document}
+\fontsize{5.55}{6.2}\selectfont
+\begin{multicols*}{4}
+\raggedcolumns
+{\centering\fontsize{7.5}{8}\selectfont\bfseries\color{h1} Logics \& Symbolic AI -- cheat sheet\par}
+{\centering\fontsize{5}{5.5}\selectfont notation = course slides (Holzenberger, Simidjievski, Suchanek, Bonald, Bouzeghoub)\par}
+
+%=====================================================================
+\sect{1 Propositional logic -- syntax \& semantics}
+\kw{Syntax} (how to manipulate symbols) vs \kw{semantics} (meaning). Alphabet: propositional symbols $p$; constants $T,\bot$; connectors $\neg$ (1-place), $\wedge,\vee,\ldots$ (2-place). Formula: atomic; if $F$ formula then $(\neg F)$; if $\bullet$ connector, $(A\bullet B)$. Smallest such sets.
+\sub{Syntactic $\bullet$ vs semantic $\blacksquare$:} $\neg$/Not, $\wedge$/And, $\vee$/Or, $\impl$/$\Rightarrow$, $\subset$/$\Leftarrow$, $\equiv$/$\Leftrightarrow$, $\uparrow$/Nand, $\downarrow$/Nor, $\not\supset$/$\not\Rightarrow$, $\not\subset$/$\not\Leftarrow$.
+\sub{Valuation} $v:F\to\{True,False\}$, consistent: $v(T)=True$, $v(\bot)=False$, $v(\neg F)=\text{Not }v(F)$, $v((A\bullet B))=v(A)\blacksquare v(B)$.\\
+$2^{2^2}=16$ two-place connectors, 6 trivial ($T$, $\bot$, $A$, $B$, $\neg A$, $\neg B$); 3-place: $2^{2^3}=256$.
+\sub{Tautology:} $v(X)=True$ for all $v$. \kw{Satisfiable} set $S$: some $v_0$ makes every $X\in S$ True (SAT: find $v_0$). $X$ tautology iff $\neg X$ not satisfiable.\\
+\kw{Consequence} $S\models X$: every $v$ making all of $S$ True makes $X$ True; $\models X$ = tautology.\\
+$S\models X$ \textbf{iff} $S\cup\{\neg X\}$ not satisfiable. ($\Rightarrow$: if $v$ falsifies some $A\in S$ done, else $v(X)=True$ so $v(\neg X)=False$. $\Leftarrow$: $v$ satisfies $S$ $\Rightarrow v(\neg X)=False\Rightarrow v(X)=True$.)\\
+Ex falso: $A,\neg A\in S\Rightarrow\forall X,S\models X$. Monotony: $S\models X\Rightarrow S\cup\{A\}\models X$. Deduction: $S\cup\{X\}\models Y$ iff $S\models(X\impl Y)$. $X$ taut.\ iff $T\impl X$ taut.\ ($v(T\impl X)=v(X)$).
+\sub{Laws:} $\neg(X\wedge Y)\equiv\neg X\vee\neg Y$; $\neg(X\vee Y)\equiv\neg X\wedge\neg Y$; $P\wedge(Q\vee R)\equiv(P\wedge Q)\vee(P\wedge R)$; $P\vee(Q\wedge R)\equiv(P\vee Q)\wedge(P\vee R)$.
+
+\sect{2 Rewriting to CNF \& resolution}
+\kw{Normal form for negation}: $\neg$ only in front of symbols; use $\neg\neg X\equiv X$, De Morgan.\\
+\kw{Generalized disjunction} $\gd{X_1,\ldots,X_n}$: False iff all $X_i$ False; $v(\gd{})=False$. \kw{Generalized conjunction} $\gc{X_1,\ldots,X_n}$: True iff all True; $v(\gc{})=True$.\\
+\kw{CNF} $\gc{C_1,\ldots,C_n}$, each \kw{clause} $C_i=\gd{X_1,\ldots,X_{n_i}}$ (DNF: mutatis mutandis).\\[1pt]
+\begin{tabular}{@{}l@{\ }l@{\ }l@{}}
+& $\alpha$/$\beta$ rewriting & negated\\\hline
+$\wedge$ & $X\wedge Y$ ($\alpha$) & $\neg(X\wedge Y)\equiv\neg X\vee\neg Y$\\
+$\vee$ & $X\vee Y$ ($\beta$) & $\neg(X\vee Y)\equiv\neg X\wedge\neg Y$\\
+$\impl$ & $X\impl Y\equiv\neg X\vee Y$ & $\neg(X\impl Y)\equiv X\wedge\neg Y$\\
+$\subset$ & $X\subset Y\equiv X\vee\neg Y$ & $\neg(X\subset Y)\equiv\neg X\wedge Y$\\
+$\uparrow$ & $X\uparrow Y\equiv\neg X\vee\neg Y$ & $\neg(X\uparrow Y)\equiv X\wedge Y$\\
+$\downarrow$ & $X\downarrow Y\equiv\neg X\wedge\neg Y$ & $\neg(X\downarrow Y)\equiv X\vee Y$\\
+$\not\supset$ & $X\not\supset Y\equiv X\wedge\neg Y$ & $\neg(X\not\supset Y)\equiv\neg X\vee Y$\\
+$\not\subset$ & $X\not\subset Y\equiv\neg X\wedge Y$ & $\neg(X\not\subset Y)\equiv X\vee\neg Y$
+\end{tabular}\\
+($\equiv$: $X\equiv Y$ as $(X\impl Y)\wedge(Y\impl X)$.)
+\sub{Rewriting algorithm:} disjunction $\gc{\ldots\gd{\ldots P\ldots}\ldots}\to\gc{\ldots\gd{\ldots A,B\ldots}\ldots}$; conjunction $\to\gc{\ldots\gd{\ldots A\ldots},\gd{\ldots B\ldots}\ldots}$; $\neg\neg P\to P$.
+\ex{\textbf{Ex.} $((A\impl B)\impl(A\impl C))$: $\gc{\gd{\neg(A\impl B),(A\impl C)}}\to\gc{\gd{A\wedge\neg B,A\impl C}}\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}$; 1st clause always True $\Rightarrow\gc{\gd{\neg B,\neg A,C}}$.}
+\sub{Proof by resolution:} sequence = conjunction of lines, each line a clause. $\gd{\ldots(\beta_1\vee\beta_2)\ldots}\Rightarrow$ add $\gd{\ldots\beta_1,\beta_2\ldots}$; $\gd{\ldots(\alpha_1\wedge\alpha_2)\ldots}\Rightarrow$ add $\gd{\ldots\alpha_1\ldots}$ and $\gd{\ldots\alpha_2\ldots}$; replace $\neg\neg X$ by $X$, $\neg T$ by $\bot$, $\neg\bot$ by $T$. \kw{Resolution}: from $\gd{A,X,B}$, $\gd{C,\neg X,D}$ create $\gd{A,B,C,D}$. Proof of $X$: starts with $\gd{\neg X}$ (goal), ends with $\gd{}$. To prove $S\vdash X$ start with $\gd{S_1},\ldots,\gd{S_n},\gd{\neg X}$. $X$ tautology iff it has a resolution proof.
+\ex{\textbf{Ex.} $((A\impl B)\wedge(B\impl C))\impl\neg(\neg C\wedge A)$: $\gd{\neg(\ldots)}\to\gd{(A\impl B)\wedge(B\impl C)},\gd{\neg C\wedge A}\to\gd{\neg A,B},\gd{\neg B,C},\gd{\neg C},\gd{A}\to\gd{B}\to\gd{C}\to\gd{}$.}
+Prolog: \texttt{A :- B} becomes $\gd{A,\neg B}$; query \texttt{?- g} adds $\gd{\neg g}$.\\
+\kw{Backward chaining} (from goal; resolution, Robinson 1965) vs \kw{forward chaining} (from assumptions; Logic Theorist, Newell 1956). Resolution can explode combinatorially.
+\sub{Axiomatics.} $\models$ semantic (truth tables), $\vdash$ syntactic (resolution). Hilbert system: $X\impl(Y\impl X)$; $(X\impl(Y\impl Z))\impl((X\impl Y)\impl(X\impl Z))$; $\bot\impl X$; $X\impl T$; $\neg\neg X\impl X$; $X\impl(\neg X\impl Y)$; $(A\wedge B)\impl A$; $(A\wedge B)\impl B$; $(A\impl X)\impl((B\impl X)\impl((A\vee B)\impl X))$; rule \kw{modus ponens} $\frac{X\quad X\impl Y}{Y}$ (forward chaining).\\
+\kw{Sound}: $S\vdash F\Rightarrow S\models F$. \kw{Complete}: $S\models F\Rightarrow S\vdash F$. Gödel (PhD 1929): resolution sound \& complete for FOL.
+\sub{Datalog (lab):} rules $\forall\vec x\,(P_1(\vec w_1)\wedge\cdots\wedge P_k(\vec w_k))\Rightarrow P(\vec y)$, closed; fact $=T\Rightarrow P(\vec c)$. \kw{Minimal model property}; no negation (would lose it). Syntax: Upper = variable, lower = constant; \texttt{P(X,Z,alice) :- S(X,Y), T(Y,Z).}; query \texttt{R(X,charlie)?}. e.g.\ \texttt{grandparent(X,Z) :- parent(X,Y), parent(Y,Z).}
+
+%=====================================================================
+\sect{3 First-order (predicate) logic}
+\kw{Terms}: variables $x_i$, constants $c_i$, functors $f(t_1,..,t_n)$ ($f$ of arity $n$). Signature $=\{x_i\},\{c_i\},\{p_i\},\{f_i\}$. \kw{Atomic formula} $p(t_1,\ldots,t_n)$, $p$ predicate of arity $n$. Formulas: atomic, $\neg F$, $(F\circ G)$, $(\forall x)F$, $(\exists x)F$.\\
+\textbf{Function vs predicate?} A symbol \emph{inside} an argument position (a term) is a functor; a symbol applied at formula level (operand of $\neg,\wedge,\impl$, under a quantifier) is a predicate. Arity = \#arguments. Constant = 0-ary functor.
+\sub{Free/bound:} term closed iff no variable. $v$ free in atomic $F$ iff occurs in $F$; free in $(\diamond v')F$ iff free in $F$ and $v\neq v'$; free in $\neg F$ iff free in $F$; free in $F_1\circ F_2$ iff free in $F_1$ or $F_2$. Bound = no free occurrence. Closed formula = no free variable. (Same name can be free in one place and bound in another!)
+\sub{Semantics:} non-empty domain $D$; interpretation $I$: constant $c\mapsto c^I\in D$, functor $f\mapsto f^I:D^n\to D$, predicate $p\mapsto p^I$ $n$-ary relation on $D$. Assignment $A$: variable $v\mapsto v^A\in D$. $t^{I,A}$: $c^I$, $v^A$, $f^I(t_1^{I,A},\ldots)$. Model $M(D,I)$.\\
+\kw{Attitude} (truth value): $p(t_1..t_n)^{I,A}=True$ iff $(t_1^{I,A},..)\in p^I$; $((\forall x)F)^{I,A}=True$ iff $F^{I,B}=True$ for all $B$ equal to $A$ save for $x$; $\exists$: for at least one such $B$.\\
+$F$ \kw{true in} $M$ if True for all $A$; \kw{valid} if true in every model. $S$ satisfiable in $M$ if some $A$ makes all $F\in S$ True. $F$ valid iff $\{\neg F\}$ not satisfiable.\\
+Valid: $((\forall x)p(a,x))\impl p(a,a)$; $(\forall x(p\wedge q))\equiv((\forall x)p\wedge(\forall x)q)$. Not valid, sat.: $(\forall x)(p(a,x)\impl p(a,a))$, $(\forall x)(\forall y)(p(x,y)\impl p(y,x))$, $(\forall x)(\exists y)p(x,y)$. Unsat: $\exists x(\neg p(x)\wedge p(x))$.
+\sub{Prenex} (rename variables first!): $\neg(\exists v)A\equiv(\forall v)\neg A$; $\neg(\forall v)A\equiv(\exists v)\neg A$; $((\forall v)A\wedge B)\equiv(\forall v)(A\wedge B)$ (same for $\exists$, either side); $((\forall v)A\impl B)\equiv(\exists v)(A\impl B)$; $(A\impl(\forall v)B)\equiv(\forall v)(A\impl B)$; $((\exists v)A\impl B)\equiv(\forall v)(A\impl B)$; $(A\impl(\exists v)B)\equiv(\exists v)(A\impl B)$. ($\forall$ in antecedent flips: $(\forall x)A\impl B\equiv\neg(\forall x)A\vee B\equiv(\exists x)(\neg A\vee B)$.)
+\sub{Skolemization:} $(Q_1x_1)..(Q_{k-1}x_{k-1})(\exists x_k)(Q_{k+1}x_{k+1})..F\to(Q_1x_1)..F(x_k/f(x_1,..,x_{k-1}))$; $f$ new Skolem functor, arity $k-1$ (= \#$\forall$ \emph{before} it; arity 0 = constant). Preserves satisfiability. Put $\exists$ first if possible. E.g.\ $(\forall x)(married(x)\impl(\exists y)spouse(x,y))\to(\forall x)(married(x)\impl spouse(x,f(x)))$.
+\sub{Resolution procedure} to prove $F$ valid: 1 $\neg F$ to prenex (rename); 2 skolemize; 3 drop $\forall$; 4 CNF (opt.); 5 resolution + \kw{unification} (e.g.\ $\neg P(c)$, $P(x)$: $x=c\Rightarrow\gd{}$); 6 $\gd{}$ reached $\Rightarrow\{\neg F\}$ unsat $\Rightarrow F$ valid.\\
+\begin{tabular}{@{}lll@{}}
+ & Propositional & First-order\\\hline
+semantics & valuation, tautology & model, attitude, valid\\
+proof & resolution & + skolem, unification\\
+ & sound, complete, & sound, complete,\\
+ & \textbf{decidable} (SAT) & \textbf{semi-decidable}
+\end{tabular}\\
+Semi-decidable: if valid, a proof is found in finite time; if not valid, no guarantee to terminate. Gödel 1931: no complete method for arithmetic (recurrence).
+
+\sect{4 Natural deduction (handout)}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}l@{\,}c@{\ }l@{\,}c@{}}
+Ax & $\infr{}{\Gamma,p\vdash p}$ & $\neg$I & $\infr{\Gamma,p\vdash\bot}{\Gamma\vdash\neg p}$\\
+$\neg$E & $\infr{\Gamma\vdash p\ \ \Gamma\vdash\neg p}{\Gamma\vdash\bot}$ & Abs & $\infr{\Gamma,\neg p\vdash\bot}{\Gamma\vdash p}$\\
+$\bot$E & $\infr{\Gamma\vdash\bot}{\Gamma\vdash p}$ & $\to$I & $\infr{\Gamma,p\vdash q}{\Gamma\vdash p\to q}$\\
+$\to$E & $\infr{\Gamma\vdash p\to q\ \ \Gamma\vdash p}{\Gamma\vdash q}$ & $\wedge$I & $\infr{\Gamma\vdash p\ \ \Gamma\vdash q}{\Gamma\vdash p\wedge q}$\\
+$\wedge$Eg & $\infr{\Gamma\vdash p\wedge q}{\Gamma\vdash p}$ & $\wedge$Ed & $\infr{\Gamma\vdash p\wedge q}{\Gamma\vdash q}$\\
+$\vee$Ig & $\infr{\Gamma\vdash p}{\Gamma\vdash p\vee q}$ & $\vee$Id & $\infr{\Gamma\vdash q}{\Gamma\vdash p\vee q}$\\
+\multicolumn{4}{@{}l@{}}{$\vee$E $\infr{\Gamma\vdash p\vee q\quad\Gamma,p\vdash r\quad\Gamma,q\vdash r}{\Gamma\vdash r}$ \quad $\top$: $\infr{}{\Gamma\vdash\top}$}\\
+$\forall$I & $\infr{\Gamma\vdash F}{\Gamma\vdash\forall x F}$\,{\tiny $x$ not free in $\Gamma$} & $\forall$E & $\infr{\Gamma\vdash\forall xF(x)}{\Gamma\vdash F[t/x]}$\\
+$\exists$I & $\infr{\Gamma\vdash F(t)}{\Gamma\vdash\exists xF(x)}$ & $\exists$E & $\infr{\Gamma\vdash\exists xF\ \ \Gamma\vdash F\to G}{\Gamma\vdash G}$\\
+\end{tabular}\\
+\renewcommand{\arraystretch}{0.92}
+{\tiny $\exists$E: $x$ not free in $\Gamma$ and $G$.} Abs and $\bot$E: proof by contradiction / ex falso.
+\ex{\textbf{Ex.} $\vdash(A\to B)\to((B\to C)\to(A\to C))$. Let $\Gamma=\{A\to B,B\to C,A\}$: $\Gamma\vdash A$ (Ax), $\Gamma\vdash A\to B$ (Ax) $\Rightarrow\Gamma\vdash B$ ($\to$E); with $\Gamma\vdash B\to C$: $\Gamma\vdash C$ ($\to$E); then $\to$I three times. Curry--Howard term: $\lambda f.\lambda g.\lambda x.g(fx)$.}
+
+%=====================================================================
+\sect{5 Planning: STRIPS}
+World fully described by its \kw{state}; \kw{actions} move between states; planning = find a sequence of actions from initial to goal state (same vocabulary as RL). STRIPS (Stanford Research Institute Problem Solver, 1971): strategy + formal representation. Predicates and variables Capitalized, constants lowercase.\\
+\texttt{Move(X,Y)} Pre: \texttt{At(X), Level(low)} Post: \texttt{!At(X), At(Y)}. Other monkey actions: \texttt{ClimbUp/ClimbDown(Location)}, \texttt{MoveBox(X,Y)}, \texttt{TakeBanana(Location)}. Blocks world: special block \texttt{t} (table); \texttt{MoveBlocks(BlockMoved,BlockFrom,BlockTo)} Pre: \texttt{!Table(BM), Clear(BM), Clear(BT), On(BM,BF)} Post: \texttt{On(BM,BT), !On(BM,BF), !Clear(BT), Clear(BF)}; also \texttt{MoveFromTable}, \texttt{MoveToTable}.\\
+STRIPS solver = \kw{backtracking}: solves any problem but may explore pointless strategies; semi-decidable. \kw{Sussman anomaly}: goals \texttt{On(a,b), On(b,c)} interfere (achieving one undoes the other, in either order).
+
+\sect{6 Planning as satisfiability (Kautz \& Selman 1992)}
+Plan $\leftrightarrow$ model of a SAT problem (bigger, but SAT solvers beat theorem provers).
+\begin{enumerate}
+\item Add a \kw{time} variable (last): \texttt{Move(a,b)}$\to$\texttt{Move(a,b,1)}.
+\item \kw{Ground}: enumerate all argument values (monkey: 9 \texttt{Move} at each $t$).
+\item Grounded clause $\to$ boolean: \texttt{Move(a,b,12)}$\to$\texttt{move\_a\_b\_12}, \texttt{U-1-2}.
+\item Constraints: \kw{initial} state (\emph{every} grounded fluent at $t=0$, positive or negated $\Rightarrow$ one model), \kw{goal} at $t=N$ (only goal facts $\Rightarrow$ many models), \kw{problem constraints} (e.g.\ table always clear, no block on itself, exactly one action per step), \kw{explanatory frame axioms}, \kw{actions}.
+\end{enumerate}
+\kw{Action}: $a_t\Rightarrow(p_t\wedge c_{t+1})$ (if not taken, $p_t,c_{t+1}$ free).\\
+\kw{Frame axiom}: a change of a state variable between $t$ and $t+1$ implies the disjunction of the actions that cause it at $t$, \emph{both directions}:\\
+$(\neg f_t\wedge f_{t+1})\Rightarrow\bigvee\{a_t: a\text{ adds }f\}$,\quad $(f_t\wedge\neg f_{t+1})\Rightarrow\bigvee\{a_t: a\text{ deletes }f\}$.\\
+e.g.\ $(\texttt{on-A-B-5}\wedge\neg\texttt{on-A-B-4})\Rightarrow(\texttt{moveFromTable-A-T-B-4}\vee\texttt{moveBlocks-A-C-B-4})$.\\
+SAT always decidable but the planner fixes $N$: \kw{increase $N$} until satisfiable. Lab: \texttt{Move(X,Y,Z,T)}$\to$\texttt{Object(X,T), Source(Y,T), Destination(Z,T)} (less blow-up). Bugs usually come from \emph{too few} constraints.
+\sub{(PO)MDP:} stochastic transitions $p(s'|s,a)$; reward $s\xrightarrow{a,r}s'$; compute a \kw{policy} $\pi:s\mapsto a$ maximizing $\sum_{t=0}^{\infty}\gamma^tE[r_t]$ (expectation over $p(s_{t+1}|s_t,a_t)$ following $\pi$).
+
+%=====================================================================
+\sect{7 Formal Concept Analysis (FCA)}
+\kw{Formal context} $K=(X,Y,I)$: objects $X$ (rows), attributes $Y$ (columns), $I\subseteq X\times Y$, $(x,y)\in I$: ``$x$ has $y$''.\\
+\kw{Derivation operators}: $A\up=\{y\in Y\mid\forall x\in A:(x,y)\in I\}$ (common attributes); $B\dn=\{x\in X\mid\forall y\in B:(x,y)\in I\}$ (objects having all of $B$). $\emptyset\up=Y$, $\emptyset\dn=X$.\\
+\kw{Formal concept} $(A,B)$: $A\up=B$ \textbf{and} $B\dn=A$; $A$ \kw{extent}, $B$ \kw{intent} (perfect, maximal pairing).\\
+\kw{Galois connection}: antitone $A_1\subseteq A_2\Rightarrow A_2\up\subseteq A_1\up$, $B_1\subseteq B_2\Rightarrow B_2\dn\subseteq B_1\dn$; $A\subseteq A\up{}\dn$, $B\subseteq B\dn{}\up$.\\
+\kw{Closure operator} $T$: extensive $A\subseteq T(A)$, monotone, idempotent $T(T(A))=T(A)$. $(\cdot)\up{}\dn$ closes extents, $(\cdot)\dn{}\up$ closes intents. Concepts = closed sets. \textbf{Every $(B\dn,B\dn{}\up)$ and $(A\up{}\dn,A\up)$ is a concept.}\\
+\kw{Order}: $(A_1,B_1)\preceq(A_2,B_2)\iff A_1\subseteq A_2\iff B_2\subseteq B_1$ (subconcept: fewer objects, more attributes). $(\mathcal C(K),\preceq)$ = complete lattice = \kw{concept lattice} (Hasse diagram).\\
+\kw{Meet} $\bigwedge_t(X_t,Y_t)=\big(\bigcap_tX_t,(\bigcup_tY_t)\dn{}\up\big)$; \kw{Join} $\bigvee_t(X_t,Y_t)=\big((\bigcup_tX_t)\up{}\dn,\bigcap_tY_t\big)$.
+\ex{\textbf{Intersection method (all concepts by hand)}. Intersection of intents is an intent (join formula). So: \textbf{1}~write each object intent $\{x\}\up$; \textbf{2}~add $Y$ (intent of the bottom, extent $Y\dn$, often $\emptyset$); \textbf{3}~repeatedly add pairwise intersections of the intents in the list until nothing new (include $X\up$ = top intent); \textbf{4}~for each intent $B$ compute extent $B\dn$; \textbf{5}~order by inclusion of extents, draw edges only to \emph{immediate} neighbours. Dually: intersect the attribute extents $\{y\}\dn$ (meet formula) and close with $\up$. Check: \#concepts same both ways.}
+\kw{Reduced labelling}: attribute $y$ written at $(\{y\}\dn,\{y\}\dn{}\up)$ (highest concept containing it); object $x$ at $(\{x\}\up{}\dn,\{x\}\up)$ (lowest). Intent of a node = all attributes on/above it; extent = all objects on/below it.
+\sub{NextClosure} (Ganter): generate closed intents one by one in \kw{lectic order} ($y_1<y_2<\ldots$); from current intent $B$, try attributes from the last ($y_n$) downwards: for $y_i\notin B$, $C=((B\cap\{y_1..y_{i-1}\})\cup\{y_i\})\dn{}\up$; accept iff $C$ adds no attribute $<y_i$ not already in $B$. Start $\emptyset\dn{}\up$, stop at $Y$. $O(|X||Y|^2|C|)$, small memory. Others: Close-by-One (canonicity test, $O(|X|^2|Y||C|)$), Titanic (iceberg, support), Bordat ($O(|X||Y|^2|C|)$), Chein (intersect intents in layers, $O(|X|^3|Y||C|)$), Lindig (upper neighbours, bottom-up).
+\ex{\textbf{Slide ex.} $x_1\!:\!y_1y_2y_3y_4$, $x_2\!:\!y_1y_3y_4$, $x_3,x_4\!:\!y_2y_3y_4$, $x_5\!:\!y_1$. NextClosure: $\emptyset\to\{y_3,y_4\}$ ($\{y_4\}\dn{}\up=\{y_3,y_4\}$ adds earlier $y_3$: reject; try $y_3$ ok) $\to\{y_2,y_3,y_4\}\to\{y_1\}\to\{y_1,y_3,y_4\}\to Y$. 6 concepts: $C_1(X,\emptyset)$, $C_2(x_1x_2x_3x_4,y_3y_4)$, $C_3(x_1x_3x_4,y_2y_3y_4)$, $C_4(x_1x_2x_5,y_1)$, $C_5(x_1x_2,y_1y_3y_4)$, $C_6(x_1,Y)$.}
+\sub{Clarification / reduction:} \kw{clarified} = no identical rows (objects) and no identical columns (attributes); remove duplicates $\Rightarrow$ \emph{isomorphic} lattice. \kw{Reduced} = no reducible object/attribute (derivable from others, e.g.\ a column = intersection of other columns, or a full column); reduced $\Rightarrow$ clarified, not conversely.
+\sub{Attribute implications} $Z_1\Rightarrow Z_2$ ($Z_1,Z_2\subseteq Y$): every object having all of $Z_1$ has all of $Z_2$. \kw{Valid} iff $Z_1\dn\subseteq Z_2\dn$ $\iff Z_2\subseteq Z_1\dn{}\up$. Counterexample = object in $Z_1\dn\setminus Z_2\dn$. \kw{Armstrong} (sound \& complete): reflexivity ($Z_2\subseteq Z_1\Rightarrow Z_1\Rightarrow Z_2$), augmentation ($Z_1\Rightarrow Z_2\vdash Z_1\cup Z_3\Rightarrow Z_2\cup Z_3$), transitivity. \kw{Non-redundant basis}: complete + no member derivable from others. \kw{Duquenne--Guigues basis}: premises = \kw{pseudo-intents} (non-closed sets), each $P\Rightarrow P\dn{}\up$; minimum number of implications.\\
+Extensions: many-valued context $(X,Y,W,I)$, scaling, pattern structures, icebergs, stability, triadic/polyadic, relational CA.
+
+\sect{8 Association rules}
+Itemset; \kw{support count} $\sigma(X)$ = \#transactions containing $X$; \kw{support} $s(X)=\sigma(X)/|T|$; frequent: $s(X)\ge minSup$. Rule $X\Rightarrow Y$ (non-empty): $s(X\Rightarrow Y)=\frac{\sigma(X\cup Y)}{|T|}$; \kw{confidence} $c(X\Rightarrow Y)=\frac{\sigma(X\cup Y)}{\sigma(X)}$ ($=P(Y|X)$). Co-occurrence, NOT causality.\\
+Brute force: $2^d$ itemsets, $R=\sum_{i=1}^{d-1}C_d^i\sum_{j=1}^{d-i}C_{d-i}^j$ rules. Cost = \#\kw{passes} over the DB.\\
+\kw{A priori principle}: frequent $\Rightarrow$ all subsets frequent; infrequent $\Rightarrow$ all supersets infrequent (support anti-monotone: $X\subseteq Y\Rightarrow s(X)\ge s(Y)$). \kw{Apriori} (Agrawal \& Srikant 1994), level-wise: $L_1$ = frequent items; pass $k$: \emph{join} $L_{k-1}$ to candidates $C_k$, \emph{prune} candidates with an infrequent $(k-1)$-subset, scan, keep $\ge minSup$; stop when none.\\
+Rules from frequent $L$: for each non-empty $A\subset L$: $A\Rightarrow L\setminus A$, $c=s(L)/s(A)$, keep $\ge minConf$.\\
+\kw{Lift} $=\frac{c(X\Rightarrow Y)}{s(Y)}=\frac{s(X\cup Y)}{s(X)s(Y)}$: $=1$ independent, $>1$ positive correlation (interesting), $<1$ negative. Tea$\Rightarrow$Coffee $c=75\%$ but $s(\text{coffee})=80\%$: lift $<1$. Others: leverage, conviction, Zhang, Jaccard, certainty, Kulczynski.\\
+\begin{tabular}{@{}lll@{}}
+Algo & passes & idea\\\hline
+Apriori & $k$ & level-wise prune (anti-monotone)\\
+PCY & 2 & hash pairs in pass 1 (memory)\\
+SON & 2 & chunks in parallel, verify globally\\
+Toivonen & 1 (or 2) & sample + negative border\\
+FP-Growth & 2 & FP-tree (prefix merge), no candidates\\
+\end{tabular}\\
+FP-max: maximal frequent itemsets only.
+\ex{\textbf{FCA vs AR}: FCA implication $Z_1\Rightarrow Z_2$ = deterministic, holds for \emph{all} objects; AR $X\Rightarrow Y$ = probabilistic, measured by support/confidence/lift. \textbf{Implication = AR with confidence 100\%}: valid $\iff Z_1\dn\subseteq Z_2\dn\iff\sigma(Z_1\cup Z_2)=\sigma(Z_1)\iff c=1$. Closed itemsets = concept intents ($s(B)=|B\dn|/|X|$). FCA: small, clean, exact knowledge (lattice, DG basis). AR: large noisy data, thresholds, scalable algorithms.}
+
+%=====================================================================
+\sect{9 Fuzzy logic}
+\kw{Probability vs degree of truth}: differ in (1) semantics, (2) aggregation. Cooks 60/60/50/50\%: $P$(some cooks)$=1-.4\cdot.4\cdot.5\cdot.5=96\%$; degree of ``great food'' $=60\%$ (max).\\
+\kw{Negation} $\neg x=1-x$; \kw{Yager} $\neg_w(x)=(1-x^w)^{1/w}$ ($w=1$ standard).\\
+Average $\sum_ia_i/n$ (not sensitive to small values); harmonic mean $n/\sum_i 1/a_i$ (sensitive, one small value cannot annihilate). Not associative $\Rightarrow$ apply to all conjuncts at once.
+\sub{T-norm} $T:[0,1]^2\to[0,1]$: commutative, monotone ($T(a,c)\le T(b,c)$ if $a\le b$), associative, neutral $T(a,1)=a$ $\Rightarrow T(a,0)=0$. Used for $\wedge$.\\
+min $T=\min(a,b)$ (largest); product $a\times b$; \L ukasiewicz $\max(0,a+b-1)$; drastic $(a{=}1)?b:(b{=}1)?a:0$ (smallest). Weak law of contradiction $T(a,1-a)\le0.5$.
+\sub{T-conorm} $\bot(a,b)=1-T(1-a,1-b)$: comm., monotone, assoc., identity $\bot(a,0)=a$; for $\vee$. max (smallest), probabilistic sum $1-(1-a)(1-b)$, bounded sum $\min(a+b,1)$, drastic $a{=}0?b:b{=}0?a:1$ (largest).
+\sub{S-implication} = value of $\neg x\vee y$: $\max(1-x,y)$; $1-x(1-y)$; $\min(1-x+y,1)$. Can be $<1$ even if $x<y$!
+\sub{R-implication / residuum} $R_T(x,y)=\sup\{z:T(z,x)\le y\}$: $=1$ if $x\le y$, else min: $y$; product: $y/x$; \L uk: $1-x+y$. Implication \kw{satisfied} if $x\le y$. Equals crisp $\impl$ on $\{0,1\}$, no modus tollens.
+\sub{Interpretation} $I$: $I(\neg a)=1-a$, $I(a\wedge b)=T(a,b)$, $I(a\vee b)=1-T(1-a,1-b)$, $I(a\Rightarrow b)=R_T$. Slide ex. (product): $I((A\Rightarrow\neg G)\wedge A)=I(.22\wedge.9)=0.198$.\\
+Tasks: (1) \kw{interpretation} (formula value from statements); (2) \kw{deduction/inference}.
+\sub{Simple positive fuzzy inference problem}: rules $P_1\wedge..\wedge P_n\Rightarrow_\phi C$, $\phi$ conjunctive aggregation; satisfied if $C\ge\phi(P_1..P_n)$; \kw{solution}: (1) values $\ge$ initial, (2) all rules satisfied, (3) no output can be smaller. \kw{Theorem}: iterate satisfying rules in any order until all satisfied (if $\phi$ monotonic, continuous). Negations $\Rightarrow$ may have no solution / oscillate.
+\sub{Fuzzy set} $\mu:U\to[0,1]$; support $\{x:\mu(x)>0\}$; core $\{x:\mu(x)=1\}$; $\alpha$-cut $\{x:\mu(x)\ge\alpha\}$; $\cap/\cup$ = pointwise T-norm/conorm; $\alpha$-capping $\mu_{\le\alpha}(x)=\min(\alpha,\mu(x))$. \kw{Equality relation} $E:X^2\to[0,1]$: commutative, reflexive $E(x,x)=1$, transitive $T(E(x,y),E(y,z))\le E(x,z)$. \kw{Fuzzification} of crisp $A$: $\mu(x)=\sup\{E(x,y):y\in A\}$.
+\sub{Defuzzification} (fuzzy set $\to$ element): \kw{First of Maxima} $\min\{c\mid\forall x:\mu(c)\ge\mu(x)\}$ -- \emph{safe choice} (is a max) but ignores other maxima; \kw{Mean of Maxima} $avg\{\ldots\}$ -- may land on a non-maximum; \kw{Median} $\sum_{x'<x}\mu(x')=\sum_{x'>x}\mu(x')$ -- may also land on a non-max.
+\sub{Mamdani} $p_1\text{ is }P_1\wedge..\Rightarrow c\text{ is }C$: 1 fuzzify inputs, 2 firing strength $\alpha=T(\ldots)$, 3 cap $C$ at $\alpha$, 4 defuzzify: $c=defuzz(C_{\le T(P_1(p_1),..)})$. Ex: HOT .9, CROWDED .6 $\Rightarrow\alpha=\min=.6$.
+
+\sect{10 MAX SAT \& Probabilistic Soft Logic}
+Contradictory formulas: MAX SAT (maximize \#satisfied). \kw{Weighted MAX SAT}: maximize sum of weights of satisfied formulas. Generalizes MAX SAT $\supseteq$ SAT (NP-complete) $\Rightarrow$ in general no faster than trying all assignments (not poly unless P=NP).\\
+Ex: $\{s\}[7]$, $\{\neg s,\neg b\}[8]$, $\{b\}[10]$: worlds give 18 ($s{=}0,b{=}1$), 15, 17, 10 $\to$ best 18.\\
+\kw{Relaxation} (\L ukasiewicz, S-implication): clause $\{x_1..x_n\}$ has degree $\min(\sum_ix_i,1)$; with $y:S\to[0,1]$: $\min(\sum_{s+}y(s)+\sum_{s-}(1-y(s)),1)$. Ex $s=.3,b=.7$: $.3\cdot7+1\cdot8+.7\cdot10=17.1$.\\
+\kw{PSL inference}: find $y:S\to[0,1]$ maximizing $\sum_{c\in C}w(c)\min(\sum_{s+\in c}y(s)+\sum_{s-\in c}(1-y(s)),1)$ s.t.\ $y(s)\le v$. \kw{Convex} $\Rightarrow$ \kw{polynomial} (``hit and run'': start feasible, pick a variable, optimize it, repeat until convergence). Statements fuzzy, formulas weighted.
+
+%=====================================================================
+\sect{11 Theorem proving \& $\lambda$-calculus}
+Tools: LEAN (Microsoft), Isabelle, Coq/Rocq. \kw{Hilbert's program} (1920s): finite axioms, \kw{consistent} (no contradiction), \kw{complete} ($P$ or $\neg P$ provable), \kw{decidable} (program decides). \kw{Gödel 1}: any consistent formal system containing arithmetic is incomplete $\Rightarrow$ infeasible. \kw{Gödel 2}: it cannot prove its own consistency. Mathlib $\sim$275k theorems.
+\sub{$\lambda$-terms}: variables; abstraction $\lambda x.y$ ($x\mapsto y$); application $fx$ (left assoc.: $fxy=(fx)y$). Untyped. \kw{$\beta$-reduction} $(\lambda x.M)N\to M[N/x]$: $(\lambda x.xx)y\to yy$, $(\lambda x.\lambda y.x)z\to\lambda y.z$ (rename bound vars to avoid capture). \kw{Normal form}: cannot reduce. \kw{Strongly normalizing}: every reduction sequence terminates. Counter-ex $(\lambda x.xx)(\lambda x.xx)$ (cannot be typed).\\
+\begin{tabular}{@{}ll|ll@{}}
+$0$ & $\lambda f.\lambda x.x$ & $n{+}1$ & $\lambda n.\lambda f.\lambda x.f(nfx)$\\
+$1$ & $\lambda f.\lambda x.fx$ & $m{+}n$ & $\lambda m.\lambda n.\lambda f.\lambda x.mf(nfx)$\\
+$n$ & $\lambda f.\lambda x.f^nx$ & $mn$ & $\lambda m.\lambda n.\lambda f.\lambda x.m(nf)x$\\
+True & $\lambda a.\lambda b.a$ & $\neg$ & $\lambda p.p\,\text{False True}$\\
+False & $\lambda a.\lambda b.b$ & $\wedge$ / $\vee$ & $\lambda p.\lambda q.pqp$ / $\lambda p.\lambda q.ppq$
+\end{tabular}\\
+$1+2$: $(\lambda n.\lambda m.\lambda f.\lambda x.nf(mfx))(1)(2)\to\lambda m.\lambda f.\lambda x.f(mfx)\,(2)\to\lambda f.\lambda x.f(f(fx))=3$.
+\sub{Simply typed}: $x:\sigma$; $\lambda x.y:\sigma\to\tau$ if $x:\sigma,y:\tau$; $fx:\tau$ only if $f:\sigma\to\tau$, $x:\sigma$. \kw{Strong normalization thm} (Curry): simply typed $\lambda$-calculus is strongly normalizing.
+\sub{Curry--Howard}: proofs $\leftrightarrow$ programs; formula = type, proof = term. $\frac{\Gamma,A\vdash B}{\Gamma\vdash A\to B}$ ($\to$I) $\leftrightarrow\frac{\Gamma,x:\sigma\vdash y:\tau}{\Gamma\vdash\lambda(x:\sigma).y:\sigma\to\tau}$ (Abs); $\to$E (modus ponens) $\leftrightarrow$ App $\frac{\Gamma\vdash f:\sigma\to\tau\ \ \Gamma\vdash x:\sigma}{\Gamma\vdash fx:\tau}$.\\
+$\to$ function, $\wedge$ product $\sigma\times\tau$, $\vee$ sum $\sigma+\tau$, $\top$ unit $1$, $\bot$ empty $0$, $\forall$ dependent product, $\exists$ dependent sum. Still strongly normalizing.\\
+LEAN: dependent type theory; types Bool, Type$\to$Type, $\times$, $\oplus$, inductive Nat. Tactics: \texttt{rfl, rw, intro, exact, apply}, \texttt{induction}, \texttt{by\_contra}, \texttt{linarith, ring, simp}.\\
+\kw{Non-constructive} proof: $a^b$ rational with $a,b$ irrational via $x=\sqrt2^{\sqrt2}$ (case split) uses \kw{excluded middle} $P\vee\neg P$ (classical axiom). $\sqrt2$ irrational: $a^2=2b^2\Rightarrow a$ even $\Rightarrow b$ even, contradicts coprime.
+\ex{\textbf{$\lambda$ exercise sheet}: (1) $(\lambda x.x)y\to y$; (2) $(\lambda x.yx)z\to yz$; (3) $(\lambda x.\lambda y.x)(\lambda x.y)\to\lambda w.\lambda x.y$ (rename bound $y$ to $w$: else capture); (4) $(\lambda x.xy)(\lambda z.z)\to(\lambda z.z)y\to y$; (5) $(\lambda x.\lambda y.xy(xy))(\lambda z.zz)\to\lambda y.(\lambda z.zz)y((\lambda z.zz)y)\to\lambda y.yy(yy)$. Ex2 $\lambda n.n(\lambda x.\text{false})\text{true}$: \textbf{is zero?} ($0$ returns true; $n\ge1$ applies the constant false). Ex3 $\lambda m.\lambda n.nm$ = \textbf{exponentiation} $m^n$ ($n$ applies ``$\times m$'' $n$ times). Ex4 predecessor: $n$ iterates $\lambda g.\lambda h.h(gf)$ starting from $\lambda u.x$ (which swallows the first $f$), $\lambda u.u$ extracts $\Rightarrow f^{n-1}x$.}
+
+%=====================================================================
+\sect{12 Description logics (DL)}
+Family of logic-based KR languages; \kw{variable-free} syntax, readable; most DLs = \kw{decidable fragments of FOL} (FOL expressive but undecidable). Atomic concepts (classes) $A,B$, atomic roles $R$, individuals.\\
+\kw{KB = TBox} (terminology: concepts + roles) \kw{+ ABox} (assertions on named individuals). e.g.\ TBox Mother $\equiv$ Woman $\sqcap\exists$hasChild.$\top$; ABox Woman(Alice), hasChild(Alice,Bob) $\Rightarrow$ Mother(Alice).
+\sub{$\mathcal{AL}$}: $\top$, $\bot$, $\neg A$ (atomic only), $C\sqcap D$, $\forall R.C$ (value restriction), $\exists R.\top$ (limited $\exists$). $\mathcal U$: $C\sqcup D$; $\mathcal E$: $\exists R.C$; $\mathcal C$: $\neg C$ (full); $\mathcal N$: $\le nR$, $\ge nR$. $\mathcal{AL}\subseteq\mathcal{ALE}\subseteq\mathcal{ALC}\subseteq\mathcal{SHOIN}\subseteq\mathcal{SROIQ}$ (OWL 2 DL $=\mathcal{SROIQ}(D)$). Qualified: $\ge2$hasChild.Professor. Inverse, transitive roles, subroles, concrete domains.\\
+Person $\sqcap\forall$hasChild.$\bot$ = no children; $\exists$hasChild.$\top$ = at least one child; Person $\sqcap$ Female $\sqcap\ge3$hasChild.
+\sub{Semantics} $\mathcal I=(\Delta^I,\cdot^I)$: $A^I\subseteq\Delta^I$, $R^I\subseteq\Delta^I\times\Delta^I$; $(C\sqcap D)^I=C^I\cap D^I$, $(C\sqcup D)^I=C^I\cup D^I$, $(\neg C)^I=\Delta^I\setminus C^I$, $(\forall R.C)^I=\{x\mid\forall y,(x,y)\in R^I\to y\in C^I\}$, $(\exists R.C)^I=\{x\mid\exists y,(x,y)\in R^I\wedge y\in C^I\}$, $\top^I=\Delta^I$, $\bot^I=\emptyset$.\\
+\begin{tabular}{@{}ll@{}}
+DL & FOL (free var $x$)\\\hline
+$C\sqcap D$ / $C\sqcup D$ / $\neg C$ & $C(x)\wedge D(x)$ / $C(x)\vee D(x)$ / $\neg C(x)$\\
+$\exists R.C$ & $\exists y.R(x,y)\wedge C(y)$\\
+$\forall R.C$ & $\forall y.R(x,y)\to C(y)$\\
+$C\sqsubseteq D$ & $\forall x.C(x)\to D(x)$\\
+$R_1\circ R_2\sqsubseteq R_3$ & $\forall x,y,z.R_1(x,y)\wedge R_2(y,z)\to R_3(x,z)$
+\end{tabular}\\
+e.g.\ Parent $\equiv$ Person $\sqcap\exists$hasChild.Person: $\forall x.Parent(x)\leftrightarrow(Person(x)\wedge\exists y.(hasChild(x,y)\wedge Person(y)))$.
+\sub{TBox} axioms: inclusion $C\sqsubseteq D$, equivalence $C\equiv D$; $\mathcal I\models\mathcal T$ (\kw{model}) iff it satisfies every axiom. \kw{ABox}: $C(a)$ ($a^I\in C^I$), $R(b,c)$ ($(b^I,c^I)\in R^I$, $c$ is a filler of $R$ for $b$). Model of $\mathcal A$ w.r.t.\ $\mathcal T$: model of both.
+\sub{TBox reasoning}: \kw{satisfiability} ($C^I\neq\emptyset$ in some model of $\mathcal T$); \kw{subsumption} $\mathcal T\models C\sqsubseteq D$ ($C^I\subseteq D^I$ all models); \kw{equivalence} $C\equiv_{\mathcal T}D$; \kw{disjointness} $C^I\cap D^I=\emptyset$.\\
+Reductions: $C$ unsat $\iff C\sqsubseteq\bot$; equiv $\iff$ both $\sqsubseteq$; disjoint $\iff C\sqcap D\sqsubseteq\bot$. $C\sqsubseteq D\iff C\sqcap\neg D$ unsat; equiv $\iff C\sqcap\neg D$ and $\neg C\sqcap D$ unsat; disjoint $\iff C\sqcap D$ unsat.
+\sub{ABox reasoning}: \kw{consistency} (exists model of $\mathcal A$ and $\mathcal T$); \kw{instance check} $\mathcal A\models C(a)$ iff $\mathcal A\cup\{\neg C(a)\}$ inconsistent; \kw{retrieval} (all $a$ with $\mathcal A\models C(a)$); \kw{realization} (most specific concepts of $a$, minimal w.r.t.\ $\sqsubseteq$).
+\ex{\textbf{Ex.} $\mathcal T=\{$Father$\sqsubseteq$Man, Mother$\sqsubseteq$Woman, Man$\sqcap$Woman$\sqsubseteq\bot\}$, $\mathcal A=\{$Mother(mary), Father(mary)$\}$: $mary^I\in Mother^I\subseteq Woman^I$ and $\in Father^I\subseteq Man^I$, but $Man^I\cap Woman^I=\emptyset\Rightarrow$ \textbf{inconsistent} w.r.t.\ $\mathcal T$ (consistent w.r.t.\ empty TBox).}
+\ex{\textbf{Exam-style DL (old course slides, Bloch).} \emph{Translation} $\tau_x$: $\tau_x(C)=C(x)$, $\tau_x(C\sqcap D)=\tau_x(C)\wedge\tau_x(D)$, $\sqcup\to\vee$, $\tau_x(\exists r.C)=\exists y,r(x,y)\wedge\tau_y(C)$, $\tau_x(\forall r.C)=\forall y,r(x,y)\to\tau_y(C)$; TBox $\bigwedge_{C\sqsubseteq D}\forall x(\tau_x(C)\to\tau_x(D))$; ABox $a:C\to C(a)$, $(a,b):r\to r(a,b)$. Also: value restr.\ $\ni r.\{a\}$, $(\ge nR)^I=\{x\mid|\{y\mid(x,y)\in R^I\}|\ge n\}$; ``only humans have human children'' $\exists$hasChild.Human$\sqsubseteq$Human.\\
+\textbf{(1) Prove} $\forall r.(A\sqcap B)\sqsubseteq\forall r.A\sqcap\forall r.B$. \emph{Interpretations}: take any $\mathcal I$, $x\in(\forall r.(A\sqcap B))^I$; for every $y$ with $(x,y)\in r^I$: $y\in A^I\cap B^I\subseteq A^I$, so $x\in(\forall r.A)^I$; same for $B$; hence $x\in(\forall r.A)^I\cap(\forall r.B)^I$. \emph{FOL}: $\forall x[\forall y(r(x,y)\to A(y)\wedge B(y))\to(\forall y(r(x,y)\to A(y))\wedge\forall y(r(x,y)\to B(y)))]$ is valid (or: negate, skolemize, resolution $\to\gd{}$). Converse also holds ($\equiv$). Careful: $\exists r.(A\sqcap B)\sqsubseteq\exists r.A\sqcap\exists r.B$ but \emph{not} conversely (two different fillers).\\
+\textbf{(2) Interpretation}: Father$\equiv\neg$Female$\sqcap\exists$hasChild.Human, $\Delta^I=\{John,Mary\}$, Human$^I=\{John,Mary\}$, hasChild$^I=\{(John,Mary)\}$ $\Rightarrow(\exists$hasChild.Human$)^I=\{John\}$, Father$^I=\{John\}$.\\
+\textbf{(3) Instance check} TBox: Female, Child, Works, StudiesAtUni $\sqsubseteq$ Human; SuccessfulMan $\equiv\neg$Female$\sqcap$InBusiness$\sqcap\exists$married.Lawyer$\sqcap\exists$child.(StudiesAtUni$\sqcup$Works). ABox: Pedro:$\neg$Female, Pedro:InBusiness, Mary:Lawyer, John:Works, (Pedro,Mary):married, (Pedro,John):child. \emph{Is Pedro a SuccessfulMan?} \textbf{Yes}: Mary witnesses $\exists$married.Lawyer; John$\in$Works$\subseteq$StudiesAtUni$\sqcup$Works witnesses $\exists$child.(\ldots); with $\neg$Female, InBusiness all conjuncts hold in every model, and $\equiv$ (sufficient condition) gives $\mathcal K\models$ Pedro:SuccessfulMan. (With only $\sqsubseteq$ it would NOT follow.) Method: list each conjunct, give a witness for each $\exists$, check all fillers for each $\forall$.\\
+\textbf{(4) Open world}: from MotherWithoutDaughter(Mary) $\equiv$ Mother$\sqcap\forall$hasChild.$\neg$Woman and hasChild(Mary,Peter): Peter$:\neg$Woman. A $\forall$ only constrains \emph{existing} fillers; absence of an assertion $\neq$ its negation.}
+\sub{Ontology}: ``explicit formal specification of the terms in the domain and relations among them'' (Gruber 93); ``formal, explicit specification of a shared conceptualization'' (Hudelot 06). Structure $O:=\{C,R,H^C,rel,A^O\}$ ($H^C\subseteq C\times C$ taxonomy, $rel:R\to C\times C$, dom, range, axioms). KB $:=\{O,I,inst,instr\}$. Types (Guarino 98): top-level, domain, task, application. Lightweight (E-R, UML) vs heavyweight (DL, FOL). KG = instance level (ABox, triples s--p--o); ontology = schema (TBox).
+\sub{OWL} (on RDF/RDFS; Lite $\subset$ DL $\subset$ Full): restrictions $\exists$ someValuesFrom, $\forall$ allValuesFrom, $\ni$ hasValue, $=$/$\le$/$\ge$ cardinality. owl:Thing top, owl:Nothing bottom. Property characteristics: inverse $P_1(X,Y)\iff P_2(Y,X)$; transitive; symmetric; \kw{functional} $P(X,Y)\wedge P(X,Z)\Rightarrow Y=Z$; \kw{inverse functional} $P(Y,X)\wedge P(Z,X)\Rightarrow Y=Z$. Reasoners HermiT, Pellet, FaCT++; Protégé: EquivalentTo = necessary \& sufficient; SubClassOf = necessary.
+\sub{Rule reasoning}: modus ponens $\frac{A,\ A\to B}{B}$, modus tollens $\frac{\neg B,\ A\to B}{\neg A}$. Cycle: detection (pattern matching/unification) $\to$ choice (first rule as Prolog, most specific, most useful; metarules) $\to$ execution. \kw{Forward} (data driven) vs \kw{backward} (goal oriented, recursive on premises) vs mixed. West is criminal: American(x)$\wedge$Arm(y)$\wedge$Sells(x,y,z)$\wedge$Hostile(z)$\Rightarrow$Criminal(x), $\{x/West,y/M1,z/Nono\}$.
+
+%=====================================================================
+\sect{13 Example exam -- brief solutions}
+\textbf{PL} $F=a\to((b\vee c)\wedge(c\to(\neg d\to e)))$. False iff $a=1$ and [$b=c=0$ ($d,e$ any) or $c=1,d=0,e=0$ ($b$ any)]: $(a,b,c,d,e)\in\{10000,10001,10010,10011,10100,11100\}$ (6). CNF: $\gc{\gd{\neg a,b,c},\gd{\neg a,\neg c,d,e}}$ (via $\neg a\vee(\ldots)$ distributed; $c\to(\neg d\to e)\equiv\neg c\vee d\vee e$).\\
+Decomposition tree (root = main connective):\\
+\begin{tikzpicture}[level distance=4.2mm,every node/.style={inner sep=0.6pt,font=\tiny},
+level 1/.style={sibling distance=13mm},level 2/.style={sibling distance=8mm},level 3/.style={sibling distance=5mm},level 4/.style={sibling distance=4mm}]
+\node{$\to$} child{node{$a$}} child{node{$\wedge$} child{node{$\vee$} child{node{$b$}} child{node{$c$}}} child{node{$\to$} child{node{$c$}} child{node{$\to$} child{node{$\neg$} child{node{$d$}}} child{node{$e$}}}}};
+\end{tikzpicture}\\
+\textbf{FOL} $G=(a(x,y)\to\forall x.\exists y.(\neg b(x,y,c(z,y))\vee d(x)))\wedge e(f(x,g(y)))$. Predicates: $a$/2, $b$/3, $d$/1, $e$/1 (formula positions). Functions: $c$/2, $f$/2, $g$/1 (inside terms). Free: $x,y$ (in $a(x,y)$, $e(f(x,g(y)))$) and $z$ (never quantified) $\Rightarrow\{x,y,z\}$.\\
+\textbf{Planning} (vars \texttt{posX-i-t}). Init: $\texttt{posX-1-0}\wedge\neg\texttt{posX-2-0}\wedge\neg\texttt{posX-3-0}\wedge\texttt{posY-1-0}\wedge\neg\texttt{posY-2-0}\wedge\neg\texttt{posY-3-0}$. Goal: $\texttt{posX-2-5}\wedge\texttt{posY-3-5}$. Frame, posX at $t=3$:\\
+$(\neg pX1_3\wedge pX1_4)\to L2_3$;\ $(pX1_3\wedge\neg pX1_4)\to R1_3$;\\
+$(\neg pX2_3\wedge pX2_4)\to R1_3\vee L3_3$;\ $(pX2_3\wedge\neg pX2_4)\to R2_3\vee L2_3$;\\
+$(\neg pX3_3\wedge pX3_4)\to R2_3$;\ $(pX3_3\wedge\neg pX3_4)\to L3_3$ \ ($L2_3$=\texttt{L-2-3}).\\
+Up at $t=2$: $\texttt{U-1-2}\to\texttt{posY-1-2}\wedge\neg\texttt{posY-1-3}\wedge\texttt{posY-2-3}$; $\texttt{U-2-2}\to\texttt{posY-2-2}\wedge\neg\texttt{posY-2-3}\wedge\texttt{posY-3-3}$; $\neg\texttt{U-3-2}$ (pre $Y<3$ false).\\
+\textbf{Fuzzy} Average $T(a,b)=\frac{a+b}2$: \textbf{not} a T-norm: $T(0,1)=0.5\neq0$ (neutral element fails); also not assoc.: $T(T(0,0),1)=.5\neq T(0,T(0,1))=.25$. $(a\to b)\vee c$, R-impl.\ of min, $a=.3\le b=.7\Rightarrow1$; $\vee=\max\Rightarrow\max(1,.1)=1$. Inference $a\wedge b\to c$, $c\to a$, $b=.3,c=.1$ ($a=0$): rule 2 $\Rightarrow a=.1$; rule 1: $c\ge\min(.1,.3)=.1$ ok $\Rightarrow(a,b,c)=(.1,.3,.1)$. Defuzz: first of maxima (safe, a true max; ignores other maxima). W.MAX SAT: NP-hard (generalizes SAT) $\Rightarrow$ not poly in general. With $[0,1]$ degrees (\L uk.): PSL, convex $\Rightarrow$ poly (hit and run). PSL $\{a\}[1],\{\neg a,\neg b\}[2],\{b\}[3]$: maximize $a+2\min(2-a-b,1)+3b$; for $a+b\le1$: $a+2+3b$, else $4-a+b$ $\Rightarrow$ \textbf{$a=0,b=1$}, value 5.\\
+\textbf{FCA} (ME Middle-earth, W, M Magic, I Immortal, R Ring, Fe, E). Rows: Fr\{ME,R,Fe\}, Ar=Bo\{ME,W,Fe\}, Ga\{ME,W,M,I,Fe\}, Le\{ME,W,I,Fe\}, Sa\{ME,M,I,R,E\}, Go\{ME,R,E\}. \textbf{Clarification needed}: Aragorn = Boromir (identical rows); ME is a full column (in every intent, reducible). Intersections give 12 intents:\\
+\begin{tabular}{@{}r@{\,}l@{\ }l@{}}
+1&ME & all 7\\
+2&ME,Fe & Fr,Ar,Ga,Le,Bo\\
+3&ME,R & Fr,Sa,Go\\
+4&ME,I & Ga,Le,Sa\\
+5&ME,W,Fe & Ar,Ga,Le,Bo\\
+6&ME,R,Fe & Fr\\
+7&ME,R,E & Sa,Go\\
+8&ME,M,I & Ga,Sa\\
+9&ME,W,I,Fe & Ga,Le\\
+10&ME,W,M,I,Fe & Ga\\
+11&ME,M,I,R,E & Sa\\
+12&$Y$ & $\emptyset$
+\end{tabular}
+\begin{tikzpicture}[x=5.6mm,y=4.6mm,every node/.style={font=\tiny,inner sep=0.5pt}]
+\foreach \n/\x/\y in {1/2/5,2/0.6/4,3/2/4,4/3.4/4,5/0/3,6/1.2/3,7/2.4/3,8/3.6/3,9/1.2/2,10/2.6/1.1,11/3.8/1.5,12/2.2/0.1}
+  \node[circle,draw,minimum size=2.4mm] (c\n) at (\x,\y) {\n};
+\foreach \a/\b in {1/2,1/3,1/4,2/5,2/6,3/6,3/7,4/8,4/9,5/9,9/10,8/10,8/11,7/11,6/12,10/12,11/12}
+  \draw (c\a)--(c\b);
+\end{tikzpicture}\\
+(a) $\{Fe\}\dn=\{Fr,Ar,Ga,Le,Bo\}$, $\up=\{ME,Fe\}$ $\to$ c2. (b) $\{M\}\dn=\{Ga,Sa\}$, $\up=\{ME,M,I\}\to$ c8. (c) $\{W\}\dn=\{Ar,Ga,Le,Bo\}$, $\up=\{ME,W,Fe\}\to$ c5. Verify: $(\{Ga,Sa\},\{M,I\})$ \textbf{no}: $\{Ga,Sa\}\up=\{ME,M,I\}$. $(\{Fr,Ar\},\{Fe\})$ \textbf{no}: $\{Fe\}\dn$ has 5 objects. Implications: $\{W,Fe\}\to\{I\}$ \textbf{invalid}, counterex.\ Aragorn, Boromir; $s=2/7$, $c=2/4=0.5$. $\{R,Fe\}\to\{\neg E\}$: only Frodo, not Evil $\Rightarrow$ \textbf{holds}; $s=1/7$, $c=1$. AR link: e.g.\ $\{W\}\Rightarrow\{Fe\}$ $c=4/4$ = implication; $\{Fe\}\Rightarrow\{W\}$ $c=4/5$ = AR only.
+
+\sect{14 Proof templates (past-exam style)}
+\textbf{Galois} (write $\alpha=\cdot\up$, $\beta=\cdot\dn$): $Y\subseteq\alpha(X)\iff X\subseteq\beta(Y)$ (both say $X\times Y\subseteq I$). \emph{Antitone}: $X\subseteq X'$, $m\in\alpha(X')$ $\Rightarrow$ $m$ shared by all of $X'\supseteq X$ $\Rightarrow m\in\alpha(X)$. \emph{Extensive}: $\alpha(X)\subseteq\alpha(X)\Rightarrow X\subseteq\beta\alpha(X)$. \emph{$\alpha\beta\alpha=\alpha$}: $\supseteq$ by extensivity on $\alpha(X)$; $\subseteq$ by antitone applied to $X\subseteq\beta\alpha(X)$. \emph{Meet is a concept}: $(X_1\cap X_2,\alpha\beta(Y_1\cup Y_2))$; $\beta(Y_1\cup Y_2)=\beta(Y_1)\cap\beta(Y_2)=X_1\cap X_2$, so it is $(\beta(Z),\alpha\beta(Z))$ with $Z=Y_1\cup Y_2$, and $\beta\alpha\beta=\beta$.\\
+\textbf{Anti-monotone support}: $Y_1\subseteq Y_2$: every transaction containing $Y_2$ contains $Y_1$ $\Rightarrow\sigma(Y_1)\ge\sigma(Y_2)$ $\Rightarrow$ prune supersets of infrequent sets (Apriori).\\
+\textbf{T-norm proofs}: min largest: $T(a,b)\le T(a,1)=a$ (monotone + neutral) and likewise $\le b$. $T(a,0)\le T(1,0)=0$. Is $f$ a T-norm? Check the 4 axioms; refute with one numeric counter-example (neutral $f(a,1)=a$ fails most often). T-conorm properties follow from the definition $1-T(1-a,1-b)$.\\
+\textbf{English$\to$FOL}: ``all friends of John know one of his children'': $(\forall x)(friend(x,john)\impl(\exists y)(child(y,john)\wedge know(x,y)))$; prenex $(\forall x)(\exists y)(friend(x,john)\impl(child(y,john)\wedge know(x,y)))$; negation $(\exists x)(\forall y)(friend(x,john)\wedge(\neg child(y,john)\vee\neg know(x,y)))$. ``Nobody smokes in cafés nor restaurants'': $(\forall x)(\forall y)((cafe(y)\vee restaurant(y))\impl\neg smokes(x,y))$. Pattern: ``all $A$ are $B$'' $\forall x(A\impl B)$; ``some $A$ is $B$'' $\exists x(A\wedge B)$.\\
+\textbf{Unsatisfiable KB, 2 methods}: (i) truth table / case split; (ii) resolution: put all formulas in clauses, derive $\gd{}$.
+\end{multicols*}
+\end{document}
