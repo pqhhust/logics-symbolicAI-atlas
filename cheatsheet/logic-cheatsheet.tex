@@ -325,8 +325,7 @@ Conclusion: no polynomial algorithm unless P = NP; try all $2^n$ worlds. Decisio
 \item Each $\ell_c(y)=\sum_{s+}y(s)+\sum_{s-}(1-y(s))$ is affine in $y$.
 \item $\min(\ell_c,1)$ is concave (min of affine); a sum with $w(c)\ge0$ is concave; constraints are linear $\Rightarrow$ \kw{convex} problem (no bad local optimum).
 \item Same as the LP: max $\sum_cw(c)z_c$ s.t.\ $z_c\le\ell_c(y)$, $z_c\le1$, $0\le y\le1$, $y(s)\le v$. LPs are solvable in polynomial time (slides: hit and run).
-\end{enumerate}
-Key difference: $\{0,1\}$ values = combinatorial (hard); $[0,1]$ values = continuous convex (easy).}
+\end{enumerate}}
 
 %=====================================================================
 \sect{11 Theorem proving \& $\lambda$-calculus}
@@ -339,10 +338,11 @@ Key difference: $\{0,1\}$ values = combinatorial (hard); $[0,1]$ values = contin
 \item \kw{Strongly normalizing}: every reduction terminates.
 \item $(\lambda x.xx)(\lambda x.xx)$ never terminates; cannot be typed.
 \end{itemize}
+Church encoding (slides: number $\mapsto$ $\lambda$-term; below the $\lambda$-term of number $m$ is written $\overline m$):\\
 \begin{tabular}{@{}l@{\ }l|l@{\ }l@{}}
-$\overline0$ & $\lambda f.\lambda x.x$ & $n{+}1$ & $\lambda n.\lambda f.\lambda x.f(nfx)$\\
-$\overline1$ & $\lambda f.\lambda x.fx$ & $m{+}n$ & $\lambda m.\lambda n.\lambda f.\lambda x.mf(nfx)$\\
-$\overline n$ & $\lambda f.\lambda x.f^nx$ & $mn$ & $\lambda m.\lambda n.\lambda f.\lambda x.m(nf)x$\\
+$0$ & $\lambda f.\lambda x.x$ & $n{+}1$ & $\lambda n.\lambda f.\lambda x.f(nfx)$\\
+$1$ & $\lambda f.\lambda x.fx$ & $m{+}n$ & $\lambda m.\lambda n.\lambda f.\lambda x.mf(nfx)$\\
+$n$ & $\lambda f.\lambda x.f^nx$ & $mn$ & $\lambda m.\lambda n.\lambda f.\lambda x.m(nf)x$\\
 True & $\lambda a.\lambda b.a$ & $\neg$ & $\lambda p.p\,$False True\\
 False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ $\lambda p.\lambda q.ppq$\\
 \end{tabular}
@@ -357,21 +357,25 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \end{itemize}
 \item Non-constructive proofs use excluded middle $P\vee\neg P$.
 \end{itemize}
-\sub{$\lambda$ exercises ($\overline m$ = Church numeral of $m$)}
+\sub{$\lambda$ exercise sheet -- solutions}
 \begin{itemize}
-\item[] {\color{h2}\textbf{Ex 1}} (1) $y$.\ \ (2) $yz$.\ \ (4) $(\lambda z.z)y\to y$.
-\item (3) $(\lambda x.\lambda y.x)(\lambda x.y)$: free $y$ would be captured $\Rightarrow$ rename $\lambda y$ to $\lambda w$: $\lambda w.\lambda x.y$.
-\item (5) $\to\lambda y.(\lambda z.zz)y\,((\lambda z.zz)y)\to\lambda y.yy(yy)$.
-\item[] {\color{h2}\textbf{Ex 2}} $\lambda n.n(\lambda x.\text{false})\text{true}$ = \textbf{is $n=0$?}
-\item $\overline n(\lambda x.\text{false})\text{true}\to(\lambda x.\text{false})^n\text{true}$.
-\item $\overline0$: $\to\text{true}$. \ $n\ge1$: last step $(\lambda x.\text{false})(\ldots)\to\text{false}$.
-\item[] {\color{h2}\textbf{Ex 3}} $\lambda m.\lambda n.nm$: $\overline m\,\overline n\mapsto\overline{m^n}$ (\textbf{power}).
-\item $\overline n\,\overline m$ = $\overline m$ composed $n$ times; $\overline m(\overline mf)=f^{m\cdot m}$.
-\item So $\overline n\,\overline m=\lambda f.\lambda x.f^{m^n}x=\overline{m^n}$. Check $\overline3\,\overline2$: $f^8$.
-\item[] {\color{h2}\textbf{Ex 4}} pred, $S=\lambda g.\lambda h.h(gf)$, input $\overline n$:
+\item[] Notation: $m,n$ = $\lambda$-variables of the given term; $\overline m$ = the $\lambda$-term $\lambda f.\lambda x.f^mx$ of the \emph{number} $m$, substituted for them.
+\item[] {\color{h2}\textbf{Ex 1}} \emph{Give the reduced forms.}
+\item (1) $(\lambda x.x)y\to y$;\ (2) $(\lambda x.yx)z\to yz$.
+\item (3) $(\lambda x.\lambda y.x)(\lambda x.y)$: the free $y$ would be captured $\Rightarrow$ rename $\lambda y$ to $\lambda w$: $\to\lambda w.\lambda x.y$.
+\item (4) $(\lambda x.xy)(\lambda z.z)\to(\lambda z.z)y\to y$.
+\item (5) $(\lambda x.\lambda y.xy(xy))(\lambda z.zz)$\\$\to\lambda y.(\lambda z.zz)y\,((\lambda z.zz)y)\to\lambda y.yy(yy)$.
+\item[] {\color{h2}\textbf{Ex 2}} \emph{What does $\lambda n.n(\lambda x.\text{false})\text{true}$ test about $n$?}
+\item Substitute $\overline n$: $\overline n(\lambda x.\text{false})\text{true}\to(\lambda x.\text{false})^n\text{true}$.
+\item $n=0$: true. $n\ge1$: last step $(\lambda x.\text{false})(\ldots)\to$ false. \textbf{Tests $n=0$.}
+\item[] {\color{h2}\textbf{Ex 3}} \emph{What is $\lambda m.\lambda n.nm$?}
+\item $(\lambda m.\lambda n.nm)\,\overline m\,\overline n\to\overline n\,\overline m$ = $\overline m$ composed $n$ times.
+\item $\overline m(\overline mf)=f^{m\cdot m}$ $\Rightarrow\overline n\,\overline m=\lambda f.\lambda x.f^{m^n}x=\overline{m^n}$: \textbf{power $m^n$}. Check $m{=}2,n{=}3$: $f^8$.
+\item[] {\color{h2}\textbf{Ex 4}} \emph{Why is $\lambda n.\lambda f.\lambda x.n(\lambda g.\lambda h.h(gf))(\lambda u.x)(\lambda u.u)$ the predecessor?}
+\item Substitute $\overline n$; let $S=\lambda g.\lambda h.h(gf)$: $\overline n\,S\,(\lambda u.x)=S^n(\lambda u.x)$.
 \item $S(\lambda u.x)=\lambda h.h((\lambda u.x)f)=\lambda h.h\,x$: 1st $f$ \emph{swallowed}.
-\item After $k\ge1$ steps: $\lambda h.h(f^{k-1}x)$.
-\item Apply to $\lambda u.u$: $f^{n-1}x$ $\Rightarrow\overline{n-1}$ ($\overline0\mapsto\overline0$).
+\item After $k\ge1$ steps: $\lambda h.h(f^{k-1}x)$; apply to $\lambda u.u$: $f^{n-1}x$.
+\item So $\lambda f.\lambda x.f^{n-1}x=\overline{n-1}$ (and $n=0$ gives $\overline0$).
 \end{itemize}
 
 %=====================================================================
@@ -419,10 +423,8 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \sub{Ontologies \& OWL}
 \begin{itemize}
 \item Ontology \cnt{4 words}: \n1formal \n2explicit specification of a \n3shared \n4conceptualization.
-\item OWL restrictions \cnt{6}: some ($\exists$), only ($\forall$), hasValue, $=n$, $\le n$, $\ge n$.
 \item Properties \cnt{5}: inverse, transitive, symmetric, functional, inverse functional.
 \item Functional: $P(X,Y)\wedge P(X,Z)\Rightarrow Y=Z$.
-\item Modus ponens $\frac{A,\,A\to B}{B}$; modus tollens $\frac{\neg B,\,A\to B}{\neg A}$.
 \end{itemize}
 
 %=====================================================================
@@ -455,7 +457,7 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \item $abcde$: 10000, 10001, 10010, 10011, 10100, 11100 (6).
 \end{itemize}
 \sub{PL Q2: decomposition tree (root = main connective)}
-{\centering\begin{tikzpicture}[level distance=4.2mm,every node/.style={inner sep=0.6pt,font=\footnotesize},
+{\centering\begin{tikzpicture}[level distance=3.9mm,every node/.style={inner sep=0.6pt,font=\footnotesize},
 level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},level 3/.style={sibling distance=8mm},level 4/.style={sibling distance=6mm}]
 \node{$\to$} child{node{$a$}} child{node{$\wedge$} child{node{$\vee$} child{node{$b$}} child{node{$c$}}} child{node{$\to$} child{node{$c$}} child{node{$\to$} child{node{$\neg$} child{node{$d$}}} child{node{$e$}}}}};
 \end{tikzpicture}\par}
@@ -496,12 +498,7 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \end{itemize}
 \sub{Fuzzy}
 \begin{itemize}
-\item \textbf{Q1} $T(a,b)=\frac{a+b}2$: commutative and monotone hold, but
-\begin{itemize}
-\item neutral fails: $T(0.4,1)=0.7\neq0.4$;
-\item associativity fails: $T(T(0,0),1)=0.5\neq T(0,T(0,1))=0.25$.
-\item So the average is \textbf{not} a T-norm.
-\end{itemize}
+\item \textbf{Q1} $T(a,b)=\frac{a+b}2$ is \textbf{not} a T-norm: commutative, monotone hold; neutral fails $T(0.4,1)=0.7$; associativity fails $T(T(0,0),1)=.5\neq T(0,T(0,1))=.25$.
 \item \textbf{Q2} $R_{\min}(0.3,0.7)=1$ since $0.3\le0.7$; $\vee$ = conorm of min = max: $\max(1,0.1)=\mathbf{1}$.
 \item \textbf{Q3} Rules: $c\ge\min(a,b)$, $a\ge c$. Start $a=0$ (no initial value), $b=.3$, $c=.1$.
 \begin{itemize}
@@ -529,7 +526,7 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \end{itemize}
 \sub{FCA Q1: clarification needed?}
 \begin{itemize}
-\item \textbf{Yes}: $x_2$ and $x_6$ have identical rows $\Rightarrow$ merge (clarified: 6 objects). No two columns are identical.
+\item \textbf{Yes}: rows $x_2=x_6$ $\Rightarrow$ merge; no identical columns.
 \item $y_1$ is a full column (in every intent): reducible.
 \end{itemize}
 \sub{FCA Q2: lattice by the intersection method}
@@ -553,7 +550,7 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 11 & $y_3y_4y_5y_7$ & $x_5$ & 7, 8\\
 12 & $Y$ (all) & $\emptyset$ & 6, 10, 11\\
 \end{tabular}\par
-{\centering\begin{tikzpicture}[x=10mm,y=4.6mm,every node/.style={font=\scriptsize,inner sep=0.4pt}]
+{\centering\begin{tikzpicture}[x=10mm,y=4.3mm,every node/.style={font=\scriptsize,inner sep=0.4pt}]
 \foreach \n/\x/\y in {1/2/5,2/0.6/4,3/2/4,4/3.4/4,5/0/3,6/1.2/3,7/2.4/3,8/3.6/3,9/1.2/2,10/2.6/1.1,11/3.8/1.5,12/2.2/0.1}
   \node[circle,draw,minimum size=3.4mm] (c\n) at (\x,\y) {\n};
 \foreach \a/\b in {1/2,1/3,1/4,2/5,2/6,3/6,3/7,4/8,4/9,5/9,9/10,8/10,8/11,7/11,6/12,10/12,11/12}
@@ -563,7 +560,7 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \begin{itemize}
 \item $y_6$: $\{y_6\}\dn=\{x_1,x_2,x_3,x_4,x_6\}$; $\up=\{y_1,y_6\}$; $\dn$ same $\Rightarrow$ c2.
 \item $y_3$: $\{y_3\}\dn=\{x_3,x_5\}$; $\up=\{y_1,y_3,y_4\}$; $\dn$ same $\Rightarrow$ c8 ($y_3\Rightarrow y_4$).
-\item $y_2$: $\{y_2\}\dn=\{x_2,x_3,x_4,x_6\}$; $\up=\{y_1,y_2,y_6\}$; $\dn$ same $\Rightarrow$ c5 ($y_2\Rightarrow y_6$).
+\item $y_2$: $\{y_2\}\dn=\{x_2,x_3,x_4,x_6\}$; $\up=\{y_1,y_2,y_6\}$ $\Rightarrow$ c5.
 \end{itemize}
 \sub{FCA Q4: verify}
 \begin{itemize}
@@ -590,8 +587,6 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \item \kw{Antitone}: $m$ shared by all of $X'\supseteq X$ is shared by $X$.
 \item \kw{$\alpha\beta\alpha=\alpha$}: $\supseteq$ extensive; $\subseteq$ antitone on $X\subseteq X\up{}\dn$.
 \item \kw{Meet is a concept}: $(Y_1\cup Y_2)\dn=Y_1\dn\cap Y_2\dn=X_1\cap X_2$.
-\item \kw{Anti-monotone}: $Y_1\subseteq Y_2\Rightarrow\sigma(Y_1)\ge\sigma(Y_2)$.
-\item \kw{min largest}: $T(a,b)\le T(a,1)=a$, same for $b$.
 \end{itemize}
 
 \end{multicols*}
