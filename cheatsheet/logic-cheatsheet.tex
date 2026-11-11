@@ -59,7 +59,7 @@
 \item Ex falso: $A,\neg A\in S\Rightarrow S\models X$ for all $X$.
 \item Monotony: $S\models X\Rightarrow S\cup\{A\}\models X$.
 \item Deduction: $S\cup\{X\}\models Y\iff S\models(X\impl Y)$.
-\item $X$ taut.\ $\iff T\impl X$ taut., since $v(T\impl X)=v(X)$.
+\item $X$ tautology $\iff T\impl X$ tautology, since $v(T\impl X)=v(X)$.
 \end{itemize}
 
 \sect{2 CNF \& resolution}
@@ -90,7 +90,7 @@ $\not\subset$ & $\neg X\wedge Y$ & $X\vee\neg Y$\\
 \item $X$ tautology $\iff$ $X$ has a resolution proof.
 \item Prolog \texttt{A :- B} $=\gd{A,\neg B}$.
 \end{itemize}
-\ex{\textbf{Ex.} $((A\impl B)\impl(A\impl C))$\\
+\ex{\textbf{Example} $((A\impl B)\impl(A\impl C))$\\
 $\gc{\gd{\neg(A\impl B),A\impl C}}\to\gc{\gd{A\wedge\neg B,A\impl C}}$\\
 $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \begin{itemize}
@@ -143,10 +143,10 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \item Skolemize; \n3drop $\forall$; \n4CNF (optional).
 \setcounter{enumi}{4}
 \item Resolution + \kw{unification} ($P(x),\neg P(c)$: $x=c$).
-\item $\gd{}$ $\Rightarrow\{\neg F\}$ unsat $\Rightarrow F$ valid.
+\item $\gd{}$ $\Rightarrow\{\neg F\}$ unsatisfiable $\Rightarrow F$ valid.
 \end{enumerate}
 \begin{itemize}
-\item Prop.: sound, complete, \kw{decidable}.
+\item Propositional: sound, complete, \kw{decidable}.
 \item FOL: sound, complete, \kw{semi-decidable} (valid $\Rightarrow$ proof found in finite time; not valid $\Rightarrow$ may never stop).
 \end{itemize}
 
@@ -165,9 +165,9 @@ $\exists$I & $\infr{\Gamma\vdash F(t)}{\Gamma\vdash\exists xF(x)}$ & $\exists$E 
 \end{tabular}
 \renewcommand{\arraystretch}{0.95}
 \begin{itemize}
-\item $\forall$I: $x$ not free in $\Gamma$. $\exists$E: $x$ not free in $\Gamma$, $G$.
+\item $\forall$I: $x$ not free in $\Gamma$. $\exists$E: $x$ not free in $\Gamma$, $G$. Handout names: g = left, d = right.
 \end{itemize}
-\ex{\textbf{Ex.} $\vdash(A\to B)\to((B\to C)\to(A\to C))$\\
+\ex{\textbf{Example} $\vdash(A\to B)\to((B\to C)\to(A\to C))$\\
 $\Gamma=\{A\to B,B\to C,A\}$: Ax gives $A$, $A\to B$;\\
 $\to$E: $B$; $\to$E with $B\to C$: $C$; then $\to$I $\times3$.\\
 Curry--Howard term: $\lambda f.\lambda g.\lambda x.g(fx)$.}
@@ -239,7 +239,7 @@ Curry--Howard term: $\lambda f.\lambda g.\lambda x.g(fx)$.}
 \item \kw{Armstrong} \cnt{3}: \n1reflexivity \n2augmentation \n3transitivity.
 \item \kw{Basis} \cnt{2}: \n1complete \n2non-redundant. \kw{Duquenne--Guigues}: pseudo-intents $P\Rightarrow P\dn{}\up$, minimal.
 \end{itemize}
-\ex{\textbf{Slide ex.: table of concepts}\\
+\ex{\textbf{Slide example: table of concepts}\\
 Context: $x_1{:}y_1y_2y_3y_4$, $x_2{:}y_1y_3y_4$, $x_3,x_4{:}y_2y_3y_4$, $x_5{:}y_1$.\\[1pt]
 \begin{tabular}{@{}l|l|l|l@{}}
  & extent $A$ & intent $B$ & below\\\hline
@@ -258,12 +258,12 @@ NextClosure order: $C_1,C_2,C_3,C_4,C_5,C_6$. Clarify: $x_3=x_4$, $y_3=y_4$.}
 \item $s(X)=\sigma(X)/|T|$; frequent if $s(X)\ge minSup$.
 \item $s(X\Rightarrow Y)=\sigma(X\cup Y)/|T|$.
 \item $c(X\Rightarrow Y)=\sigma(X\cup Y)/\sigma(X)$.
-\item \kw{Lift} $=c/s(Y)=\frac{s(X\cup Y)}{s(X)s(Y)}$: $=1$ indep., $>1$ positive.
+\item \kw{Lift} $=c/s(Y)=\frac{s(X\cup Y)}{s(X)s(Y)}$: $=1$ independent, $>1$ positive.
 \item \kw{Apriori}: support anti-monotone; infrequent $\Rightarrow$ supersets infrequent.
 \item Pass $k$: join $L_{k-1}$, prune, scan, keep $\ge minSup$.
 \item Rules from $L$: $A\Rightarrow L\setminus A$, $c=s(L)/s(A)$.
 \end{itemize}
-\ex{\textbf{FCA vs AR}
+\ex{\textbf{FCA vs association rules (AR)}
 \begin{itemize}
 \item FCA implication: deterministic, holds for all objects.
 \item AR: probabilistic (support, confidence, lift).
@@ -276,15 +276,15 @@ NextClosure order: $C_1,C_2,C_3,C_4,C_5,C_6$. Clarify: $x_3=x_4$, $y_3=y_4$.}
 \begin{itemize}
 \item $\neg x=1-x$; Yager $\neg_w(x)=(1-x^w)^{1/w}$.
 \item \kw{T-norm} \cnt{4}: \n1commutative \n2monotone \n3associative \n4neutral $T(a,1)=a$. So $T(a,0)=0$.
-\item \cnt{4 common}: min (largest); product $ab$; \L uk.\ $\max(0,a+b-1)$; drastic (smallest).
+\item \cnt{4 common}: min (largest); product $ab$; \L ukasiewicz $\max(0,a+b-1)$; drastic (smallest).
 \item Weak contradiction: $T(a,1-a)\le0.5$.
-\item \kw{T-conorm} $\bot(a,b)=1-T(1-a,1-b)$ \cnt{4}: comm., monotone, assoc., identity $\bot(a,0)=a$.
+\item \kw{T-conorm} $\bot(a,b)=1-T(1-a,1-b)$ \cnt{4}: commutative, monotone, associative, identity $\bot(a,0)=a$.
 \item max (smallest); $1-(1-a)(1-b)$; $\min(a+b,1)$; drastic (largest).
-\item \kw{S-impl.} ($\neg x\vee y$): $\max(1-x,y)$, $1-x(1-y)$, $\min(1-x+y,1)$.
-\item \kw{R-impl.} $R_T(x,y)=\sup\{z:T(z,x)\le y\}$:
+\item \kw{S-implication} ($\neg x\vee y$): $\max(1-x,y)$, $1-x(1-y)$, $\min(1-x+y,1)$.
+\item \kw{R-implication} (residuum) $R_T(x,y)=\sup\{z:T(z,x)\le y\}$:
 \begin{itemize}
 \item $=1$ if $x\le y$;
-\item else min: $y$; product: $y/x$; \L uk.: $1-x+y$.
+\item else min: $y$; product: $y/x$; \L ukasiewicz: $1-x+y$.
 \end{itemize}
 \item $I(\neg a)=1-a$, $I(a\wedge b)=T$, $I(a\vee b)=\bot$, $I(a\Rightarrow b)=R_T$.
 \item \kw{Simple positive inference}: $P_1\wedge..\wedge P_n\Rightarrow_\phi C$.
@@ -309,22 +309,22 @@ NextClosure order: $C_1,C_2,C_3,C_4,C_5,C_6$. Clarify: $x_3=x_4$, $y_3=y_4$.}
 
 \sect{10 MAX SAT \& PSL}
 \begin{itemize}
-\item \kw{W.\ MAX SAT}: world with max total weight of satisfied formulas.
-\item Relaxation (\L uk., S-impl.): clause degree $\min(\sum_ix_i,1)$; negative literal gives $1-y(s)$.
+\item \kw{Weighted MAX SAT}: world maximizing the total weight of satisfied formulas.
+\item Relaxation (\L ukasiewicz, S-implication): clause degree $\min(\sum_ix_i,1)$; negative literal gives $1-y(s)$.
 \item \kw{PSL}: max $\sum_cw(c)\min(\sum_{s+}y(s)+\sum_{s-}(1-y(s)),1)$, $y\in[0,1]$, $y(s)\le v$.
 \end{itemize}
 \ex{\textbf{Proof: Weighted MAX SAT is NP-hard} \cnt{3 steps}
 \begin{enumerate}[leftmargin=8pt]
 \item Take any SAT instance with clauses $C_1,\ldots,C_m$.
 \item Give every clause weight 1. Then: satisfiable $\iff$ optimum $=m$.
-\item So a polynomial algorithm for W-MAX-SAT decides SAT in polynomial time. SAT is NP-complete $\Rightarrow$ P = NP.
+\item So a polynomial algorithm for Weighted MAX SAT decides SAT in polynomial time. SAT is NP-complete $\Rightarrow$ P = NP.
 \end{enumerate}
 Conclusion: no polynomial algorithm unless P = NP; try all $2^n$ worlds. Decision version (``weight $\ge k$?'') is in NP $\Rightarrow$ NP-complete.}
 \ex{\textbf{Proof: PSL inference is polynomial} \cnt{3 steps}
 \begin{enumerate}[leftmargin=8pt]
 \item Each $\ell_c(y)=\sum_{s+}y(s)+\sum_{s-}(1-y(s))$ is affine in $y$.
 \item $\min(\ell_c,1)$ is concave (min of affine); a sum with $w(c)\ge0$ is concave; constraints are linear $\Rightarrow$ \kw{convex} problem (no bad local optimum).
-\item Same as the LP: max $\sum_cw(c)z_c$ s.t.\ $z_c\le\ell_c(y)$, $z_c\le1$, $0\le y\le1$, $y(s)\le v$. LPs are solvable in polynomial time (slides: hit and run).
+\item Same as the linear program (LP): max $\sum_cw(c)z_c$ s.t.\ $z_c\le\ell_c(y)$, $z_c\le1$, $0\le y\le1$, $y(s)\le v$. LPs are solvable in polynomial time (slides: hit and run).
 \end{enumerate}}
 
 %=====================================================================
@@ -333,7 +333,7 @@ Conclusion: no polynomial algorithm unless P = NP; try all $2^n$ worlds. Decisio
 \item \kw{Hilbert's program} \cnt{3}: \n1consistent \n2complete \n3decidable.
 \item \kw{Gödel 1}: consistent system with arithmetic is incomplete.
 \item \kw{Gödel 2}: it cannot prove its own consistency.
-\item Terms: $x$; $\lambda x.y$; $fx$ (left assoc.).
+\item Terms: variable $x$; abstraction $\lambda x.y$; application $fx$ (left-associative).
 \item \kw{$\beta$}: $(\lambda x.M)N\to M[N/x]$ (rename to avoid capture).
 \item \kw{Strongly normalizing}: every reduction terminates.
 \item $(\lambda x.xx)(\lambda x.xx)$ never terminates; cannot be typed.
@@ -373,7 +373,7 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \item $\overline m(\overline mf)=f^{m\cdot m}$ $\Rightarrow\overline n\,\overline m=\lambda f.\lambda x.f^{m^n}x=\overline{m^n}$: \textbf{power $m^n$}. Check $m{=}2,n{=}3$: $f^8$.
 \item[] {\color{h2}\textbf{Ex 4}} \emph{Why is $\lambda n.\lambda f.\lambda x.n(\lambda g.\lambda h.h(gf))(\lambda u.x)(\lambda u.u)$ the predecessor?}
 \item Substitute $\overline n$; let $S=\lambda g.\lambda h.h(gf)$: $\overline n\,S\,(\lambda u.x)=S^n(\lambda u.x)$.
-\item $S(\lambda u.x)=\lambda h.h((\lambda u.x)f)=\lambda h.h\,x$: 1st $f$ \emph{swallowed}.
+\item $S(\lambda u.x)=\lambda h.h((\lambda u.x)f)=\lambda h.h\,x$: first $f$ \emph{swallowed}.
 \item After $k\ge1$ steps: $\lambda h.h(f^{k-1}x)$; apply to $\lambda u.u$: $f^{n-1}x$.
 \item So $\lambda f.\lambda x.f^{n-1}x=\overline{n-1}$ (and $n=0$ gives $\overline0$).
 \end{itemize}
@@ -409,7 +409,7 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \item Subsumption $\mathcal T\models C\sqsubseteq D$: $C^I\subseteq D^I$ in all models.
 \item Disjoint: $C^I\cap D^I=\emptyset$ in all models.
 \item $C\sqsubseteq D\iff C\sqcap\neg D$ unsatisfiable.
-\item Disjoint $\iff C\sqcap D$ unsat.; unsat $\iff C\sqsubseteq\bot$.
+\item Disjoint $\iff C\sqcap D$ unsatisfiable; $C$ unsatisfiable $\iff C\sqsubseteq\bot$.
 \item ABox \kw{consistent}: a model of $\mathcal A$ and $\mathcal T$ exists.
 \item \kw{Instance}: $\mathcal A\models C(a)\iff\mathcal A\cup\{\neg C(a)\}$ inconsistent.
 \item \kw{Retrieval}: all $a$ with $C(a)$. \kw{Realization}: most specific $C$.
@@ -440,8 +440,8 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \end{itemize}
 \sub{Is Pedro a SuccessfulMan?}
 \begin{itemize}
-\item SM $\equiv\neg$F $\sqcap$ InBusiness $\sqcap\exists$married.Lawyer $\sqcap\exists$child.(Uni $\sqcup$ Works).
-\item ABox: Pedro:$\neg$F, Pedro:InBusiness, Mary:Lawyer, John:Works, married(Pedro,Mary), child(Pedro,John).
+\item SuccessfulMan $\equiv\neg$Female $\sqcap$ InBusiness $\sqcap\exists$married.Lawyer $\sqcap\exists$child.(StudiesAtUni $\sqcup$ Works).
+\item ABox: Pedro:$\neg$Female, Pedro:InBusiness, Mary:Lawyer, John:Works, married(Pedro,Mary), child(Pedro,John).
 \item Yes: Mary witnesses $\exists$married; John witnesses $\exists$child.
 \item $\equiv$ is sufficient; with only $\sqsubseteq$ it would not follow.
 \item Method: check each conjunct; witness for each $\exists$; all fillers for each $\forall$.
@@ -449,19 +449,19 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 
 %=====================================================================
 \sect{14 Example exam -- full solutions}
-\sub{PL Q1: when is $F=a\to((b\vee c)\wedge(c\to(\neg d\to e)))$ false?}
+\sub{Propositional Q1: when is $F=a\to((b\vee c)\wedge(c\to(\neg d\to e)))$ false?}
 \begin{itemize}
 \item $X\to Y$ false iff $X=1$, $Y=0$: so $a=1$ and $(b\vee c)\wedge H=0$.
 \item Case 1: $b\vee c=0$: $b=c=0$, $d,e$ free (4 rows).
 \item Case 2: $H=c\to(\neg d\to e)=0$: $c=1$, $\neg d=1$, $e=0$, so $d=e=0$, $b$ free (2 rows).
 \item $abcde$: 10000, 10001, 10010, 10011, 10100, 11100 (6).
 \end{itemize}
-\sub{PL Q2: decomposition tree (root = main connective)}
+\sub{Propositional Q2: decomposition tree (root = main connective)}
 {\centering\begin{tikzpicture}[level distance=3.9mm,every node/.style={inner sep=0.6pt,font=\footnotesize},
 level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},level 3/.style={sibling distance=8mm},level 4/.style={sibling distance=6mm}]
 \node{$\to$} child{node{$a$}} child{node{$\wedge$} child{node{$\vee$} child{node{$b$}} child{node{$c$}}} child{node{$\to$} child{node{$c$}} child{node{$\to$} child{node{$\neg$} child{node{$d$}}} child{node{$e$}}}}};
 \end{tikzpicture}\par}
-\sub{PL Q3: CNF}
+\sub{Propositional Q3: CNF}
 \begin{itemize}
 \item $\neg d\to e\equiv d\vee e$;\ \ $c\to(d\vee e)\equiv\neg c\vee d\vee e$.
 \item $F\equiv\neg a\vee((b\vee c)\wedge(\neg c\vee d\vee e))$; distribute $\neg a$:
@@ -480,7 +480,7 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \end{itemize}
 \sub{Planning ($pX1_3$ = \texttt{posX-1-3}, $L2_3$ = \texttt{L-2-3})}
 \begin{itemize}
-\item Q1 init: $pX1_0\wedge\neg pX2_0\wedge\neg pX3_0\wedge pY1_0\wedge\neg pY2_0\wedge\neg pY3_0$.
+\item Q1 initial state: $pX1_0\wedge\neg pX2_0\wedge\neg pX3_0\wedge pY1_0\wedge\neg pY2_0\wedge\neg pY3_0$.
 \item Q2 goal (5 steps): $pX2_5\wedge pY3_5$.
 \item Q3 frame axioms, posX at $t=3$ (2 per value $\times$ 3 values = 6):
 \begin{itemize}
@@ -556,11 +556,11 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \foreach \a/\b in {1/2,1/3,1/4,2/5,2/6,3/6,3/7,4/8,4/9,5/9,9/10,8/10,8/11,7/11,6/12,10/12,11/12}
   \draw (c\a)--(c\b);
 \end{tikzpicture}\par}
-\sub{FCA Q3: closures \cnt{3 steps each: $\dn$, $\up$, $\dn$ again}}
+\sub{FCA Q3: closures \cnt{$\dn$, $\up$, then $\dn$ again gives the same extent}}
 \begin{itemize}
-\item $y_6$: $\{y_6\}\dn=\{x_1,x_2,x_3,x_4,x_6\}$; $\up=\{y_1,y_6\}$; $\dn$ same $\Rightarrow$ c2.
-\item $y_3$: $\{y_3\}\dn=\{x_3,x_5\}$; $\up=\{y_1,y_3,y_4\}$; $\dn$ same $\Rightarrow$ c8 ($y_3\Rightarrow y_4$).
-\item $y_2$: $\{y_2\}\dn=\{x_2,x_3,x_4,x_6\}$; $\up=\{y_1,y_2,y_6\}$ $\Rightarrow$ c5.
+\item $y_6$: $\{y_6\}\dn=\{x_1,x_2,x_3,x_4,x_6\}$; $\up=\{y_1,y_6\}$: concept 2.
+\item $y_3$: $\{y_3\}\dn=\{x_3,x_5\}$; $\up=\{y_1,y_3,y_4\}$: concept 8.
+\item $y_2$: $\{y_2\}\dn=\{x_2,x_3,x_4,x_6\}$; $\up=\{y_1,y_2,y_6\}$: concept 5.
 \end{itemize}
 \sub{FCA Q4: verify}
 \begin{itemize}
@@ -572,12 +572,12 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \item $\{y_2,y_6\}\to\{y_4\}$: $\{y_2,y_6\}\dn=\{x_2,x_3,x_4,x_6\}$; $x_2,x_6$ lack $y_4$ $\Rightarrow$ \textbf{invalid}; $s=2/7$, $c=2/4$.
 \item $\{y_5,y_6\}\to\{\neg y_7\}$: $\{y_5,y_6\}\dn=\{x_1\}$, $x_1$ lacks $y_7$ $\Rightarrow$ \textbf{holds}; $s=1/7$, $c=1$.
 \end{itemize}
-\sub{FCA Q6: AR vs FCA}
+\sub{FCA Q6: association rules (AR) vs FCA}
 \begin{itemize}
 \item Implication = AR with confidence 1: valid $\iff Z_1\dn\subseteq Z_2\dn\iff\sigma(Z_1\cup Z_2)=\sigma(Z_1)$.
 \item Concept intents = closed itemsets; $s(B)=|B\dn|/|X|$; $s(Z)=s(Z\dn{}\up)$, so the lattice holds all supports.
 \item FCA: small clean data, exact rules + hierarchy. AR: large noisy data, thresholds.
-\item Example: $\{y_2\}\Rightarrow\{y_6\}$ $c=4/4$ (implication); $\{y_6\}\Rightarrow\{y_2\}$ $c=4/5$, $s=4/7$ (AR only); $\{y_4\}\Rightarrow\{y_3\}$ $c=2/3$.
+\item Example: $\{y_2\}\Rightarrow\{y_6\}$ $c=4/4$ (implication); $\{y_6\}\Rightarrow\{y_2\}$ $c=4/5$, $s=4/7$ (AR only).
 \end{itemize}
 
 %=====================================================================
