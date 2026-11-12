@@ -25,7 +25,7 @@
 \setlist{nosep,leftmargin=6.5pt,labelsep=2pt,itemsep=0pt,topsep=0pt,partopsep=0pt,parsep=0pt}
 \setlist[itemize]{label={\color{h2}\scriptsize$\bullet$}}
 \setlist[itemize,2]{label={\color{h2}--},leftmargin=7pt}
-\newcommand{\sect}[1]{\par\vspace{1.5pt}\noindent\colorbox{h1}{\parbox{\dimexpr\linewidth-2\fboxsep}{\bfseries\color{white}#1}}\par\vspace{0.8pt}}
+\newcommand{\sect}[1]{\needspace{3\baselineskip}\vspace{1.5pt}\noindent\colorbox{h1}{\parbox{\dimexpr\linewidth-2\fboxsep}{\bfseries\color{white}#1}}\par\vspace{0.8pt}}
 \newcommand{\sub}[1]{\needspace{2.2\baselineskip}\vspace{0.8pt}{\bfseries\color{h2}#1}\par\nopagebreak}
 \newcommand{\kw}[1]{\textbf{#1}}
 \newcommand{\cnt}[1]{{\color{h2}\bfseries(#1)}}
@@ -56,9 +56,7 @@
 \item $X$ tautology $\iff\neg X$ not satisfiable.
 \item \kw{Consequence} $S\models X$: every $v$ satisfying $S$ makes $X$ True.
 \item \kw{Key}: $S\models X\iff S\cup\{\neg X\}$ not satisfiable.
-\item Ex falso: $A,\neg A\in S\Rightarrow S\models X$ for all $X$.
-\item Monotony: $S\models X\Rightarrow S\cup\{A\}\models X$.
-\item Deduction: $S\cup\{X\}\models Y\iff S\models(X\impl Y)$.
+\item Ex falso: $A,\neg A\in S\Rightarrow S\models X$. Monotony: $S\models X\Rightarrow S\cup\{A\}\models X$. Deduction: $S\cup\{X\}\models Y\iff S\models(X\impl Y)$.
 \item $X$ tautology $\iff T\impl X$ tautology, since $v(T\impl X)=v(X)$.
 \end{itemize}
 
@@ -84,14 +82,12 @@ $\not\supset$ & $X\wedge\neg Y$ & $\neg X\vee Y$ & $\not\subset$ & $\neg X\wedge
 \item Proof of $X$: start $\gd{\neg X}$, end with $\gd{}$.
 \item For $S\vdash X$: start $\gd{S_1},..,\gd{S_n},\gd{\neg X}$.
 \item $X$ tautology $\iff$ $X$ has a resolution proof.
-\item Prolog \texttt{A :- B} $=\gd{A,\neg B}$.
 \end{itemize}
 \ex{\textbf{Example} $((A\impl B)\impl(A\impl C))$\\
 $\gc{\gd{\neg(A\impl B),A\impl C}}\to\gc{\gd{A\wedge\neg B,A\impl C}}$\\
 $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \begin{itemize}
-\item \kw{Backward} chaining: from goal (resolution).
-\item \kw{Forward} chaining: from assumptions (Hilbert, modus ponens $\frac{X\ \ X\impl Y}{Y}$).
+\item \kw{Backward} chaining: from goal (resolution). \kw{Forward}: from assumptions (Hilbert, modus ponens).
 \item $\models$ semantic (truth tables); $\vdash$ syntactic (proofs).
 \item \kw{Sound}: $S\vdash F\Rightarrow S\models F$.
 \item \kw{Complete}: $S\models F\Rightarrow S\vdash F$.
@@ -100,8 +96,7 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 %=====================================================================
 \sect{3 First-order logic}
 \begin{itemize}
-\item \kw{Terms}: variables, constants, functors $f(t_1..t_n)$.
-\item \kw{Atomic formula}: predicate $p(t_1..t_n)$, arity $n$.
+\item \kw{Terms}: variables, constants, functors $f(t_1..t_n)$. \kw{Atomic formula}: predicate $p(t_1..t_n)$, arity $n$.
 \item Formulas: atomic, $\neg F$, $(F\circ G)$, $(\forall x)F$, $(\exists x)F$.
 \item \kw{Functor or predicate?} Inside an argument $\Rightarrow$ functor. At formula level ($\neg,\wedge,\impl$, quantifier) $\Rightarrow$ predicate.
 \item \kw{Free} $v$ \cnt{4 rules}: \n1occurs in atomic $F$ \n2in $(\diamond v')F$ iff free in $F$ and $v\neq v'$ \n3in $\neg F$ iff in $F$ \n4in $F_1\circ F_2$ iff in $F_1$ or $F_2$.
@@ -162,11 +157,9 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 %=====================================================================
 \sect{5 Planning: STRIPS}
 \begin{itemize}
-\item \kw{State} describes the world; \kw{actions} change it.
-\item Planning = action sequence from initial to goal state. Predicates/Variables Capitalized; constants lowercase.
+\item \kw{State} describes the world, \kw{actions} change it; planning = action sequence from initial to goal state. Predicates/Variables Capitalized, constants lowercase.
 \item \texttt{Move(X,Y)} Pre: \texttt{At(X), Level(low)}\\Post: \texttt{!At(X), At(Y)}
-\item STRIPS solver: backtracking, semi-decidable.
-\item \kw{Sussman}: goals \texttt{On(a,b)}, \texttt{On(b,c)} clash.
+\item STRIPS solver: backtracking, semi-decidable. \kw{Sussman}: goals \texttt{On(a,b)}, \texttt{On(b,c)} clash.
 \end{itemize}
 
 \sect{6 Planning as SAT (Kautz \& Selman 1992)}
@@ -202,9 +195,12 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \item $(\cdot)\up{}\dn$ closes extents; $(\cdot)\dn{}\up$ closes intents.
 \item Always a concept: $(B\dn,B\dn{}\up)$ and $(A\up{}\dn,A\up)$.
 \item \kw{Order}: $(A_1,B_1)\preceq(A_2,B_2)\iff A_1\subseteq A_2\iff B_2\subseteq B_1$.
-\item \kw{Meet} $\big(\bigcap X_t,(\bigcup Y_t)\dn{}\up\big)$; \kw{Join} $\big((\bigcup X_t)\up{}\dn,\bigcap Y_t\big)$.
+\item \kw{Meet} $\big(\bigcap X_t,(\bigcup Y_t)\dn{}\up\big)$; \kw{Join} $\big((\bigcup X_t)\up{}\dn,\bigcap Y_t\big)$: infimum/supremum are concepts, so $(\mathcal C(K),\preceq)$ is a \kw{complete lattice} (Hasse diagram).
+\item \kw{Input}: context (objects = rows, attributes = columns). \kw{Outputs} \cnt{2}: \n1concept lattice \n2attribute implications (Duquenne--Guigues basis).
+\item Extensions: many-valued $(X,Y,W,I)$; scaling, pattern structures; icebergs; triadic; relational.
 \end{itemize}
-\ex{\textbf{Intersection method, row-based} (Wille 1982; Stumme tutorial). Rows = objects = \emph{transactions}: intersecting the item sets of transactions gives the closed itemsets = intents. Theorem: every intent is an intersection of row intents $\{x\}\up$ (dually: columns). \cnt{5 steps}
+\sub{Intersection method, row-based (Wille 1982; Stumme tutorial)}
+Rows = objects = \emph{transactions}: intersecting the item sets of transactions gives the closed itemsets = intents. Theorem: every intent is an intersection of row intents $\{x\}\up$ (dually: columns). \cnt{5 steps}
 \begin{enumerate}[leftmargin=8pt]
 \item Top to bottom: intersect each row intent $\{x\}\up$ with every row above it.
 \item Result not yet a row $\Rightarrow$ append it as a new row; continue until the last added row.
@@ -212,7 +208,7 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \item Draw: fewest crosses on top; link each circle to the circles whose row it contains (immediate only).
 \item Labels: attribute $y$ at the highest circle containing it ($\{y\}\dn$); object $x$ at the lowest ($\{x\}\up$). Intent = labels above, extent = labels below.
 \end{enumerate}
-\textbf{Check the drawing} \cnt{4}: \n1is it a lattice? \n2one upper neighbour $\Rightarrow$ has an attribute label \n3one lower neighbour $\Rightarrow$ has an object label \n4$g$ below $m$ $\iff(g,m)\in I$.}
+\par\textbf{Check the drawing} \cnt{4}: \n1is it a lattice? \n2one upper neighbour $\Rightarrow$ has an attribute label \n3one lower neighbour $\Rightarrow$ has an object label \n4$g$ below $m$ $\iff(g,m)\in I$.
 \begin{itemize}
 \item \kw{NextClosure}: intents in lectic order $y_1<..<y_n$; try $y_i\notin B$ from last to first:
 \begin{itemize}
@@ -234,22 +230,18 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \sect{8 Association rules}
 \begin{itemize}
 \item $\sigma(X)$ = number of transactions containing $X$.
-\item $s(X)=\sigma(X)/|T|$; frequent if $s(X)\ge minSup$.
+\item $s(X)=\sigma(X)/|T|$ (popularity); \kw{frequent} if $s(X)\ge minSup$. Ex.\ $\sigma(\{newspaper,novel,film\})=2$, $s=2/5$.
 \item $s(X\Rightarrow Y)=\sigma(X\cup Y)/|T|$.
 \item $c(X\Rightarrow Y)=\sigma(X\cup Y)/\sigma(X)$.
-\item \kw{Lift} $=c/s(Y)=\frac{s(X\cup Y)}{s(X)s(Y)}$: $=1$ independent, $>1$ positive.
-\item \kw{Apriori}: support anti-monotone; infrequent $\Rightarrow$ supersets infrequent.
-\item Pass $k$: join $L_{k-1}$, prune, scan, keep $\ge minSup$.
+\item Co-occurrence, not causality. Brute force: $2^d$ itemsets, $R=\sum_{i}C_d^i\sum_{j}C_{d-i}^j$ rules; cost = \kw{passes}.
+\item \kw{Independence}: $c(X\Rightarrow Y)=s(Y)\iff P(X\cup Y)=P(X)P(Y)$; $>$ positive correlation.
+\item \kw{Lift} $=\frac{c}{s(Y)}=\frac{s(X\cup Y)}{s(X)s(Y)}$: $=1$ independent, $>1$ interesting. Tea$\Rightarrow$Coffee: $c=.75<s(Coffee)=.8$.
+\item \kw{A priori principle}: frequent $\Rightarrow$ all subsets frequent; infrequent $\Rightarrow$ supersets infrequent (support anti-monotone).
+\item \kw{Apriori} (Agrawal \& Srikant 1994) \cnt{3}: \n1pass 1: frequent items $L_1$ \n2pass $k$: \emph{join} $L_{k-1}$ into candidates $C_k$, \emph{prune} candidates with an infrequent subset, scan, keep $\ge minSup$ \n3stop when none.
+\item Ex.\ $minSup=.4$: \{film, classical, novel\} pruned (\{classical, novel\} $s=\frac15$); \{film, newspaper, comics\} kept ($s=\frac25$).
+\item Passes: PCY 2 (hash), SON 2 (chunks), Toivonen 1--2 (sample), FP-Growth 2 (FP-tree, no candidates); FP-max: maximal sets.
 \item Rules from $L$: $A\Rightarrow L\setminus A$, $c=s(L)/s(A)$.
 \end{itemize}
-\ex{\textbf{FCA vs association rules (AR)}
-\begin{itemize}
-\item FCA implication: deterministic, holds for all objects.
-\item AR: probabilistic (support, confidence, lift).
-\item Implication = AR with confidence 100\%.
-\item FCA: small exact data. AR: large noisy data.
-\end{itemize}}
-
 %=====================================================================
 \sect{9 Fuzzy logic}
 \begin{itemize}
@@ -352,7 +344,6 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \item \kw{DL}: family of formal (logic-based) KR languages; world described by \kw{concept descriptions} built from atomic concepts (classes), atomic roles (relationships) and individuals, with formal semantics.
 \item \kw{Why DL, not FOL} \cnt{4}: \n1variable-free syntax \n2easier to read \n3expressive yet decidable reasoning \n4most DLs = decidable fragments of FOL (FOL: expressive but undecidable).
 \item \kw{DL system}: KB = \kw{TBox} (terminology: concepts, roles) + \kw{ABox} (assertions on named individuals); + description language, reasoning, applications, rules.
-\item TBox Mother $\equiv$ Woman $\sqcap\exists$hasChild.$\top$; ABox Woman(Alice), hasChild(Alice,Bob) $\Rightarrow$ Mother(Alice).
 \item \kw{Inference services} \cnt{5}: \n1TBox description satisfiable \n2subsumption (hierarchy) \n3ABox consistent (has a model) \n4individual instance of a concept \n5concept as query (retrieve individuals).
 \end{itemize}
 \sub{Syntax: $A,B,C,D$ atomic concepts, $R$ atomic role}
