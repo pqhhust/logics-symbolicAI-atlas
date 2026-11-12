@@ -165,8 +165,8 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \sect{6 Planning as SAT (Kautz \& Selman 1992)}
 \begin{enumerate}[leftmargin=8pt]
 \item Add \kw{time} as the last argument: \texttt{Move(a,b,1)}.
-\item \kw{Ground} every predicate (all argument values).
-\item Grounded clause $\to$ boolean: \texttt{move\_a\_b\_12}, \texttt{U-1-2}.
+\item \kw{Ground} every predicate (all argument values); grounded clause $\to$ boolean \texttt{move\_a\_b\_12}, \texttt{U-1-2}.
+%
 \item Write the \cnt{5 kinds} of constraints below.
 \end{enumerate}
 \begin{itemize}
@@ -219,12 +219,12 @@ Rows = objects = \emph{transactions}: intersecting the item sets of transactions
 \item \kw{Reduced}: no object/attribute derivable from others.
 \item \kw{Implication} $Z_1\Rightarrow Z_2$ valid $\iff Z_1\dn\subseteq Z_2\dn$.
 \item Counterexample: object in $Z_1\dn\setminus Z_2\dn$.
-\item \kw{Proofs}: $B\subseteq A\up\iff A\subseteq B\dn$; $A\up{}\dn{}\up=A\up$ ($\supseteq$ extensive, $\subseteq$ antitone); meet: $(B_1\cup B_2)\dn=B_1\dn\cap B_2\dn$.
+%
 \item \kw{Armstrong} \cnt{3}: \n1reflexivity \n2augmentation \n3transitivity.
 \item \kw{Basis} \cnt{2}: \n1complete \n2non-redundant. \kw{Duquenne--Guigues}: pseudo-intents $P\Rightarrow P\dn{}\up$, minimal.
 \end{itemize}
 \begin{itemize}
-\item \kw{Slide example}: $x_1{:}y_1y_2y_3y_4$, $x_2{:}y_1y_3y_4$, $x_3,x_4{:}y_2y_3y_4$, $x_5{:}y_1$ $\Rightarrow$ 6 concepts (intent / extent): $\emptyset$/all; $y_3y_4$/$x_1..x_4$; $y_2y_3y_4$/$x_1x_3x_4$; $y_1$/$x_1x_2x_5$; $y_1y_3y_4$/$x_1x_2$; $Y$/$x_1$. Clarify: $x_3=x_4$, $y_3=y_4$.
+\item \kw{Slide example} ($x_1{:}y_1..y_4$, $x_2{:}y_1y_3y_4$, $x_3{=}x_4{:}y_2y_3y_4$, $x_5{:}y_1$): intents $\emptyset$, $y_3y_4$, $y_2y_3y_4$, $y_1$, $y_1y_3y_4$, $Y$.
 \end{itemize}
 
 \sect{8 Association rules}
@@ -245,54 +245,71 @@ Rows = objects = \emph{transactions}: intersecting the item sets of transactions
 %=====================================================================
 \sect{9 Fuzzy logic}
 \begin{itemize}
-\item $\neg x=1-x$; Yager $\neg_w(x)=(1-x^w)^{1/w}$.
-\item \kw{T-norm} \cnt{4}: \n1commutative \n2monotone \n3associative \n4neutral $T(a,1)=a$. So $T(a,0)=0$.
-\item \cnt{4 common}: min (largest); product $ab$; \L ukasiewicz $\max(0,a+b-1)$; drastic (smallest).
-\item Weak contradiction: $T(a,1-a)\le0.5$.
-\item \kw{T-conorm} $\bot(a,b)=1-T(1-a,1-b)$ \cnt{4}: commutative, monotone, associative, identity $\bot(a,0)=a$.
-\item max (smallest); $1-(1-a)(1-b)$; $\min(a+b,1)$; drastic (largest).
-\item \kw{S-implication} ($\neg x\vee y$): $\max(1-x,y)$, $1-x(1-y)$, $\min(1-x+y,1)$.
-\item \kw{R-implication} (residuum) $R_T(x,y)=\sup\{z:T(z,x)\le y\}$:
-\begin{itemize}
-\item $=1$ if $x\le y$;
-\item else min: $y$; product: $y/x$; \L ukasiewicz: $1-x+y$.
+\item Truth values in $[0,1]$; \kw{degree of truth} $\neq$ probability (meaning, aggregation): cooks 60/60/50/50\%: $P$(cooked food) $=96\%$, quality $=60\%$.
+\item \kw{NOT}: $\neg x=1-x$; Yager $\neg_w(x)=(1-x^w)^{1/w}$ ($w=1$: usual).
+\item Also: average $\frac1n\sum a_i$, harmonic mean $n/\sum\frac1{a_i}$ (not associative).
+\item \kw{T-norm} = fuzzy \kw{AND} \cnt{4}: \n1$T(a,b)=T(b,a)$ \n2$a\le b\Rightarrow T(a,c)\le T(b,c)$ \n3$T(a,T(b,c))=T(T(a,b),c)$ \n4$T(a,1)=a$. Hence $T(a,0)=0$.
+\item \kw{T-conorm} = fuzzy \kw{OR}: $\bot(a,b)=1-T(1-a,1-b)$; same laws but $\bot(a,0)=a$.
 \end{itemize}
-\item $I(\neg a)=1-a$, $I(a\wedge b)=T$, $I(a\vee b)=\bot$, $I(a\Rightarrow b)=R_T$.
-\item \kw{Simple positive inference}: $P_1\wedge..\wedge P_n\Rightarrow_\phi C$.
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{@{}l|l|l|l@{}}
+name & AND $T(a,b)$ & $a{=}.9,b{=}.2$ & OR $\bot(a,b)$\\\hline
+min & $\min(a,b)$ & $.2$ & $\max(a,b)$\\
+product & $a\cdot b$ & $.18$ & $a+b-ab$\\
+\L ukasiewicz & $\max(0,a+b-1)$ & $.1$ & $\min(a+b,1)$\\
+drastic & $a{=}1\,?\,b:(b{=}1\,?\,a:0)$ & $0$ & $a{=}0\,?\,b:(b{=}0\,?\,a:1)$\\
+\end{tabular}
 \begin{itemize}
-\item Satisfied if $C\ge\phi(P_1..P_n)$.
-\item Solution \cnt{3}: \n1$\ge$ initial values \n2all rules satisfied \n3no output can be smaller.
-\item Iterate rules in any order until all satisfied.
-\item With negation: may have no solution / oscillate.
-\end{itemize}
-\item \kw{Fuzzy set} $\mu:U\to[0,1]$ \cnt{3 sets}: support $\mu>0$; core $\mu=1$; $\alpha$-cut $\mu\ge\alpha$.
-\item $\alpha$-capping $\min(\alpha,\mu(x))$.
-\item \kw{Equality relation} \cnt{3}: \n1commutative \n2reflexive $E(x,x)=1$ \n3transitive $T(E(x,y),E(y,z))\le E(x,z)$.
-\item Fuzzification $\mu(x)=\sup\{E(x,y):y\in A\}$.
-\item \kw{Defuzzification} \cnt{3 methods}:
+\item $c\,?\,x:y$ = ``if $c$ then $x$ else $y$''. Order: drastic $\le$ \L ukasiewicz $\le$ product $\le$ min for AND (reverse for OR). Weak contradiction $T(a,1-a)\le0.5$.
+\item \kw{Implication} $x\Rightarrow y$, two ways:
 \begin{itemize}
-\item First of Maxima $\min\{c\mid\mu(c)\text{ max}\}$: safe, ignores other maxima.
-\item Mean of Maxima: may land on a non-maximum.
-\item Median: equal mass on both sides; may also miss.
+\item \kw{S-implication} = value of $\neg x\vee y$ $=\bot(1-x,y)$; can be $<1$ even if $x<y$.
+\item \kw{R-implication} (residuum) $R_T(x,y)=\sup\{z: T(z,x)\le y\}$ = biggest $z$ with ``$z$ AND $x$'' $\le y$. Always $=1$ if $x\le y$ (implication \kw{satisfied}); no modus tollens.
 \end{itemize}
-\item \kw{Mamdani} \cnt{4 steps}: \n1fuzzify inputs \n2$\alpha=T(\ldots)$ \n3cap $C$ at $\alpha$ \n4defuzzify.
+\end{itemize}
+\begin{tabular}{@{}l|l|l@{}}
+T-norm & S-implication $\neg x\vee y$ & R-implication, case $x>y$\\\hline
+min & $\max(1-x,y)$ & $y$\\
+product & $1-x(1-y)$ & $y/x$ \ (slide: $.2/.9\approx.22$)\\
+\L ukasiewicz & $\min(1-x+y,1)$ & $1-x+y$\\
+\end{tabular}
+\begin{itemize}
+\item \kw{Interpretation} $I$: $I(\neg a)=1-a$, $I(a\wedge b)=T(a,b)$, $I(a\vee b)=1-T(1-a,1-b)$, $I(a\Rightarrow b)=R_T(a,b)$.
+\item \kw{Simple positive fuzzy inference}: rules $P_1\wedge..\wedge P_n\Rightarrow_\phi C$ ($\phi$ = AND-like aggregation, e.g.\ min); rule satisfied if $C\ge\phi(P_1..P_n)$.
+\begin{itemize}
+\item Solution \cnt{3}: \n1every value $\ge$ its initial value \n2all rules satisfied \n3no output can be smaller.
+\item Algorithm: repeat ``raise $C$ to $\phi$(premises)'' over the rules, any order, until nothing changes ($\phi$ monotone, continuous).
+\item Negated premises/conclusions: may have no solution or oscillate.
+\end{itemize}
+\item \kw{Fuzzy set} $\mu:U\to[0,1]$ ($x$ belongs to degree $\mu(x)$) \cnt{3 sets}: support $\{\mu>0\}$; core $\{\mu=1\}$; $\alpha$-cut $\{\mu\ge\alpha\}$. $\cap$/$\cup$ = pointwise $T$/$\bot$. $\alpha$-capping $\mu_{\le\alpha}(x)=\min(\alpha,\mu(x))$.
+\item \kw{Equality relation} \cnt{3}: \n1$E(x,y)=E(y,x)$ \n2$E(x,x)=1$ \n3$T(E(x,y),E(y,z))\le E(x,z)$. \kw{Fuzzification} of crisp $A$: $\mu(x)=\sup\{E(x,y):y\in A\}$.
+\item \kw{Defuzzification} (fuzzy set $\to$ one value) \cnt{3}:
+\begin{itemize}
+\item First of Maxima $d(\mu)=\min\{c\mid\forall x:\mu(c)\ge\mu(x)\}$: always a maximum (safe) but ignores other maxima.
+\item Mean of Maxima $d(\mu)=avg\{c\mid\forall x:\mu(c)\ge\mu(x)\}$: may land on a non-maximum.
+\item Median $d(\mu)=x$ with $\sum_{x'<x}\mu(x')=\sum_{x'>x}\mu(x')$: may also miss a maximum.
+\end{itemize}
+\item \kw{Mamdani} rule $p_1$ is $P_1\wedge..\Rightarrow c$ is $C$ \cnt{4 steps}: \n1fuzzify: degree $P_i(p_i)$ \n2firing strength $\alpha=T(P_1(p_1),..)$ \n3cap $C$ at $\alpha$ \n4defuzzify: $c=defuzz(C_{\le\alpha})$. Ex.\ 35$^\circ$ is HOT .9, 10 people is CROWDED .6 $\Rightarrow\alpha=\min=.6$, cap FAST at .6.
 \end{itemize}
 
-\sect{10 MAX SAT \& PSL}
+\sect{10 MAX SAT \& Probabilistic Soft Logic (PSL)}
 \begin{itemize}
-\item \kw{Weighted MAX SAT}: world maximizing the total weight of satisfied formulas.
-\item Relaxation (\L ukasiewicz, S-implication): clause degree $\min(\sum_ix_i,1)$; negative literal gives $1-y(s)$.
-\item \kw{PSL}: max $\sum_cw(c)\min(\sum_{s+}y(s)+\sum_{s-}(1-y(s)),1)$, $y\in[0,1]$, $y(s)\le v$.
+\item \kw{Weighted MAX SAT}: formulas with weights may contradict; find the world (0/1 values) maximizing the total weight of satisfied formulas.
+\item Ex.\ $\{s\}[7]$, $\{\neg s,\neg b\}[8]$, $\{b\}[10]$: worlds $(s,b)$: $(0,1)\to18$, $(1,1)\to17$, $(1,0)\to15$, $(0,0)\to8$; best 18.
+\item \kw{Relaxation}: give statements degrees $y(s)\in[0,1]$; a clause is a fuzzy OR with \L ukasiewicz: $\{x_1..x_n\}\mapsto\min(\sum_ix_i,1)$; a negated literal counts $1-y(s)$.
+\item Same ex.\ with $s=.3$, $b=.7$: $\{s\}=.3$, $\{\neg s,\neg b\}=\min(.7+.3,1)=1$, $\{b\}=.7$ $\Rightarrow.3\cdot7+1\cdot8+.7\cdot10=17.1$.
+\item \kw{PSL inference}: find $y:S\to[0,1]$ maximizing $\sum_cw(c)\min(\sum_{s+\in c}y(s)+\sum_{s-\in c}(1-y(s)),1)$ subject to $y(s)\le v$.
+\item \kw{Hit and run} \cnt{4}: \n1start at values satisfying the constraints \n2pick a variable \n3move it to its best value \n4repeat until convergence.
 \end{itemize}
-\ex{\textbf{Proof: Weighted MAX SAT is NP-hard} \cnt{3 steps}: \n1take any SAT instance $C_1..C_m$ \n2weight 1 each: satisfiable $\iff$ optimum $=m$ \n3a polynomial algorithm would decide SAT (NP-complete) $\Rightarrow$ P = NP. So: no polynomial algorithm unless P = NP (try all $2^n$ worlds); decision version is in NP $\Rightarrow$ NP-complete.}
+\ex{\textbf{Proof: Weighted MAX SAT is NP-hard} \cnt{3 steps}: \n1take any SAT instance $C_1..C_m$ \n2weight 1 each: satisfiable $\iff$ optimum $=m$ \n3a polynomial algorithm would decide SAT (NP-complete) $\Rightarrow$ P = NP. So: no polynomial algorithm unless P = NP (try all $2^n$ worlds).}
 \ex{\textbf{Proof: PSL inference is polynomial} \cnt{3 steps}: \n1$\ell_c(y)=\sum_{s+}y(s)+\sum_{s-}(1-y(s))$ is affine \n2$\min(\ell_c,1)$ concave, positive-weighted sum concave, linear constraints $\Rightarrow$ \kw{convex} \n3linear program: max $\sum_cw(c)z_c$ s.t.\ $z_c\le\ell_c(y)$, $z_c\le1$, $0\le y\le1$ $\Rightarrow$ polynomial (slides: hit and run).}
 
 %=====================================================================
 \sect{11 Theorem proving \& $\lambda$-calculus}
 \begin{itemize}
 \item \kw{Hilbert's program} \cnt{3}: \n1consistent \n2complete \n3decidable.
-\item \kw{Gödel 1}: consistent system with arithmetic is incomplete.
-\item \kw{Gödel 2}: it cannot prove its own consistency.
+\item \kw{Gödel 1}: consistent system with arithmetic is incomplete. \kw{Gödel 2}: it cannot prove its own consistency.
+%
 \item Terms: variable $x$; abstraction $\lambda x.y$; application $fx$ (left-associative).
 \item \kw{$\beta$}: $(\lambda x.M)N\to M[N/x]$ (rename to avoid capture).
 \item \kw{Strongly normalizing}: every reduction terminates.
@@ -341,10 +358,10 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 %=====================================================================
 \sect{12 Description logics (DL)}
 \begin{itemize}
-\item \kw{DL}: family of formal (logic-based) KR languages; world described by \kw{concept descriptions} built from atomic concepts (classes), atomic roles (relationships) and individuals, with formal semantics.
-\item \kw{Why DL, not FOL} \cnt{4}: \n1variable-free syntax \n2easier to read \n3expressive yet decidable reasoning \n4most DLs = decidable fragments of FOL (FOL: expressive but undecidable).
-\item \kw{DL system}: KB = \kw{TBox} (terminology: concepts, roles) + \kw{ABox} (assertions on named individuals); + description language, reasoning, applications, rules.
-\item \kw{Inference services} \cnt{5}: \n1TBox description satisfiable \n2subsumption (hierarchy) \n3ABox consistent (has a model) \n4individual instance of a concept \n5concept as query (retrieve individuals).
+\item \kw{DL}: family of logic-based KR languages; concept descriptions built from atomic concepts (classes), atomic roles (relations), individuals; formal semantics.
+\item \kw{Why DL, not FOL} \cnt{4}: \n1variable-free \n2readable \n3expressive yet decidable \n4most DLs = decidable FOL fragments.
+\item \kw{DL system}: KB = \kw{TBox} (concepts, roles) + \kw{ABox} (named individuals); description language, reasoning, applications.
+\item \kw{Inference services} \cnt{5}: \n1satisfiability \n2subsumption \n3ABox consistency \n4instance \n5query/retrieval.
 \end{itemize}
 \sub{Syntax: $A,B,C,D$ atomic concepts, $R$ atomic role}
 \begin{itemize}
@@ -354,9 +371,7 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \end{itemize}
 \renewcommand{\arraystretch}{0.9}
 \begin{tabular}{@{}l@{\ }l@{}}
-Person $\sqcap$ Female & females who are persons\\
 $\exists$hasChild.$\top$ & has at least one child (any type)\\
-$\exists$hasChild.Person & has a child who is a person\\
 Person $\sqcap\forall$hasChild.Female & persons whose children are all female\\
 Person $\sqcap\forall$hasChild.$\bot$ & persons with no children\\
 Person $\sqcap$ Female $\sqcap\ge3$ hasChild & female persons with $\ge3$ children\\
@@ -369,7 +384,7 @@ Person $\sqcap$ Female $\sqcap\ge3$ hasChild & female persons with $\ge3$ childr
 \item $(\forall R.C)^I=\{x\in\Delta^I\mid\forall y,(x,y)\in R^I\to y\in C^I\}$.
 \item $(\exists R.C)^I=\{x\in\Delta^I\mid\exists y,(x,y)\in R^I\wedge y\in C^I\}$.
 \item $(\ge nR)^I=\{x\mid|\{y\mid(x,y)\in R^I\}|\ge n\}$ (same for $\le$).
-\item Ex.\ Parent $\equiv$ Person $\sqcap\exists$hasChild.Person: $\forall x.Parent(x)\leftrightarrow(Person(x)\wedge\exists y.(hasChild(x,y)\wedge Person(y)))$.
+\item Parent $\equiv$ Person $\sqcap\exists$hasChild.Person: $\forall x.Parent(x)\leftrightarrow(Person(x)\wedge\exists y.(hasChild(x,y)\wedge Person(y)))$.
 \end{itemize}
 \sub{DL $\leftrightarrow$ FOL (slide table)}
 \begin{tabular}{@{}l@{\ }l@{\ }l@{}}
@@ -390,7 +405,7 @@ $R_1\circ R_2\sqsubseteq R_3$ & property chain & $\forall x,y,z.\,R_1(x,y)\wedge
 \item Axioms \cnt{2}: \n1inclusion $C\sqsubseteq D$ ($C$ subclass of $D$) \n2equivalence $C\equiv D$ (same instances).
 \item $I$ satisfies $T$ iff $I$ satisfies every axiom: $I$ is a \kw{model} of $T$, $I\models T$.
 \item Ex.\ $T=\{$Parent $\sqsubseteq$ Person, Mother $\equiv$ Woman $\sqcap\exists$hasChild.Person$\}$.
-\item Family TBox: Woman $\equiv$ Person $\sqcap$ Female; Man $\equiv$ Person $\sqcap\neg$Woman; Mother $\equiv$ Woman $\sqcap\exists$hasChild.Person; Parent $\equiv$ Father $\sqcup$ Mother; MotherWithoutDaughter $\equiv$ Mother $\sqcap\forall$hasChild.$\neg$Woman.
+\item Family TBox: Woman $\equiv$ Person $\sqcap$ Female; Mother $\equiv$ Woman $\sqcap\exists$hasChild.Person; Parent $\equiv$ Father $\sqcup$ Mother.
 \end{itemize}
 \sub{ABox (world description)}
 \begin{itemize}
@@ -422,8 +437,8 @@ $R_1\circ R_2\sqsubseteq R_3$ & property chain & $\forall x,y,z.\,R_1(x,y)\wedge
 \sub{OWL (Web Ontology Language)}
 \begin{itemize}
 \item Built on DL semantics: OWL 2 DL = SROIQ(D); reasoners HermiT, Pellet, FaCT++ (in Protégé); Python Owlready2, owlrl.
-\item Extension of RDF + RDF Schema. RDF/RDFS too limited \cnt{3}: \n1cannot specify nature of relations (reflexivity\ldots) \n2no reasoning \n3very limited logic.
-\item OWL adds: class connectors ($\sqcap,\sqcup,\neg$), cardinality, property characteristics, equivalence/equality of classes, properties, resources.
+\item Extends RDF + RDFS, which \cnt{3} cannot specify relation nature, cannot reason, have very limited logic.
+%
 \item Sub-languages \cnt{3}: OWL Lite $\subset$ OWL DL $\subset$ OWL Full.
 \item Class declared \cnt{4 ways}: \n1by name \n2by enumeration of individuals \n3by property restrictions \n4by $\sqcap$/$\sqcup$/$\neg$ of classes (anonymous class = individuals satisfying its definition). \texttt{owl:Thing} top, \texttt{owl:Nothing} subclass of all; \texttt{rdfs:subClassOf}; metaclass only in OWL Full; instances = the \kw{extension}.
 \end{itemize}
@@ -451,9 +466,8 @@ minCardinality & $\ge nP$ & $\exists^{\ge n}y.P(x,y)$\\
 \end{itemize}
 \sub{Ontologies}
 \begin{itemize}
-\item Gruber 1993: ``explicit formal specifications of the terms in the domain and relations among them''.
 \item Hudelot 2006: \kw{formal, explicit specification of a shared conceptualization} \cnt{4}: \n1conceptualization = view of a domain (concepts, definitions, relations) \n2explicit = types and constraints defined \n3formal = machine-understandable \n4shared = consensus of a group.
-\item Role: share, \kw{reuse}, \kw{interoperability}. Why build one \cnt{6}: \n1precise, machine-processable definitions \n2separate domain from operational knowledge \n3common reference \n4shared understanding \n5reasoning/inference \n6explainable, trustworthy AI.
+\item Role: share, \kw{reuse}, \kw{interoperability}. Why build \cnt{6}: \n1precise definitions \n2separate domain/operational knowledge \n3common reference \n4shared understanding \n5reasoning \n6explainable AI.
 \item Knowledge graph = triples (subject, predicate, object) = ABox level; ontology = schema/logic = TBox level.
 \item \kw{Ontology structure} (quintuplet) $O:=\{\mathcal C,\mathcal R,\mathcal H^{\mathcal C},\mathit{Rel},\mathcal A^O\}$:
 \begin{itemize}
@@ -463,8 +477,8 @@ minCardinality & $\ge nP$ & $\exists^{\ge n}y.P(x,y)$\\
 \item $\mathcal A^O$: axioms in a logical language (DL, FOL).
 \end{itemize}
 \item \kw{Knowledge base} (quadruplet) $KB:=\{O,I,inst,instr\}$: $O$ ontology, $I$ individuals, $inst:\mathcal C\to2^I$, $instr:\mathcal R\to2^{I\times I}$; lexicon $L^{KB}:=(L^I,J)$.
-\item Types (Guarino 98) \cnt{4}: top-level (space, time, event), domain, task, application (roles of domain entities in an activity).
-\item Lightweight (E-R, UML) vs heavyweight (DL, FOL); standards RDF, RDFS, OWL.
+\item Types (Guarino 98) \cnt{4}: top-level, domain, task, application. Lightweight (E-R, UML) vs heavyweight (DL, FOL).
+%
 \item Life cycle \cnt{6}: create/select, populate, validate (consistency), evolve, maintain, deploy.
 \end{itemize}
 \sub{Rule-based reasoning}
@@ -504,7 +518,7 @@ minCardinality & $\ge nP$ & $\exists^{\ge n}y.P(x,y)$\\
 \item $abcde$: 10000, 10001, 10010, 10011, 10100, 11100 (6).
 \end{itemize}
 \sub{Propositional Q2: decomposition tree (root = main connective)}
-{\centering\begin{tikzpicture}[level distance=3.9mm,every node/.style={inner sep=0.6pt,font=\footnotesize},
+{\centering\begin{tikzpicture}[level distance=3.5mm,every node/.style={inner sep=0.6pt,font=\footnotesize},
 level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},level 3/.style={sibling distance=8mm},level 4/.style={sibling distance=6mm}]
 \node{$\to$} child{node{$a$}} child{node{$\wedge$} child{node{$\vee$} child{node{$b$}} child{node{$c$}}} child{node{$\to$} child{node{$c$}} child{node{$\to$} child{node{$\neg$} child{node{$d$}}} child{node{$e$}}}}};
 \end{tikzpicture}\par}
@@ -545,32 +559,19 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \end{itemize}
 \sub{Fuzzy}
 \begin{itemize}
-\item \textbf{Q1} $T(a,b)=\frac{a+b}2$ is \textbf{not} a T-norm: commutative, monotone hold; neutral fails $T(0.4,1)=0.7$; associativity fails $T(T(0,0),1)=.5\neq T(0,T(0,1))=.25$.
+\item \textbf{Q1} $T(a,b)=\frac{a+b}2$ is \textbf{not} a T-norm: $T(.4,1)=.7\neq.4$; $T(T(0,0),1)=.5\neq T(0,T(0,1))=.25$.
 \item \textbf{Q2} $R_{\min}(0.3,0.7)=1$ since $0.3\le0.7$; $\vee$ = conorm of min = max: $\max(1,0.1)=\mathbf{1}$.
-\item \textbf{Q3} Rules: $c\ge\min(a,b)$, $a\ge c$. Start $a=0$ (no initial value), $b=.3$, $c=.1$.
-\begin{itemize}
-\item Rule 1: $\min(0,.3)=0\le.1$ OK. Rule 2: raise $a$ to $.1$.
-\item Rule 1: $\min(.1,.3)=.1\le.1$ OK. Stable: $\mathbf{a=.1,b=.3,c=.1}$.
-\end{itemize}
-\item \textbf{Q4} First of Maxima, $d(\mu)=\min\{c\mid\mu(c)\text{ maximal}\}$:
-\begin{itemize}
-\item $+$ always returns a point of maximal membership (safe); simple.
-\item $-$ ignores the other maxima (best years 1960--2020 $\to$ only 1960); ignores the shape.
-\end{itemize}
+\item \textbf{Q3} Rules $c\ge\min(a,b)$, $a\ge c$; start $a=0$ (none given), $b=.3$, $c=.1$. Rule 1 OK ($0\le.1$); rule 2 raises $a$ to $.1$; rule 1 OK ($.1\le.1$). Stable: $\mathbf{a=.1,b=.3,c=.1}$.
+\item \textbf{Q4} First of Maxima: $+$ always a point of maximal membership (safe), simple; $-$ ignores other maxima (best years 1960--2020 $\to$ 1960) and the shape.
 \item \textbf{Q5} No (unless P = NP): reduce SAT (proof in section 10).
-\item \textbf{Q6} Yes: with $[0,1]$ values it is PSL, a convex problem (LP), polynomial.
-\item \textbf{Q7} Objective $f=a+2\min(2-a-b,1)+3b$:
-\begin{itemize}
-\item if $a+b\le1$: $f=a+2+3b$, best on $a+b=1$: $f=5-2a$;
-\item if $a+b\ge1$: $f=4-a+b$, maximal at $a=0,b=1$;
-\item $\Rightarrow\mathbf{a=0,b=1}$, $f=0+2+3=5$.
-\end{itemize}
+\item \textbf{Q6} Yes: $[0,1]$ values = PSL, convex (LP), polynomial.
+\item \textbf{Q7} $f=a+2\min(2-a-b,1)+3b$. If $a+b\le1$: $f=a+2+3b$, best on $a+b=1$: $5-2a$. If $a+b\ge1$: $f=4-a+b$. Max at $\mathbf{a=0,b=1}$, $f=5$.
 \end{itemize}
 \sub{FCA: names $\to$ symbols; Q1}
 \begin{itemize}
 \item $x_1..x_7$ = Frodo, Aragorn, Gandalf, Legolas, Saruman, Boromir, Gollum.
 \item $y_1..y_7$ = Middle-earth, Warrior, Magic, Immortal, Ring-carrier, Fellowship, Evil.
-\item \textbf{Q1 Yes}: rows $x_2=x_6$ $\Rightarrow$ merge; no identical columns; $y_1$ full column (reducible).
+\item \textbf{Q1 Yes}: $x_2=x_6$ (merge rows); $y_1$ full column.
 \end{itemize}
 \sub{FCA Q2: lattice by the intersection method}
 \begin{itemize}
@@ -592,7 +593,7 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 11 & $y_3y_4y_5y_7$ & $x_5$ & 7, 8\\
 12 & $Y$ (all) & $\emptyset$ & 6, 10, 11\\
 \end{tabular}\par
-{\centering\begin{tikzpicture}[x=10mm,y=4.3mm,every node/.style={font=\scriptsize,inner sep=0.4pt}]
+{\centering\begin{tikzpicture}[x=10mm,y=3.6mm,every node/.style={font=\scriptsize,inner sep=0.4pt}]
 \foreach \n/\x/\y in {1/2/5,2/0.6/4,3/2/4,4/3.4/4,5/0/3,6/1.2/3,7/2.4/3,8/3.6/3,9/1.2/2,10/2.6/1.1,11/3.8/1.5,12/2.2/0.1}
   \node[circle,draw,minimum size=3.4mm] (c\n) at (\x,\y) {\n};
 \foreach \a/\b in {1/2,1/3,1/4,2/5,2/6,3/6,3/7,4/8,4/9,5/9,9/10,8/10,8/11,7/11,6/12,10/12,11/12}
@@ -606,8 +607,7 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \end{itemize}
 \sub{FCA Q4: verify}
 \begin{itemize}
-\item $(\{x_3,x_5\},\{y_3,y_4\})$: \textbf{no}, $\{x_3,x_5\}\up=\{y_1,y_3,y_4\}$.
-\item $(\{x_1,x_2\},\{y_6\})$: \textbf{no}, $\{y_6\}\dn$ has 5 objects.
+\item $(\{x_3,x_5\},\{y_3,y_4\})$ \textbf{no}: $\{x_3,x_5\}\up=\{y_1,y_3,y_4\}$. $(\{x_1,x_2\},\{y_6\})$ \textbf{no}: $|\{y_6\}\dn|=5$.
 \end{itemize}
 \sub{FCA Q5: implications ($|X|=7$)}
 \begin{itemize}
@@ -616,8 +616,7 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \end{itemize}
 \sub{FCA Q6: association rules (AR) vs FCA}
 \begin{itemize}
-\item Implication = AR with $c=1$ ($Z_1\dn\subseteq Z_2\dn\iff\sigma(Z_1\cup Z_2)=\sigma(Z_1)$); intents = closed itemsets, $s(B)=|B\dn|/|X|$.
-\item FCA: small clean data, exact rules + hierarchy; AR: large noisy data, thresholds. E.g.\ $\{y_2\}\Rightarrow\{y_6\}$ $c=1$ (implication); $\{y_6\}\Rightarrow\{y_2\}$ $c=\frac45$ (AR only).
+\item Implication = AR with $c=1$; intents = closed itemsets, $s(B)=|B\dn|/|X|$. FCA: small clean data, exact; AR: large noisy data, thresholds. $\{y_2\}\Rightarrow\{y_6\}$ $c=1$; $\{y_6\}\Rightarrow\{y_2\}$ $c=\frac45$ (AR only).
 \end{itemize}
 
 %=====================================================================
