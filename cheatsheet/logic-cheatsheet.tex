@@ -1,7 +1,7 @@
 % Logics & Symbolic AI (CSC_5AI01_TP) -- one A4 sheet, recto-verso cheat sheet
 % Notation follows the course slides. Build: pdflatex logic-cheatsheet.tex (twice)
 \documentclass[10pt]{article}
-\usepackage[a4paper,landscape,margin=0.3cm]{geometry}
+\usepackage[a4paper,landscape,margin=0.25cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx}
 \usepackage{amsmath,amssymb}
@@ -16,7 +16,7 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlength{\columnsep}{6pt}
+\setlength{\columnsep}{5pt}
 \setlength{\columnseprule}{0.3pt}
 \setlength{\tabcolsep}{1.6pt}
 \renewcommand{\arraystretch}{0.95}
@@ -38,7 +38,7 @@
 \newcommand{\gc}[1]{\langle #1\rangle}
 \newcommand{\infr}[2]{\dfrac{#1}{#2}}
 \begin{document}
-\fontsize{7.8}{8.65}\selectfont
+\fontsize{7}{7.35}\selectfont
 \begin{multicols*}{4}
 \raggedcolumns
 \raggedright
@@ -69,16 +69,12 @@
 \item $\gc{X_1..X_n}$ = generalized conjunction ($v(\gc{})=True$).
 \item \kw{CNF} $\gc{C_1,..,C_n}$, each \kw{clause} $C_i=\gd{\ldots}$.
 \end{itemize}
-\begin{tabular}{@{}l@{\ \ }l@{\ \ }l@{}}
- & rewrite & negation\\\hline
-$\wedge$ & $X\wedge Y$ & $\neg X\vee\neg Y$\\
-$\vee$ & $X\vee Y$ & $\neg X\wedge\neg Y$\\
-$\impl$ & $\neg X\vee Y$ & $X\wedge\neg Y$\\
-$\subset$ & $X\vee\neg Y$ & $\neg X\wedge Y$\\
-$\uparrow$ & $\neg X\vee\neg Y$ & $X\wedge Y$\\
-$\downarrow$ & $\neg X\wedge\neg Y$ & $X\vee Y$\\
-$\not\supset$ & $X\wedge\neg Y$ & $\neg X\vee Y$\\
-$\not\subset$ & $\neg X\wedge Y$ & $X\vee\neg Y$\\
+\begin{tabular}{@{}l@{\ }l@{\ }l|l@{\ }l@{\ }l@{}}
+ & rewrite & negated & & rewrite & negated\\\hline
+$\wedge$ & $X\wedge Y$ & $\neg X\vee\neg Y$ & $\vee$ & $X\vee Y$ & $\neg X\wedge\neg Y$\\
+$\impl$ & $\neg X\vee Y$ & $X\wedge\neg Y$ & $\subset$ & $X\vee\neg Y$ & $\neg X\wedge Y$\\
+$\uparrow$ & $\neg X\vee\neg Y$ & $X\wedge Y$ & $\downarrow$ & $\neg X\wedge\neg Y$ & $X\vee Y$\\
+$\not\supset$ & $X\wedge\neg Y$ & $\neg X\vee Y$ & $\not\subset$ & $\neg X\wedge Y$ & $X\vee\neg Y$\\
 \end{tabular}
 \begin{itemize}
 \item Disjunction: $\gd{..P..}\to\gd{..A,B..}$.
@@ -119,8 +115,7 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \item $(\forall x)F$: True for all $B$ equal to $A$ save for $x$; $\exists$: for one.
 \item \kw{Valid}: true in every model (all $A$).
 \item $F$ valid $\iff\{\neg F\}$ not satisfiable.
-\item Valid: $((\forall x)p(a,x))\impl p(a,a)$.
-\item Not valid: $(\forall x)(p(a,x)\impl p(a,a))$, $(\forall x)(\exists y)p(x,y)$.
+\item Valid: $((\forall x)p(a,x))\impl p(a,a)$. Not valid: $(\forall x)(\exists y)p(x,y)$.
 \end{itemize}
 \sub{Prenex (rename variables first)}
 \begin{itemize}
@@ -150,27 +145,19 @@ $\to\gc{\gd{A,\neg A,C},\gd{\neg B,\neg A,C}}\to\gc{\gd{\neg B,\neg A,C}}$}
 \item FOL: sound, complete, \kw{semi-decidable} (valid $\Rightarrow$ proof found in finite time; not valid $\Rightarrow$ may never stop).
 \end{itemize}
 
-\sect{4 Natural deduction}
-\renewcommand{\arraystretch}{2.15}
-\begin{tabular}{@{}l@{\,}c@{\ \ }l@{\,}c@{}}
-Ax & $\infr{}{\Gamma,p\vdash p}$ & $\neg$I & $\infr{\Gamma,p\vdash\bot}{\Gamma\vdash\neg p}$\\
-$\neg$E & $\infr{\Gamma\vdash p\quad\Gamma\vdash\neg p}{\Gamma\vdash\bot}$ & Abs & $\infr{\Gamma,\neg p\vdash\bot}{\Gamma\vdash p}$\\
-$\bot$E & $\infr{\Gamma\vdash\bot}{\Gamma\vdash p}$ & $\to$I & $\infr{\Gamma,p\vdash q}{\Gamma\vdash p\to q}$\\
-$\to$E & $\infr{\Gamma\vdash p\to q\quad\Gamma\vdash p}{\Gamma\vdash q}$ & $\wedge$I & $\infr{\Gamma\vdash p\quad\Gamma\vdash q}{\Gamma\vdash p\wedge q}$\\
-$\wedge$Eg & $\infr{\Gamma\vdash p\wedge q}{\Gamma\vdash p}$ & $\wedge$Ed & $\infr{\Gamma\vdash p\wedge q}{\Gamma\vdash q}$\\
-$\vee$Ig & $\infr{\Gamma\vdash p}{\Gamma\vdash p\vee q}$ & $\vee$Id & $\infr{\Gamma\vdash q}{\Gamma\vdash p\vee q}$\\
-\multicolumn{4}{@{}l@{}}{$\vee$E\ \ $\infr{\Gamma\vdash p\vee q\quad\Gamma,p\vdash r\quad\Gamma,q\vdash r}{\Gamma\vdash r}$}\\
-$\forall$I & $\infr{\Gamma\vdash F}{\Gamma\vdash\forall xF}$ & $\forall$E & $\infr{\Gamma\vdash\forall xF(x)}{\Gamma\vdash F[t/x]}$\\
-$\exists$I & $\infr{\Gamma\vdash F(t)}{\Gamma\vdash\exists xF(x)}$ & $\exists$E & $\infr{\Gamma\vdash\exists xF\quad\Gamma\vdash F\to G}{\Gamma\vdash G}$\\
-\end{tabular}
-\renewcommand{\arraystretch}{0.95}
+\sect{4 Natural deduction (handout; $\rhd$ = infer)}
 \begin{itemize}
-\item $\forall$I: $x$ not free in $\Gamma$. $\exists$E: $x$ not free in $\Gamma$, $G$. Handout names: g = left, d = right.
+\item Ax: $\rhd\ \Gamma,p\vdash p$.\quad $\bot$E: $\Gamma\vdash\bot\ \rhd\ \Gamma\vdash p$.
+\item $\neg$I: $\Gamma,p\vdash\bot\ \rhd\ \Gamma\vdash\neg p$.\quad $\neg$E: $\Gamma\vdash p$, $\Gamma\vdash\neg p\ \rhd\ \Gamma\vdash\bot$.
+\item Abs: $\Gamma,\neg p\vdash\bot\ \rhd\ \Gamma\vdash p$ (proof by contradiction).
+\item $\to$I: $\Gamma,p\vdash q\ \rhd\ \Gamma\vdash p\to q$.\quad $\to$E: $\Gamma\vdash p\to q$, $\Gamma\vdash p\ \rhd\ \Gamma\vdash q$.
+\item $\wedge$I: $\Gamma\vdash p$, $\Gamma\vdash q\ \rhd\ \Gamma\vdash p\wedge q$.\quad $\wedge$Eg / $\wedge$Ed: $\Gamma\vdash p\wedge q\ \rhd\ \Gamma\vdash p$ / $\Gamma\vdash q$.
+\item $\vee$Ig / $\vee$Id: $\Gamma\vdash p$ / $\Gamma\vdash q\ \rhd\ \Gamma\vdash p\vee q$.
+\item $\vee$E: $\Gamma\vdash p\vee q$, $\Gamma,p\vdash r$, $\Gamma,q\vdash r\ \rhd\ \Gamma\vdash r$.
+\item $\forall$I: $\Gamma\vdash F\ \rhd\ \Gamma\vdash\forall xF$ ($x$ not free in $\Gamma$).\quad $\forall$E: $\Gamma\vdash\forall xF(x)\ \rhd\ \Gamma\vdash F[t/x]$.
+\item $\exists$I: $\Gamma\vdash F(t)\ \rhd\ \Gamma\vdash\exists xF(x)$.\quad $\exists$E: $\Gamma\vdash\exists xF$, $\Gamma\vdash F\to G\ \rhd\ \Gamma\vdash G$ ($x$ not free in $\Gamma$, $G$).
+\item Handout names: g = left, d = right. Ex.\ $\vdash(A\to B)\to((B\to C)\to(A\to C))$: from $\Gamma=\{A\to B,B\to C,A\}$, $\to$E twice gives $C$, then $\to$I $\times3$; term $\lambda f.\lambda g.\lambda x.g(fx)$.
 \end{itemize}
-\ex{\textbf{Example} $\vdash(A\to B)\to((B\to C)\to(A\to C))$\\
-$\Gamma=\{A\to B,B\to C,A\}$: Ax gives $A$, $A\to B$;\\
-$\to$E: $B$; $\to$E with $B\to C$: $C$; then $\to$I $\times3$.\\
-Curry--Howard term: $\lambda f.\lambda g.\lambda x.g(fx)$.}
 
 %=====================================================================
 \sect{5 Planning: STRIPS}
@@ -236,21 +223,13 @@ Curry--Howard term: $\lambda f.\lambda g.\lambda x.g(fx)$.}
 \item \kw{Reduced}: no object/attribute derivable from others.
 \item \kw{Implication} $Z_1\Rightarrow Z_2$ valid $\iff Z_1\dn\subseteq Z_2\dn$.
 \item Counterexample: object in $Z_1\dn\setminus Z_2\dn$.
+\item \kw{Proofs}: $B\subseteq A\up\iff A\subseteq B\dn$; $A\up{}\dn{}\up=A\up$ ($\supseteq$ extensive, $\subseteq$ antitone); meet: $(B_1\cup B_2)\dn=B_1\dn\cap B_2\dn$.
 \item \kw{Armstrong} \cnt{3}: \n1reflexivity \n2augmentation \n3transitivity.
 \item \kw{Basis} \cnt{2}: \n1complete \n2non-redundant. \kw{Duquenne--Guigues}: pseudo-intents $P\Rightarrow P\dn{}\up$, minimal.
 \end{itemize}
-\ex{\textbf{Slide example: table of concepts}\\
-Context: $x_1{:}y_1y_2y_3y_4$, $x_2{:}y_1y_3y_4$, $x_3,x_4{:}y_2y_3y_4$, $x_5{:}y_1$.\\[1pt]
-\begin{tabular}{@{}l|l|l|l@{}}
- & extent $A$ & intent $B$ & below\\\hline
-$C_1$ & $x_1x_2x_3x_4x_5$ & $\emptyset$ & (top)\\
-$C_2$ & $x_1x_2x_3x_4$ & $y_3y_4$ & $C_1$\\
-$C_3$ & $x_1x_3x_4$ & $y_2y_3y_4$ & $C_2$\\
-$C_4$ & $x_1x_2x_5$ & $y_1$ & $C_1$\\
-$C_5$ & $x_1x_2$ & $y_1y_3y_4$ & $C_2,C_4$\\
-$C_6$ & $x_1$ & $y_1y_2y_3y_4$ & $C_3,C_5$\\
-\end{tabular}\\[1pt]
-NextClosure order: $C_1,C_2,C_3,C_4,C_5,C_6$. Clarify: $x_3=x_4$, $y_3=y_4$.}
+\begin{itemize}
+\item \kw{Slide example}: $x_1{:}y_1y_2y_3y_4$, $x_2{:}y_1y_3y_4$, $x_3,x_4{:}y_2y_3y_4$, $x_5{:}y_1$ $\Rightarrow$ 6 concepts (intent / extent): $\emptyset$/all; $y_3y_4$/$x_1..x_4$; $y_2y_3y_4$/$x_1x_3x_4$; $y_1$/$x_1x_2x_5$; $y_1y_3y_4$/$x_1x_2$; $Y$/$x_1$. Clarify: $x_3=x_4$, $y_3=y_4$.
+\end{itemize}
 
 \sect{8 Association rules}
 \begin{itemize}
@@ -313,19 +292,8 @@ NextClosure order: $C_1,C_2,C_3,C_4,C_5,C_6$. Clarify: $x_3=x_4$, $y_3=y_4$.}
 \item Relaxation (\L ukasiewicz, S-implication): clause degree $\min(\sum_ix_i,1)$; negative literal gives $1-y(s)$.
 \item \kw{PSL}: max $\sum_cw(c)\min(\sum_{s+}y(s)+\sum_{s-}(1-y(s)),1)$, $y\in[0,1]$, $y(s)\le v$.
 \end{itemize}
-\ex{\textbf{Proof: Weighted MAX SAT is NP-hard} \cnt{3 steps}
-\begin{enumerate}[leftmargin=8pt]
-\item Take any SAT instance with clauses $C_1,\ldots,C_m$.
-\item Give every clause weight 1. Then: satisfiable $\iff$ optimum $=m$.
-\item So a polynomial algorithm for Weighted MAX SAT decides SAT in polynomial time. SAT is NP-complete $\Rightarrow$ P = NP.
-\end{enumerate}
-Conclusion: no polynomial algorithm unless P = NP; try all $2^n$ worlds. Decision version (``weight $\ge k$?'') is in NP $\Rightarrow$ NP-complete.}
-\ex{\textbf{Proof: PSL inference is polynomial} \cnt{3 steps}
-\begin{enumerate}[leftmargin=8pt]
-\item Each $\ell_c(y)=\sum_{s+}y(s)+\sum_{s-}(1-y(s))$ is affine in $y$.
-\item $\min(\ell_c,1)$ is concave (min of affine); a sum with $w(c)\ge0$ is concave; constraints are linear $\Rightarrow$ \kw{convex} problem (no bad local optimum).
-\item Same as the linear program (LP): max $\sum_cw(c)z_c$ s.t.\ $z_c\le\ell_c(y)$, $z_c\le1$, $0\le y\le1$, $y(s)\le v$. LPs are solvable in polynomial time (slides: hit and run).
-\end{enumerate}}
+\ex{\textbf{Proof: Weighted MAX SAT is NP-hard} \cnt{3 steps}: \n1take any SAT instance $C_1..C_m$ \n2weight 1 each: satisfiable $\iff$ optimum $=m$ \n3a polynomial algorithm would decide SAT (NP-complete) $\Rightarrow$ P = NP. So: no polynomial algorithm unless P = NP (try all $2^n$ worlds); decision version is in NP $\Rightarrow$ NP-complete.}
+\ex{\textbf{Proof: PSL inference is polynomial} \cnt{3 steps}: \n1$\ell_c(y)=\sum_{s+}y(s)+\sum_{s-}(1-y(s))$ is affine \n2$\min(\ell_c,1)$ concave, positive-weighted sum concave, linear constraints $\Rightarrow$ \kw{convex} \n3linear program: max $\sum_cw(c)z_c$ s.t.\ $z_c\le\ell_c(y)$, $z_c\le1$, $0\le y\le1$ $\Rightarrow$ polynomial (slides: hit and run).}
 
 %=====================================================================
 \sect{11 Theorem proving \& $\lambda$-calculus}
@@ -379,52 +347,141 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \end{itemize}
 
 %=====================================================================
-\sect{12 Description logics}
+\sect{12 Description logics (DL)}
 \begin{itemize}
-\item Variable-free, decidable fragments of FOL.
-\item \kw{KB = TBox} (concepts, roles) \kw{+ ABox} (named individuals).
-\item $\mathcal{AL}$ \cnt{6}: $\top$, $\bot$, $\neg A$ (atomic only), $C\sqcap D$, $\forall R.C$, $\exists R.\top$.
-\item $\mathcal U$: $\sqcup$; $\mathcal E$: $\exists R.C$; $\mathcal C$: $\neg C$; $\mathcal N$: $\le nR$, $\ge nR$.
-\item $\mathcal{AL}\subseteq\mathcal{ALE}\subseteq\mathcal{ALC}\subseteq\mathcal{SHOIN}\subseteq\mathcal{SROIQ}$ (OWL 2 DL).
+\item \kw{DL}: family of formal (logic-based) KR languages; world described by \kw{concept descriptions} built from atomic concepts (classes), atomic roles (relationships) and individuals, with formal semantics.
+\item \kw{Why DL, not FOL} \cnt{4}: \n1variable-free syntax \n2easier to read \n3expressive yet decidable reasoning \n4most DLs = decidable fragments of FOL (FOL: expressive but undecidable).
+\item \kw{DL system}: KB = \kw{TBox} (terminology: concepts, roles) + \kw{ABox} (assertions on named individuals); + description language, reasoning, applications, rules.
+\item TBox Mother $\equiv$ Woman $\sqcap\exists$hasChild.$\top$; ABox Woman(Alice), hasChild(Alice,Bob) $\Rightarrow$ Mother(Alice).
+\item \kw{Inference services} \cnt{5}: \n1TBox description satisfiable \n2subsumption (hierarchy) \n3ABox consistent (has a model) \n4individual instance of a concept \n5concept as query (retrieve individuals).
 \end{itemize}
-\sub{Semantics $\mathcal I=(\Delta^I,\cdot^I)$}
+\sub{Syntax: $A,B,C,D$ atomic concepts, $R$ atomic role}
 \begin{itemize}
-\item $A^I\subseteq\Delta^I$, $R^I\subseteq\Delta^I\times\Delta^I$.
-\item $(C\sqcap D)^I=C^I\cap D^I$, $(\neg C)^I=\Delta^I\setminus C^I$.
-\item $(\exists R.C)^I=\{x\mid\exists y,(x,y)\in R^I\wedge y\in C^I\}$.
-\item $(\forall R.C)^I=\{x\mid\forall y,(x,y)\in R^I\to y\in C^I\}$.
+\item \kw{AL} \cnt{6}: $\top$ universal (Top) concept; $\bot$ bottom concept; $\neg A$ atomic negation (atomic only); $C\sqcap D$ intersection; $\forall R.C$ value restriction (all $R$-successors in $C$); $\exists R.\top$ limited existential quantification.
+\item Extensions \cnt{4}: ALU union $C\sqcup D$; ALE full existential $\exists R.C$; ALC full negation $\neg C$; ALN number restrictions $\le nR$, $\ge nR$.
+\item AL $\subseteq$ ALE $\subseteq$ ALC $\subseteq$ SHOIN $\subseteq$ SROIQ (OWL 2 DL).
 \end{itemize}
-\sub{Translation $\tau_x$ to FOL}
+\renewcommand{\arraystretch}{0.9}
+\begin{tabular}{@{}l@{\ }l@{}}
+Person $\sqcap$ Female & females who are persons\\
+$\exists$hasChild.$\top$ & has at least one child (any type)\\
+$\exists$hasChild.Person & has a child who is a person\\
+Person $\sqcap\forall$hasChild.Female & persons whose children are all female\\
+Person $\sqcap\forall$hasChild.$\bot$ & persons with no children\\
+Person $\sqcap$ Female $\sqcap\ge3$ hasChild & female persons with $\ge3$ children\\
+\end{tabular}
+\renewcommand{\arraystretch}{0.95}
+\sub{Semantics: interpretation $\mathbb I=(\Delta^I,\cdot^I)$}
 \begin{itemize}
-\item $\tau_x(C)=C(x)$; $\sqcap\to\wedge$; $\sqcup\to\vee$; $\neg\to\neg$.
-\item $\tau_x(\exists r.C)=\exists y,r(x,y)\wedge\tau_y(C)$.
-\item $\tau_x(\forall r.C)=\forall y,r(x,y)\to\tau_y(C)$.
-\item $C\sqsubseteq D$: $\forall x(\tau_x(C)\to\tau_x(D))$.
-\item ABox: $C(a)$, $r(a,b)$.
+\item Domain $\Delta^I$ (non-empty set); interpretation function $\cdot^I$: atomic concept $A\mapsto A^I\subseteq\Delta^I$; atomic role $R\mapsto R^I\subseteq\Delta^I\times\Delta^I$.
+\item $(C\sqcap D)^I=C^I\cap D^I$;\ $(C\sqcup D)^I=C^I\cup D^I$;\ $(\neg C)^I=\Delta^I\setminus C^I$;\ $\top^I=\Delta^I$, $\bot^I=\emptyset$.
+\item $(\forall R.C)^I=\{x\in\Delta^I\mid\forall y,(x,y)\in R^I\to y\in C^I\}$.
+\item $(\exists R.C)^I=\{x\in\Delta^I\mid\exists y,(x,y)\in R^I\wedge y\in C^I\}$.
+\item $(\ge nR)^I=\{x\mid|\{y\mid(x,y)\in R^I\}|\ge n\}$ (same for $\le$).
+\item Ex.\ Parent $\equiv$ Person $\sqcap\exists$hasChild.Person: $\forall x.Parent(x)\leftrightarrow(Person(x)\wedge\exists y.(hasChild(x,y)\wedge Person(y)))$.
 \end{itemize}
-\sub{Reasoning: TBox \cnt{4}, ABox \cnt{4}}
+\sub{DL $\leftrightarrow$ FOL (slide table)}
+\begin{tabular}{@{}l@{\ }l@{\ }l@{}}
+$\top$, $\bot$ & universal / empty & $\forall x.\top$, $\forall x.\bot$\\
+$\neg C$ & negation & $\neg C(x)$\\
+$C\sqcap D$ & conjunction & $C(x)\wedge D(x)$\\
+$C\sqcup D$ & disjunction & $C(x)\vee D(x)$\\
+$C\sqsubseteq D$ & & $\forall x.\,C(x)\to D(x)$\\
+$\exists R.C$ & existential restr. & $\exists y.\,R(x,y)\wedge C(y)$\\
+$\forall R.C$ & universal restr. & $\forall y.\,R(x,y)\to C(y)$\\
+$R_1\circ R_2\sqsubseteq R_3$ & property chain & $\forall x,y,z.\,R_1(x,y)\wedge R_2(y,z)\to R_3(x,z)$\\
+\end{tabular}
 \begin{itemize}
-\item TBox model: satisfies all $C\sqsubseteq D$, $C\equiv D$.
-\item Satisfiable: $C^I\neq\emptyset$ in some model of $\mathcal T$.
-\item Subsumption $\mathcal T\models C\sqsubseteq D$: $C^I\subseteq D^I$ in all models.
-\item Disjoint: $C^I\cap D^I=\emptyset$ in all models.
-\item $C\sqsubseteq D\iff C\sqcap\neg D$ unsatisfiable.
-\item Disjoint $\iff C\sqcap D$ unsatisfiable; $C$ unsatisfiable $\iff C\sqsubseteq\bot$.
-\item ABox \kw{consistent}: a model of $\mathcal A$ and $\mathcal T$ exists.
-\item \kw{Instance}: $\mathcal A\models C(a)\iff\mathcal A\cup\{\neg C(a)\}$ inconsistent.
-\item \kw{Retrieval}: all $a$ with $C(a)$. \kw{Realization}: most specific $C$.
+\item Translation $\tau_x$ (Bloch): $\tau_x(\exists r.C)=\exists y,r(x,y)\wedge\tau_y(C)$; $\tau_x(\forall r.C)=\forall y,r(x,y)\to\tau_y(C)$; TBox $\bigwedge\forall x(\tau_x(C)\to\tau_x(D))$; ABox $C(a)$, $r(a,b)$.
 \end{itemize}
-\ex{\textbf{Inconsistent ABox}
+\sub{TBox (terminology)}
 \begin{itemize}
-\item $\mathcal T$: Father $\sqsubseteq$ Man, Mother $\sqsubseteq$ Woman, Man $\sqcap$ Woman $\sqsubseteq\bot$.
-\item $\mathcal A$: Mother(mary), Father(mary).
-\item $mary^I\in Woman^I\cap Man^I=\emptyset$: inconsistent.
-\end{itemize}}
-\sub{Ontologies \& OWL}
+\item Axioms \cnt{2}: \n1inclusion $C\sqsubseteq D$ ($C$ subclass of $D$) \n2equivalence $C\equiv D$ (same instances).
+\item $I$ satisfies $T$ iff $I$ satisfies every axiom: $I$ is a \kw{model} of $T$, $I\models T$.
+\item Ex.\ $T=\{$Parent $\sqsubseteq$ Person, Mother $\equiv$ Woman $\sqcap\exists$hasChild.Person$\}$.
+\item Family TBox: Woman $\equiv$ Person $\sqcap$ Female; Man $\equiv$ Person $\sqcap\neg$Woman; Mother $\equiv$ Woman $\sqcap\exists$hasChild.Person; Parent $\equiv$ Father $\sqcup$ Mother; MotherWithoutDaughter $\equiv$ Mother $\sqcap\forall$hasChild.$\neg$Woman.
+\end{itemize}
+\sub{ABox (world description)}
 \begin{itemize}
-\item Ontology \cnt{4 words}: \n1formal \n2explicit specification of a \n3shared \n4conceptualization.
-\item Properties \cnt{5}: inverse, transitive, symmetric, functional, inverse functional.
-\item Functional: $P(X,Y)\wedge P(X,Z)\Rightarrow Y=Z$.
+\item Individuals $a,b,c$; \kw{concept assertion} $C(a)$ ($a$ belongs to $C$); \kw{role assertion} $R(b,c)$ ($c$ is a \emph{filler} of $R$ for $b$).
+\item Ex.\ MotherWithoutDaughter(Mary), Father(Peter), hasChild(Mary,Peter), hasChild(Peter,Harry), hasChild(Mary,Paul).
+\item Semantics \cnt{4}: \n1$I$ satisfies $C(a)$ if $a^I\in C^I$ \n2$R(a,b)$ if $(a^I,b^I)\in R^I$ \n3satisfies all assertions $\Rightarrow$ model of $A$ \n4model of $A$ w.r.t.\ $T$ = model of $T$ and of $A$.
+\end{itemize}
+\sub{Reasoning tasks for TBox \cnt{4}}
+\begin{itemize}
+\item \n1\kw{Satisfiability}: some model $I$ of $T$ with $C^I\neq\emptyset$.
+\item \n2\kw{Subsumption} $C\sqsubseteq D$ or $T\models C\sqsubseteq D$: $C^I\subseteq D^I$ for every model $I$ of $T$.
+\item \n3\kw{Equivalence} $C\equiv_TD$ or $T\models C\equiv D$: $C^I=D^I$ for every model.
+\item \n4\kw{Disjointness}: $C^I\cap D^I=\emptyset$ for every model.
+\item To subsumption \cnt{3}: $C$ unsat.\ $\iff C\sqsubseteq\bot$; equivalent $\iff$ both ways $\sqsubseteq$; disjoint $\iff C\sqcap D\sqsubseteq\bot$.
+\item To unsatisfiability \cnt{3}: $C\sqsubseteq D\iff C\sqcap\neg D$ unsat.; equivalent $\iff C\sqcap\neg D$ and $\neg C\sqcap D$ unsat.; disjoint $\iff C\sqcap D$ unsat.
+\end{itemize}
+\sub{Reasoning tasks for ABox \cnt{4}}
+\begin{itemize}
+\item \n1\kw{Consistency}: $A$ consistent w.r.t.\ $T$ if $\exists I$ model of both; consistent = w.r.t.\ the empty TBox.
+\item \n2\kw{Instance check}: $A\models C(a)$ if every $I$ satisfying $A$ satisfies $C(a)$; $A\models C(a)\iff A\cup\{\neg C(a)\}$ inconsistent.
+\item \n3\kw{Retrieval}: given $A$, $C$: all $a$ with $A\models C(a)$.
+\item \n4\kw{Realization}: given $a$ and a set of concepts: most specific $C$ (minimal for $\sqsubseteq$) with $A\models C(a)$.
+\end{itemize}
+\sub{Extensions of ALC}
+\begin{itemize}
+\item HappyMan $\equiv$ Human $\sqcap\neg$Female $\sqcap(\exists$married.Doctor$)\sqcap(\forall$hasChild.(Doctor $\sqcup$ Professor)$)\sqcap(\ge2$hasChild $\sqcap\le4$hasChild$)$.
+\item \kw{Qualified number restriction} $\ge2$hasChild.Professor; \kw{inverse roles} (hasChild / hasParent); \kw{transitive roles} (hasAncestor); \kw{subroles} (hasParent $\sqsubseteq$ hasAncestor); \kw{concrete domains} (reals, integers, strings).
+\end{itemize}
+\sub{OWL (Web Ontology Language)}
+\begin{itemize}
+\item Built on DL semantics: OWL 2 DL = SROIQ(D); reasoners HermiT, Pellet, FaCT++ (in Protégé); Python Owlready2, owlrl.
+\item Extension of RDF + RDF Schema. RDF/RDFS too limited \cnt{3}: \n1cannot specify nature of relations (reflexivity\ldots) \n2no reasoning \n3very limited logic.
+\item OWL adds: class connectors ($\sqcap,\sqcup,\neg$), cardinality, property characteristics, equivalence/equality of classes, properties, resources.
+\item Sub-languages \cnt{3}: OWL Lite $\subset$ OWL DL $\subset$ OWL Full.
+\item Class declared \cnt{4 ways}: \n1by name \n2by enumeration of individuals \n3by property restrictions \n4by $\sqcap$/$\sqcup$/$\neg$ of classes (anonymous class = individuals satisfying its definition). \texttt{owl:Thing} top, \texttt{owl:Nothing} subclass of all; \texttt{rdfs:subClassOf}; metaclass only in OWL Full; instances = the \kw{extension}.
+\end{itemize}
+\begin{tabular}{@{}l@{\ }l@{\ }l@{}}
+intersectionOf & $C_1\sqcap\ldots\sqcap C_n$ & $C_1(x)\wedge\ldots\wedge C_n(x)$\\
+unionOf & $C_1\sqcup\ldots\sqcup C_n$ & $C_1(x)\vee\ldots\vee C_n(x)$\\
+complementOf & $\neg C$ & $\neg C(x)$\\
+oneOf & $\{x_1\}\sqcup\ldots\sqcup\{x_n\}$ & $x=x_1\vee\ldots\vee x=x_n$\\
+allValuesFrom & $\forall P.C$ & $\forall y.P(x,y)\to C(y)$\\
+someValuesFrom & $\exists P.C$ & $\exists y.P(x,y)\wedge C(y)$\\
+maxCardinality & $\le nP$ & $\exists^{\le n}y.P(x,y)$\\
+minCardinality & $\ge nP$ & $\exists^{\ge n}y.P(x,y)$\\
+\end{tabular}
+\begin{itemize}
+\item Restrictions \cnt{6}: some ($\exists$), only ($\forall$), hasValue ($\ni$, ``equals $x$''), exactly $n$, at most $n$, at least $n$.
+\item Property: domain, range, \texttt{rdfs:subPropertyOf} (inheritance). Characteristics \cnt{5}:
+\begin{itemize}
+\item \kw{inverse} $P_1(X,Y)\iff P_2(Y,X)$ (isParentOf / isSonOf);
+\item \kw{transitive} $P(X,Y)\wedge P(Y,Z)\Rightarrow P(X,Z)$ (isTheAncestorOf);
+\item \kw{symmetric} $P(X,Y)\iff P(Y,X)$ (isBrotherOf);
+\item \kw{functional} $P(X,Y)\wedge P(X,Z)\Rightarrow Y=Z$ (hasAsMother);
+\item \kw{inverse functional} $P(Y,X)\wedge P(Z,X)\Rightarrow Y=Z$ (hasPasseportNumber).
+\end{itemize}
+\item Protégé: \kw{EquivalentTo} = necessary \& sufficient; SubClassOf = necessary; disjoint classes; reasoner infers facts / detects inconsistencies (asserted vs inferred); SWRL rules; SPARQL queries.
+\end{itemize}
+\sub{Ontologies}
+\begin{itemize}
+\item Gruber 1993: ``explicit formal specifications of the terms in the domain and relations among them''.
+\item Hudelot 2006: \kw{formal, explicit specification of a shared conceptualization} \cnt{4}: \n1conceptualization = view of a domain (concepts, definitions, relations) \n2explicit = types and constraints defined \n3formal = machine-understandable \n4shared = consensus of a group.
+\item Role: share, \kw{reuse}, \kw{interoperability}. Why build one \cnt{6}: \n1precise, machine-processable definitions \n2separate domain from operational knowledge \n3common reference \n4shared understanding \n5reasoning/inference \n6explainable, trustworthy AI.
+\item Knowledge graph = triples (subject, predicate, object) = ABox level; ontology = schema/logic = TBox level.
+\item \kw{Ontology structure} (quintuplet) $O:=\{\mathcal C,\mathcal R,\mathcal H^{\mathcal C},\mathit{Rel},\mathcal A^O\}$:
+\begin{itemize}
+\item $\mathcal C$, $\mathcal R$: disjoint sets of concepts and relations;
+\item $\mathcal H^{\mathcal C}\subseteq\mathcal C\times\mathcal C$ taxonomy: $\mathcal H^{\mathcal C}(C_1,C_2)$ = $C_1$ sub-concept of $C_2$;
+\item $\mathit{rel}:\mathcal R\to\mathcal C\times\mathcal C$ (non-taxonomic relations), $dom(R):=\Pi_1(rel(R))$, $range(R):=\Pi_2(rel(R))$;
+\item $\mathcal A^O$: axioms in a logical language (DL, FOL).
+\end{itemize}
+\item \kw{Knowledge base} (quadruplet) $KB:=\{O,I,inst,instr\}$: $O$ ontology, $I$ individuals, $inst:\mathcal C\to2^I$, $instr:\mathcal R\to2^{I\times I}$; lexicon $L^{KB}:=(L^I,J)$.
+\item Types (Guarino 98) \cnt{4}: top-level (space, time, event), domain, task, application (roles of domain entities in an activity).
+\item Lightweight (E-R, UML) vs heavyweight (DL, FOL); standards RDF, RDFS, OWL.
+\item Life cycle \cnt{6}: create/select, populate, validate (consistency), evolve, maintain, deploy.
+\end{itemize}
+\sub{Rule-based reasoning}
+\begin{itemize}
+\item Modus ponens $\frac{A,\ A\to B}{B}$; modus tollens $\frac{\neg B,\ A\to B}{\neg A}$.
+\item Basic cycle \cnt{3}: \n1detection (pattern matching / unification) \n2choice (first rule as Prolog, most specific, most useful; metarules) \n3execution (update KB).
+\item \kw{Forward} chaining (data driven) / \kw{backward} chaining (goal oriented: rules concluding the goal, prove their premises recursively) / mixed.
+\item Ex.\ R1 B,D,E$\to$F; R2 D,G$\to$A; R3 C,F$\to$A; R4 C$\to$D; R5 D$\to$E; R6 A$\to$H; R7 B$\to$X; R8 X,C$\to$A; B, C true, H? First rule: D,E,F,A,H. Last rule: X,A,H.
 \end{itemize}
 
 %=====================================================================
@@ -434,8 +491,7 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \item Take $x\in(\forall r.(A\sqcap B))^I$ and $y$ with $(x,y)\in r^I$.
 \item Then $y\in A^I\cap B^I\subseteq A^I$, so $x\in(\forall r.A)^I$.
 \item Same for $B$, so $x$ is in the intersection.
-\item FOL: $\forall x[\forall y(r\to A\wedge B)\to\forall y(r\to A)\wedge\forall y(r\to B)]$ is valid.
-\item The converse holds too ($\equiv$).
+\item FOL: $\forall x[\forall y(r\to A\wedge B)\to\forall y(r\to A)\wedge\forall y(r\to B)]$ valid. Converse holds too.
 \item $\exists r.(A\sqcap B)\sqsubseteq\exists r.A\sqcap\exists r.B$, \emph{not} the converse.
 \end{itemize}
 \sub{Is Pedro a SuccessfulMan?}
@@ -519,19 +575,14 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \item $\Rightarrow\mathbf{a=0,b=1}$, $f=0+2+3=5$.
 \end{itemize}
 \end{itemize}
-\sub{FCA: names $\to$ symbols}
+\sub{FCA: names $\to$ symbols; Q1}
 \begin{itemize}
-\item $x_1$ Frodo, $x_2$ Aragorn, $x_3$ Gandalf, $x_4$ Legolas, $x_5$ Saruman, $x_6$ Boromir, $x_7$ Gollum.
-\item $y_1$ Middle-earth, $y_2$ Warrior, $y_3$ Magic, $y_4$ Immortal, $y_5$ Ring-carrier, $y_6$ Fellowship, $y_7$ Evil.
-\end{itemize}
-\sub{FCA Q1: clarification needed?}
-\begin{itemize}
-\item \textbf{Yes}: rows $x_2=x_6$ $\Rightarrow$ merge; no identical columns.
-\item $y_1$ is a full column (in every intent): reducible.
+\item $x_1..x_7$ = Frodo, Aragorn, Gandalf, Legolas, Saruman, Boromir, Gollum.
+\item $y_1..y_7$ = Middle-earth, Warrior, Magic, Immortal, Ring-carrier, Fellowship, Evil.
+\item \textbf{Q1 Yes}: rows $x_2=x_6$ $\Rightarrow$ merge; no identical columns; $y_1$ full column (reducible).
 \end{itemize}
 \sub{FCA Q2: lattice by the intersection method}
 \begin{itemize}
-\item Rows: $x_1\{y_1y_5y_6\}$, $x_2{=}x_6\{y_1y_2y_6\}$, $x_3\{y_1y_2y_3y_4y_6\}$, $x_4\{y_1y_2y_4y_6\}$, $x_5\{y_1y_3y_4y_5y_7\}$, $x_7\{y_1y_5y_7\}$.
 \item New rows: $x_1{\cap}x_2=\{y_1y_6\}$, $x_1{\cap}x_5=\{y_1y_5\}$, $x_2{\cap}x_5=\{y_1\}$, $x_4{\cap}x_5=\{y_1y_4\}$, $x_3{\cap}x_5=\{y_1y_3y_4\}$; add full row $Y$ $\Rightarrow$ 12 intents.
 \end{itemize}
 \textbf{Table of concepts} (every intent also contains $y_1$)\\[1pt]
@@ -569,25 +620,17 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \end{itemize}
 \sub{FCA Q5: implications ($|X|=7$)}
 \begin{itemize}
-\item $\{y_2,y_6\}\to\{y_4\}$: $\{y_2,y_6\}\dn=\{x_2,x_3,x_4,x_6\}$; $x_2,x_6$ lack $y_4$ $\Rightarrow$ \textbf{invalid}; $s=2/7$, $c=2/4$.
-\item $\{y_5,y_6\}\to\{\neg y_7\}$: $\{y_5,y_6\}\dn=\{x_1\}$, $x_1$ lacks $y_7$ $\Rightarrow$ \textbf{holds}; $s=1/7$, $c=1$.
+\item $\{y_2,y_6\}\to\{y_4\}$: $\{y_2,y_6\}\dn=\{x_2,x_3,x_4,x_6\}$, $x_2,x_6$ lack $y_4$: \textbf{invalid}; $s=\frac27$, $c=\frac24$.
+\item $\{y_5,y_6\}\to\{\neg y_7\}$: $\{y_5,y_6\}\dn=\{x_1\}$, $x_1$ lacks $y_7$: \textbf{holds}; $s=\frac17$, $c=1$.
 \end{itemize}
 \sub{FCA Q6: association rules (AR) vs FCA}
 \begin{itemize}
-\item Implication = AR with confidence 1: valid $\iff Z_1\dn\subseteq Z_2\dn\iff\sigma(Z_1\cup Z_2)=\sigma(Z_1)$.
-\item Concept intents = closed itemsets; $s(B)=|B\dn|/|X|$; $s(Z)=s(Z\dn{}\up)$, so the lattice holds all supports.
-\item FCA: small clean data, exact rules + hierarchy. AR: large noisy data, thresholds.
-\item Example: $\{y_2\}\Rightarrow\{y_6\}$ $c=4/4$ (implication); $\{y_6\}\Rightarrow\{y_2\}$ $c=4/5$, $s=4/7$ (AR only).
+\item Implication = AR with $c=1$ ($Z_1\dn\subseteq Z_2\dn\iff\sigma(Z_1\cup Z_2)=\sigma(Z_1)$); intents = closed itemsets, $s(B)=|B\dn|/|X|$.
+\item FCA: small clean data, exact rules + hierarchy; AR: large noisy data, thresholds. E.g.\ $\{y_2\}\Rightarrow\{y_6\}$ $c=1$ (implication); $\{y_6\}\Rightarrow\{y_2\}$ $c=\frac45$ (AR only).
 \end{itemize}
 
 %=====================================================================
-\sect{15 Proof templates}
-\begin{itemize}
-\item \kw{Galois}: $Y\subseteq A\up\iff A\subseteq Y\dn$.
-\item \kw{Antitone}: $m$ shared by all of $X'\supseteq X$ is shared by $X$.
-\item \kw{$\alpha\beta\alpha=\alpha$}: $\supseteq$ extensive; $\subseteq$ antitone on $X\subseteq X\up{}\dn$.
-\item \kw{Meet is a concept}: $(Y_1\cup Y_2)\dn=Y_1\dn\cap Y_2\dn=X_1\cap X_2$.
-\end{itemize}
+
 
 \end{multicols*}
 \end{document}
