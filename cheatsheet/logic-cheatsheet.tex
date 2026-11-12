@@ -361,6 +361,7 @@ False & $\lambda a.\lambda b.b$ & $\wedge$;$\vee$ & $\lambda p.\lambda q.pqp$;\ 
 \item \kw{DL}: family of logic-based KR languages; concept descriptions built from atomic concepts (classes), atomic roles (relations), individuals; formal semantics.
 \item \kw{Why DL, not FOL} \cnt{4}: \n1variable-free \n2readable \n3expressive yet decidable \n4most DLs = decidable FOL fragments.
 \item \kw{DL system}: KB = \kw{TBox} (concepts, roles) + \kw{ABox} (named individuals); description language, reasoning, applications.
+\item TBox Mother $\equiv$ Woman $\sqcap\exists$hasChild.$\top$; ABox Woman(Alice), hasChild(Alice,Bob) $\Rightarrow$ Mother(Alice).
 \item \kw{Inference services} \cnt{5}: \n1satisfiability \n2subsumption \n3ABox consistency \n4instance \n5query/retrieval.
 \end{itemize}
 \sub{Syntax: $A,B,C,D$ atomic concepts, $R$ atomic role}
@@ -431,6 +432,7 @@ $R_1\circ R_2\sqsubseteq R_3$ & property chain & $\forall x,y,z.\,R_1(x,y)\wedge
 \end{itemize}
 \sub{Extensions of ALC}
 \begin{itemize}
+%
 \item HappyMan $\equiv$ Human $\sqcap\neg$Female $\sqcap(\exists$married.Doctor$)\sqcap(\forall$hasChild.(Doctor $\sqcup$ Professor)$)\sqcap(\ge2$hasChild $\sqcap\le4$hasChild$)$.
 \item \kw{Qualified number restriction} $\ge2$hasChild.Professor; \kw{inverse roles} (hasChild / hasParent); \kw{transitive roles} (hasAncestor); \kw{subroles} (hasParent $\sqsubseteq$ hasAncestor); \kw{concrete domains} (reals, integers, strings).
 \end{itemize}
@@ -479,23 +481,26 @@ minCardinality & $\ge nP$ & $\exists^{\ge n}y.P(x,y)$\\
 \item \kw{Knowledge base} (quadruplet) $KB:=\{O,I,inst,instr\}$: $O$ ontology, $I$ individuals, $inst:\mathcal C\to2^I$, $instr:\mathcal R\to2^{I\times I}$; lexicon $L^{KB}:=(L^I,J)$.
 \item Types (Guarino 98) \cnt{4}: top-level, domain, task, application. Lightweight (E-R, UML) vs heavyweight (DL, FOL).
 %
-\item Life cycle \cnt{6}: create/select, populate, validate (consistency), evolve, maintain, deploy.
+\item Life cycle \cnt{6}: create/select, populate, validate, evolve, maintain, deploy.
 \end{itemize}
 \sub{Rule-based reasoning}
 \begin{itemize}
 \item Modus ponens $\frac{A,\ A\to B}{B}$; modus tollens $\frac{\neg B,\ A\to B}{\neg A}$.
 \item Basic cycle \cnt{3}: \n1detection (pattern matching / unification) \n2choice (first rule as Prolog, most specific, most useful; metarules) \n3execution (update KB).
 \item \kw{Forward} chaining (data driven) / \kw{backward} chaining (goal oriented: rules concluding the goal, prove their premises recursively) / mixed.
-\item Ex.\ R1 B,D,E$\to$F; R2 D,G$\to$A; R3 C,F$\to$A; R4 C$\to$D; R5 D$\to$E; R6 A$\to$H; R7 B$\to$X; R8 X,C$\to$A; B, C true, H? First rule: D,E,F,A,H. Last rule: X,A,H.
+%
 \end{itemize}
 
 %=====================================================================
+\begin{itemize}
+\item Ex.\ R1 B,D,E$\to$F; R2 D,G$\to$A; R3 C,F$\to$A; R4 C$\to$D; R5 D$\to$E; R6 A$\to$H; R7 B$\to$X; R8 X,C$\to$A; B, C true, H? First rule: D,E,F,A,H. Last rule: X,A,H.
+\end{itemize}
 \sect{13 DL exam-style exercises}
 \sub{Prove $\forall r.(A\sqcap B)\sqsubseteq\forall r.A\sqcap\forall r.B$}
 \begin{itemize}
 \item Take $x\in(\forall r.(A\sqcap B))^I$ and $y$ with $(x,y)\in r^I$.
-\item Then $y\in A^I\cap B^I\subseteq A^I$, so $x\in(\forall r.A)^I$.
-\item Same for $B$, so $x$ is in the intersection.
+\item Then $y\in A^I\cap B^I\subseteq A^I$, so $x\in(\forall r.A)^I$; same for $B$.
+%
 \item FOL: $\forall x[\forall y(r\to A\wedge B)\to\forall y(r\to A)\wedge\forall y(r\to B)]$ valid. Converse holds too.
 \item $\exists r.(A\sqcap B)\sqsubseteq\exists r.A\sqcap\exists r.B$, \emph{not} the converse.
 \end{itemize}
@@ -504,8 +509,8 @@ minCardinality & $\ge nP$ & $\exists^{\ge n}y.P(x,y)$\\
 \item SuccessfulMan $\equiv\neg$Female $\sqcap$ InBusiness $\sqcap\exists$married.Lawyer $\sqcap\exists$child.(StudiesAtUni $\sqcup$ Works).
 \item ABox: Pedro:$\neg$Female, Pedro:InBusiness, Mary:Lawyer, John:Works, married(Pedro,Mary), child(Pedro,John).
 \item Yes: Mary witnesses $\exists$married; John witnesses $\exists$child.
-\item $\equiv$ is sufficient; with only $\sqsubseteq$ it would not follow.
-\item Method: check each conjunct; witness for each $\exists$; all fillers for each $\forall$.
+\item $\equiv$ is sufficient (only $\sqsubseteq$ would not do). Method: each conjunct; witness for $\exists$; all fillers for $\forall$.
+%
 \end{itemize}
 
 %=====================================================================
@@ -577,28 +582,33 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \begin{itemize}
 \item New rows: $x_1{\cap}x_2=\{y_1y_6\}$, $x_1{\cap}x_5=\{y_1y_5\}$, $x_2{\cap}x_5=\{y_1\}$, $x_4{\cap}x_5=\{y_1y_4\}$, $x_3{\cap}x_5=\{y_1y_3y_4\}$; add full row $Y$ $\Rightarrow$ 12 intents.
 \end{itemize}
-\textbf{Table of concepts} (every intent also contains $y_1$)\\[1pt]
+\textbf{Table of concepts + lattice} (every intent also contains $y_1$)\par
+\begin{minipage}[t]{0.6\linewidth}\vspace{0pt}
+\setlength{\tabcolsep}{1.2pt}\renewcommand{\arraystretch}{0.92}
 \begin{tabular}{@{}r|l|l|l@{}}
 \# & intent & extent & below\\\hline
-1 & $y_1$ & all 7 & (top)\\
+1 & $y_1$ & all 7 & top\\
 2 & $y_6$ & $x_1x_2x_3x_4x_6$ & 1\\
 3 & $y_5$ & $x_1x_5x_7$ & 1\\
 4 & $y_4$ & $x_3x_4x_5$ & 1\\
 5 & $y_2y_6$ & $x_2x_3x_4x_6$ & 2\\
-6 & $y_5y_6$ & $x_1$ & 2, 3\\
+6 & $y_5y_6$ & $x_1$ & 2,3\\
 7 & $y_5y_7$ & $x_5x_7$ & 3\\
 8 & $y_3y_4$ & $x_3x_5$ & 4\\
-9 & $y_2y_4y_6$ & $x_3x_4$ & 4, 5\\
-10 & $y_2y_3y_4y_6$ & $x_3$ & 8, 9\\
-11 & $y_3y_4y_5y_7$ & $x_5$ & 7, 8\\
-12 & $Y$ (all) & $\emptyset$ & 6, 10, 11\\
-\end{tabular}\par
-{\centering\begin{tikzpicture}[x=10mm,y=3.6mm,every node/.style={font=\scriptsize,inner sep=0.4pt}]
+9 & $y_2y_4y_6$ & $x_3x_4$ & 4,5\\
+10 & $y_2y_3y_4y_6$ & $x_3$ & 8,9\\
+11 & $y_3y_4y_5y_7$ & $x_5$ & 7,8\\
+12 & $Y$ & $\emptyset$ & 6,10,11\\
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.39\linewidth}\vspace{4pt}
+\centering\begin{tikzpicture}[x=6.3mm,y=6.4mm,every node/.style={font=\scriptsize,inner sep=0.3pt}]
 \foreach \n/\x/\y in {1/2/5,2/0.6/4,3/2/4,4/3.4/4,5/0/3,6/1.2/3,7/2.4/3,8/3.6/3,9/1.2/2,10/2.6/1.1,11/3.8/1.5,12/2.2/0.1}
-  \node[circle,draw,minimum size=3.4mm] (c\n) at (\x,\y) {\n};
+  \node[circle,draw,minimum size=3.2mm] (c\n) at (\x,\y) {\n};
 \foreach \a/\b in {1/2,1/3,1/4,2/5,2/6,3/6,3/7,4/8,4/9,5/9,9/10,8/10,8/11,7/11,6/12,10/12,11/12}
   \draw (c\a)--(c\b);
-\end{tikzpicture}\par}
+\end{tikzpicture}
+\end{minipage}\par
 \sub{FCA Q3: closures \cnt{$\dn$, $\up$, then $\dn$ again gives the same extent}}
 \begin{itemize}
 \item $y_6$: $\{y_6\}\dn=\{x_1,x_2,x_3,x_4,x_6\}$; $\up=\{y_1,y_6\}$: concept 2.
@@ -614,9 +624,18 @@ level 1/.style={sibling distance=22mm},level 2/.style={sibling distance=13mm},le
 \item $\{y_2,y_6\}\to\{y_4\}$: $\{y_2,y_6\}\dn=\{x_2,x_3,x_4,x_6\}$, $x_2,x_6$ lack $y_4$: \textbf{invalid}; $s=\frac27$, $c=\frac24$.
 \item $\{y_5,y_6\}\to\{\neg y_7\}$: $\{y_5,y_6\}\dn=\{x_1\}$, $x_1$ lacks $y_7$: \textbf{holds}; $s=\frac17$, $c=1$.
 \end{itemize}
-\sub{FCA Q6: association rules (AR) vs FCA}
+\sub{FCA Q6: how association rules (AR) relate to FCA}
 \begin{itemize}
-\item Implication = AR with $c=1$; intents = closed itemsets, $s(B)=|B\dn|/|X|$. FCA: small clean data, exact; AR: large noisy data, thresholds. $\{y_2\}\Rightarrow\{y_6\}$ $c=1$; $\{y_6\}\Rightarrow\{y_2\}$ $c=\frac45$ (AR only).
+\item \kw{Same data}: a context = a transaction database (object $x$ = transaction, attribute $y$ = item); $\sigma(Z)=|Z\dn|$.
+\item \kw{Key connections} \cnt{3}:
+\begin{itemize}
+\item \n1An implication $Z_1\Rightarrow Z_2$ is an AR with confidence 100\%: valid $\iff Z_1\dn\subseteq Z_2\dn\iff\sigma(Z_1\cup Z_2)=\sigma(Z_1)\iff c=1$.
+\item \n2Concept intents = \kw{closed itemsets}; $s(Z)=s(Z\dn{}\up)$, so the lattice stores every support (frequent intents = iceberg lattice).
+\item \n3Duquenne--Guigues basis = minimal set of \emph{exact} rules ($c=1$); AR mining adds \emph{partial} rules ($c<1$) above minSup/minConf.
+\end{itemize}
+\item \kw{Use FCA} when data is small and clean and you need rules that \emph{always} hold, plus a concept hierarchy (one noisy row breaks an implication).
+\item \kw{Use AR} for large, noisy data where rules hold ``usually'': thresholds, scalable algorithms (Apriori, FP-Growth); the lattice could explode.
+\item \kw{Example}: $\{y_2\}\Rightarrow\{y_6\}$ (Warrior$\Rightarrow$Fellowship): $s=\frac47$, $c=\frac44=1$: implication and AR. $\{y_6\}\Rightarrow\{y_2\}$: $s=\frac47$, $c=\frac45$ (Frodo $x_1$ is a counterexample): AR only. $\{y_3\}\Rightarrow\{y_4\}$ $c=1$; $\{y_4\}\Rightarrow\{y_3\}$ $c=\frac23$.
 \end{itemize}
 
 %=====================================================================
