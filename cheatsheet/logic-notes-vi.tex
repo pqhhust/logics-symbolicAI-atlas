@@ -1,0 +1,208 @@
+% Logics & Symbolic AI (CSC_5AI01_TP) -- short note, giải thích tiếng Việt, thuật ngữ tiếng Anh
+% Build: xelatex logic-notes-vi.tex (twice)
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=1.6cm]{geometry}
+\usepackage{mathptmx}
+\usepackage{amsmath,amssymb}
+\usepackage{fontspec}
+\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+\definecolor{h1}{HTML}{1F4E79}\definecolor{h2}{HTML}{A23B2A}\definecolor{bg}{HTML}{EAF0F6}\definecolor{wn}{HTML}{FBEDEA}
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt,leftmargin=14pt}
+\pagestyle{plain}
+\newcommand{\kw}[1]{\textbf{#1}}
+\newcommand{\sect}[1]{\par\vspace{6pt}\noindent\colorbox{h1}{\parbox{\dimexpr\linewidth-2\fboxsep}{\large\bfseries\color{white}#1}}\par\vspace{2pt}}
+\newcommand{\sub}[1]{\par\vspace{3pt}{\bfseries\color{h2}#1}\par}
+\newcommand{\idea}[1]{\par\noindent\colorbox{bg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\textbf{Ý tưởng:} #1}}\par}
+\newcommand{\warn}[1]{\par\noindent\colorbox{wn}{\parbox{\dimexpr\linewidth-2\fboxsep}{\textbf{Dễ sai:} #1}}\par}
+\newcommand{\impl}{\supset}
+\newcommand{\up}{^{\uparrow}}
+\newcommand{\dn}{^{\downarrow}}
+\newcommand{\gd}[1]{[#1]}
+\newcommand{\gc}[1]{\langle #1\rangle}
+\begin{document}
+{\centering{\LARGE\bfseries\color{h1} Logics \& Symbolic AI -- Short note}\\[2pt]
+{\itshape Ghi chú ngắn bằng tiếng Việt; thuật ngữ \textbf{in đậm} giữ nguyên tiếng Anh như trong slide và đề thi.}\par}
+\vspace{4pt}
+\textbf{Cách dùng.} Mỗi phần: \emph{ý tưởng} (hiểu bằng trực giác) $\to$ \emph{định nghĩa} (ký hiệu slide) $\to$ \emph{cách làm bài} $\to$ \emph{lỗi hay gặp}. Lời giải đầy đủ của đề mẫu nằm trong cheat sheet.
+
+\begin{multicols}{2}
+%=====================================================================
+\sect{1. Propositional logic}
+\idea{Mỗi biến mệnh đề chỉ đúng hoặc sai. \kw{Syntax} là cách viết công thức, \kw{semantics} là ý nghĩa (đúng/sai) của nó.}
+\begin{itemize}
+\item \kw{Valuation} $v$: gán True/False cho từng ký hiệu, rồi tính lên theo phép nối: $v(\neg F)=$ Not $v(F)$, $v((A\bullet B))=v(A)\blacksquare v(B)$.
+\item \kw{Tautology}: đúng với \emph{mọi} $v$ (vd.\ $p\vee\neg p$). \kw{Satisfiable}: đúng với \emph{ít nhất một} $v$.
+\item \kw{Logical consequence} $S\models X$: hễ $S$ đúng thì $X$ đúng.
+\item Định lý quan trọng nhất: $S\models X\iff S\cup\{\neg X\}$ \emph{không thỏa được}. Đây là cơ sở của mọi chứng minh bằng phản chứng / resolution.
+\end{itemize}
+\sub{Đưa về CNF và resolution}
+\begin{itemize}
+\item \kw{CNF} = hội của các \kw{clause}; clause = tuyển các literal. Slide viết $\gc{\gd{\ldots},\gd{\ldots}}$: ngoặc vuông = OR, ngoặc nhọn = AND.
+\item Cách làm: bỏ $\impl$ ($X\impl Y\equiv\neg X\vee Y$), đẩy $\neg$ vào trong (De Morgan), rồi phân phối $\vee$ qua $\wedge$.
+\item \kw{Resolution}: từ $\gd{A,X}$ và $\gd{\neg X,B}$ suy ra $\gd{A,B}$. Muốn chứng minh $X$: thêm $\gd{\neg X}$ và hợp giải tới khi được clause rỗng $\gd{}$ (mâu thuẫn).
+\item \kw{Sound}: chứng minh được thì đúng. \kw{Complete}: đúng thì chứng minh được. Logic mệnh đề: sound, complete, \kw{decidable}.
+\end{itemize}
+\warn{phủ định của $X\impl Y$ là $X\wedge\neg Y$, \emph{không} phải $\neg X\impl\neg Y$.}
+
+%=====================================================================
+\sect{2. First-order logic (FOL)}
+\idea{Thêm \emph{đối tượng}, \emph{hàm} và \emph{lượng từ} $\forall,\exists$ để nói ``mọi người'', ``có ai đó''.}
+\begin{itemize}
+\item \kw{Term} chỉ một đối tượng (biến, hằng, $f(t_1,..)$); \kw{atomic formula} $p(t_1,..)$ là một mệnh đề đúng/sai.
+\item \kw{Function hay predicate?} Ký hiệu nằm \emph{bên trong đối số} của ký hiệu khác $\Rightarrow$ \kw{function}. Ký hiệu đứng trực tiếp dưới $\neg,\wedge,\vee,\to$ hoặc lượng từ $\Rightarrow$ \kw{predicate}. \kw{Arity} = số đối số.
+\item Biến \kw{free}: không nằm trong phạm vi của lượng từ nào buộc nó. Phạm vi của $\forall x$ chỉ là công thức ngay sau nó.
+\item \kw{Interpretation}: miền $D$, hằng $\mapsto$ phần tử, hàm $\mapsto$ hàm trên $D$, vị từ $\mapsto$ quan hệ. \kw{Valid} = đúng trong mọi mô hình.
+\end{itemize}
+\sub{Chứng minh $F$ valid bằng resolution (6 bước)}
+\begin{enumerate}
+\item Lấy $\neg F$, đưa về \kw{prenex} (mọi lượng từ ra đầu; đổi tên biến trước).
+\item \kw{Skolemize}: thay mỗi $\exists x$ bằng hàm mới của các biến $\forall$ đứng trước ($f(x_1..)$, hoặc hằng nếu không có).
+\item Bỏ $\forall$. \quad 4. Đưa về CNF.
+\setcounter{enumi}{4}
+\item Resolution + \kw{unification} (chọn giá trị cho biến để hai literal khớp).
+\item Ra $\gd{}$ $\Rightarrow\neg F$ không thỏa được $\Rightarrow F$ valid.
+\end{enumerate}
+\warn{khi kéo lượng từ ra khỏi \emph{vế trái} của $\impl$, nó \emph{đổi chiều}: $((\forall v)A\impl B)\equiv(\exists v)(A\impl B)$.}
+\begin{itemize}
+\item FOL là \kw{semi-decidable}: nếu $F$ valid thì sẽ tìm ra chứng minh; nếu không, thuật toán có thể chạy mãi.
+\end{itemize}
+\sub{Natural deduction}
+\begin{itemize}
+\item Mỗi phép nối có luật \kw{introduction} (I: tạo ra nó) và \kw{elimination} (E: dùng nó). Ví dụ $\to$I: giả sử $p$ chứng minh được $q$ thì có $p\to q$; $\to$E = modus ponens.
+\item Handout: g = gauche (trái), d = droite (phải); Abs = phản chứng.
+\end{itemize}
+
+%=====================================================================
+\sect{3. Planning (STRIPS và SAT)}
+\idea{Mô tả thế giới bằng các sự kiện (\kw{fluents}); mỗi \kw{action} có \kw{preconditions} và \kw{effects}; tìm dãy hành động đi từ trạng thái đầu tới đích.}
+\begin{itemize}
+\item \kw{STRIPS}: tìm kiếm quay lui; \kw{Sussman anomaly}: giải từng đích riêng sẽ phá đích kia.
+\item \kw{Planning as SAT} (Kautz \& Selman): thêm thời gian $t$ vào mọi vị từ, \kw{ground} thành biến boolean (vd.\ \texttt{posX-1-3} = ``X ở vị trí 1 lúc $t=3$''), rồi viết 5 loại ràng buộc:
+\begin{enumerate}
+\item \kw{Initial state} ($t=0$): ghi \emph{mọi} fluent, đúng hoặc $\neg$.
+\item \kw{Goal} ($t=N$): chỉ ghi các sự kiện đích.
+\item \kw{Problem constraints}: vd.\ mỗi bước đúng một hành động.
+\item \kw{Action}: $a_t\Rightarrow$ (precondition lúc $t$) $\wedge$ (effect lúc $t+1$).
+\item \kw{Explanatory frame axioms}: nếu fluent thay đổi thì phải có hành động gây ra nó. Mỗi fluent 2 axiom: bật lên ($\neg f_t\wedge f_{t+1}\Rightarrow\bigvee$ hành động thêm $f$) và tắt đi ($f_t\wedge\neg f_{t+1}\Rightarrow\bigvee$ hành động xóa $f$).
+\end{enumerate}
+\item Không biết số bước $N$: thử $N=1,2,\ldots$ tới khi SAT solver tìm ra mô hình.
+\end{itemize}
+\warn{trạng thái đầu phải ghi cả các fluent \emph{sai}; đích thì không. Hành động có precondition không thể đúng (vd.\ Up khi $Y=3$) $\Rightarrow$ viết $\neg U3_t$.}
+
+%=====================================================================
+\sect{4. Formal Concept Analysis (FCA)}
+\idea{Một bảng đối tượng $\times$ thuộc tính. Một \kw{concept} là một cặp (nhóm đối tượng, nhóm thuộc tính) ``khớp nhau hoàn toàn'': các đối tượng có chung đúng các thuộc tính đó, và chỉ chúng có đủ các thuộc tính đó.}
+\begin{itemize}
+\item \kw{Context} $K=(X,Y,I)$: $(x,y)\in I$ nghĩa là đối tượng $x$ có thuộc tính $y$.
+\item $A\up$ = các thuộc tính \emph{mọi} đối tượng trong $A$ đều có; $B\dn$ = các đối tượng có \emph{đủ} mọi thuộc tính trong $B$.
+\item \kw{Concept} $(A,B)$: cần \textbf{cả hai} $A\up=B$ và $B\dn=A$. $A$ = \kw{extent}, $B$ = \kw{intent}.
+\item Mẹo kiểm tra: tính $B\dn$, rồi $(B\dn)\up$. Nếu được lại đúng $B$ thì $B$ là intent.
+\item Thứ tự: concept dưới có \emph{ít} đối tượng, \emph{nhiều} thuộc tính. Tập mọi concept là một \kw{complete lattice}.
+\end{itemize}
+\sub{Intersection method theo hàng (Wille; Stumme)}
+Coi mỗi hàng là một \kw{transaction} (tập thuộc tính của đối tượng). \emph{Mọi intent là giao của một số hàng}. Cách làm:
+\begin{enumerate}
+\item Ghi intent của từng hàng $\{x\}\up$.
+\item Giao mỗi hàng với mọi hàng phía trên; kết quả mới thì thêm thành hàng mới; lặp cho tới hàng mới cuối cùng.
+\item Thêm hàng toàn bộ thuộc tính $Y$ nếu chưa có (concept đáy, extent có thể rỗng).
+\item Extent của mỗi intent = các đối tượng có đủ intent đó.
+\item Vẽ: intent nhỏ ở trên; nối mỗi concept với concept ngay trên nó (intent chứa nó, không qua trung gian).
+\item Gán nhãn rút gọn: thuộc tính ở concept \emph{cao nhất} có nó; đối tượng ở concept \emph{thấp nhất} có nó.
+\end{enumerate}
+\begin{itemize}
+\item \kw{Implication} $Z_1\Rightarrow Z_2$ đúng khi mọi đối tượng có $Z_1$ cũng có $Z_2$, tức $Z_1\dn\subseteq Z_2\dn$. Sai thì chỉ ra một \emph{phản ví dụ}.
+\item \kw{Clarified}: không có hàng (cột) trùng nhau. \kw{Reduced}: không có hàng (cột) là giao của hàng (cột) khác. Cả hai không đổi hình dạng lattice.
+\item \kw{Duquenne--Guigues basis}: tập implication nhỏ nhất suy ra được mọi implication đúng.
+\end{itemize}
+\warn{quên rằng cột đầy (vd.\ $y_1$ mọi người đều có) nằm trong \emph{mọi} intent; quên concept đáy $(\emptyset,Y)$.}
+
+%=====================================================================
+\sect{5. Association rules}
+\idea{Trong dữ liệu giỏ hàng, tìm luật ``ai mua $X$ thường mua $Y$''. Không phải nhân quả.}
+\begin{itemize}
+\item \kw{Support} $s(X)$ = tỉ lệ transaction chứa $X$. \kw{Confidence} $c(X\Rightarrow Y)=\sigma(X\cup Y)/\sigma(X)$ = trong số chứa $X$, bao nhiêu chứa cả $Y$.
+\item \kw{Lift} $=c/s(Y)$: $=1$ độc lập, $>1$ có liên hệ dương. Confidence cao chưa đủ: Tea$\Rightarrow$Coffee $c=.75$ nhưng $s(Coffee)=.8$ nên thật ra là liên hệ âm.
+\item \kw{A priori principle}: tập con của tập frequent là frequent $\Rightarrow$ loại sớm mọi tập chứa một tập con không frequent.
+\item \kw{Apriori}: tìm $L_1$; ghép $L_{k-1}$ thành ứng viên $C_k$, cắt tỉa, quét dữ liệu, giữ cái $\ge minSup$; lặp. Luật từ tập $L$: $A\Rightarrow L\setminus A$.
+\item \kw{Liên hệ với FCA}: implication = luật có $c=1$; intents = \kw{closed itemsets} (cùng support với bao đóng của chúng). FCA hợp dữ liệu nhỏ, sạch; AR hợp dữ liệu lớn, nhiễu.
+\end{itemize}
+
+%=====================================================================
+\sect{6. Fuzzy logic}
+\idea{Sự thật có \emph{mức độ}: ``nóng'' đúng 0.9. \kw{Degree of truth} khác xác suất: xác suất nói về \emph{khả năng}, độ đúng nói về \emph{mức độ}.}
+\begin{itemize}
+\item NOT: $1-x$. AND = \kw{T-norm}, cần 4 tính chất: giao hoán, đơn điệu, kết hợp, $T(a,1)=a$. OR = \kw{T-conorm} $\bot(a,b)=1-T(1-a,1-b)$.
+\item Bốn T-norm của slide (từ lớn tới nhỏ): \kw{min} $\min(a,b)$; \kw{product} $ab$; \kw{Łukasiewicz} $\max(0,a+b-1)$; \kw{drastic}: nếu một bên bằng 1 thì lấy bên kia, ngược lại 0.
+\item Kiểm tra T-norm: thử $T(a,1)=a$ trước (rất nhanh bác bỏ, vd.\ trung bình $\frac{a+b}2$: $T(.4,1)=.7$).
+\item \kw{R-implication} $R_T(x,y)$ = giá trị $z$ lớn nhất sao cho $T(z,x)\le y$. Nếu $x\le y$ thì luôn $=1$. Với min: $=y$ khi $x>y$; product: $y/x$; Łukasiewicz: $1-x+y$.
+\item \kw{S-implication} = tính $\neg x\vee y$ trực tiếp.
+\item \kw{Fuzzy inference}: luật ``$C\ge\phi$(tiền đề)''. Bắt đầu từ giá trị cho trước (không cho = 0), lặp: nếu luật chưa thỏa thì \emph{nâng} kết luận lên đúng $\phi$(tiền đề). Dừng khi không đổi: đó là nghiệm nhỏ nhất.
+\item \kw{Fuzzy set} $\mu(x)\in[0,1]$; \kw{Mamdani}: fuzzify $\to$ firing strength $\alpha$ $\to$ cắt tập kết luận ở $\alpha$ $\to$ \kw{defuzzify} (First/Mean of Maxima, Median).
+\end{itemize}
+\warn{trong inference chỉ được \emph{tăng} giá trị, không giảm.}
+
+%=====================================================================
+\sect{7. MAX SAT \& PSL}
+\idea{Luật có \emph{trọng số}, có thể mâu thuẫn nhau; ta muốn thỏa ``càng nhiều trọng số càng tốt''.}
+\begin{itemize}
+\item \kw{Weighted MAX SAT}: biến 0/1; tối đa tổng trọng số clause thỏa. \kw{NP-hard}: cho mọi clause trọng số 1, bài SAT thỏa được $\iff$ tối ưu $=m$; nên giải nhanh MAX SAT thì giải nhanh SAT.
+\item \kw{PSL}: cho biến nhận giá trị trong $[0,1]$; clause tính bằng OR Łukasiewicz $\min(\sum\text{literal},1)$, literal phủ định $=1-y$. Mục tiêu $\sum_cw(c)\min(\ldots,1)$.
+\item PSL \kw{polynomial}: mỗi hạng tử là $\min$ của hàm tuyến tính và 1 $\Rightarrow$ lõm; bài toán \kw{convex}, viết được thành quy hoạch tuyến tính. Slide giải bằng \kw{hit and run}.
+\item Làm bài tối ưu nhỏ: chia trường hợp theo $\min(\cdot,1)$ (khi tổng $\le1$ và $\ge1$), mỗi miền là tuyến tính nên tối ưu ở đỉnh.
+\end{itemize}
+
+%=====================================================================
+\sect{8. Theorem proving \& $\lambda$-calculus}
+\begin{itemize}
+\item \kw{Hilbert's program}: muốn toán học nhất quán, đầy đủ, quyết định được. \kw{Gödel}: hệ nhất quán chứa số học thì không đầy đủ, và không tự chứng minh được tính nhất quán.
+\item $\lambda$-term: biến, $\lambda x.M$ (hàm), $MN$ (áp dụng). \kw{$\beta$-reduction}: $(\lambda x.M)N\to M[N/x]$ (thay $x$ bằng $N$; đổi tên biến buộc nếu sẽ ``bắt'' biến tự do của $N$).
+\item \kw{Church numerals}: $\overline n=\lambda f.\lambda x.f^nx$ (áp dụng $f$ $n$ lần). Khi làm bài, \emph{thay số cụ thể} $\overline m$ vào chỗ biến $m$ rồi rút gọn.
+\item True $=\lambda a.\lambda b.a$ (chọn cái đầu), False $=\lambda a.\lambda b.b$ (chọn cái sau).
+\item \kw{Simply typed} $\lambda$: mọi term có kiểu đều \kw{strongly normalizing} (rút gọn luôn dừng); $(\lambda x.xx)(\lambda x.xx)$ không có kiểu.
+\item \kw{Curry--Howard}: công thức = kiểu, chứng minh = chương trình; $\to$I = $\lambda$, $\to$E = áp dụng hàm.
+\end{itemize}
+
+%=====================================================================
+\sect{9. Description logics (DL)}
+\idea{Một ngôn ngữ để định nghĩa \kw{concepts} (lớp: Person, Mother) từ \kw{roles} (quan hệ: hasChild) mà không cần biến; là mảnh quyết định được của FOL, là nền của OWL.}
+\begin{itemize}
+\item \kw{TBox} = định nghĩa chung (Mother $\equiv$ Woman $\sqcap\exists$hasChild.Person). \kw{ABox} = sự kiện về cá thể (Woman(Alice), hasChild(Alice,Bob)).
+\item \kw{Interpretation} $\mathbb I=(\Delta^I,\cdot^I)$: concept $\mapsto$ tập con của $\Delta^I$, role $\mapsto$ tập cặp. $\sqcap$ = giao, $\sqcup$ = hợp, $\neg$ = phần bù.
+\item $\exists R.C$ = ``có \emph{ít nhất một} $R$-successor thuộc $C$''. $\forall R.C$ = ``\emph{mọi} $R$-successor (nếu có) thuộc $C$'' (đúng cả khi không có successor nào!).
+\item Họ ngôn ngữ: \kw{AL} (phủ định chỉ cho concept nguyên tử, $\exists R.\top$) + U ($\sqcup$) + E ($\exists R.C$) + C (phủ định đầy đủ) + N (đếm số).
+\item Dịch sang FOL: $\exists R.C\mapsto\exists y\,(R(x,y)\wedge C(y))$; $\forall R.C\mapsto\forall y\,(R(x,y)\to C(y))$; $C\sqsubseteq D\mapsto\forall x\,(C(x)\to D(x))$.
+\end{itemize}
+\sub{Suy luận}
+\begin{itemize}
+\item TBox: \kw{satisfiability}, \kw{subsumption} $C\sqsubseteq D$, \kw{equivalence}, \kw{disjointness}. Mọi bài quy về \emph{unsatisfiability}: $C\sqsubseteq D\iff C\sqcap\neg D$ không thỏa được.
+\item ABox: \kw{consistency}, \kw{instance check} ($A\models C(a)\iff A\cup\{\neg C(a)\}$ mâu thuẫn), \kw{retrieval}, \kw{realization}.
+\item Chứng minh $C\sqsubseteq D$ theo ngữ nghĩa: ``lấy $x\in C^I$ tùy ý, chứng minh $x\in D^I$''.
+\item Kiểm tra cá thể (vd.\ Pedro là SuccessfulMan?): xét từng thành phần của định nghĩa; $\exists$ cần một \emph{nhân chứng} trong ABox; cần định nghĩa là $\equiv$ (đủ), $\sqsubseteq$ thì không suy ra được.
+\end{itemize}
+\warn{phản ví dụ cho $\exists r.A\sqcap\exists r.B\sqsubseteq\exists r.(A\sqcap B)$: $x$ có một con trong $A$ và một con \emph{khác} trong $B$.}
+\sub{OWL, ontology, knowledge base}
+\begin{itemize}
+\item \kw{OWL 2 DL} = SROIQ(D); công cụ Protégé, reasoner HermiT/Pellet. \kw{EquivalentTo} = điều kiện cần \& đủ; \kw{SubClassOf} = chỉ cần.
+\item Property: \kw{transitive}, \kw{symmetric}, \kw{functional} (tối đa một giá trị), \kw{inverse functional}, \kw{inverse}.
+\item \kw{Ontology} = ``formal, explicit specification of a shared conceptualization'' (4 chữ: formal = máy hiểu, explicit = định nghĩa rõ, shared = đồng thuận, conceptualization = cách nhìn lĩnh vực). Cấu trúc $O=\{\mathcal C,\mathcal R,\mathcal H^{\mathcal C},\mathit{Rel},\mathcal A^O\}$.
+\item \kw{Knowledge base} $KB=\{O,I,inst,instr\}$: ontology + cá thể + gán cá thể cho concept / relation.
+\item \kw{Forward chaining}: từ sự kiện, áp luật tới khi ra đích. \kw{Backward chaining}: từ đích, tìm luật kết luận ra nó, chứng minh tiền đề.
+\end{itemize}
+
+%=====================================================================
+\sect{10. Chiến lược làm bài}
+\begin{itemize}
+\item Đọc kỹ động từ của đề: \emph{give, prove, justify, explain}. ``Justify'' = phải có một câu lý do.
+\item Định nghĩa có nhiều điều kiện (concept, T-norm, Galois): kiểm tra \emph{đủ số} điều kiện.
+\item FCA: luôn kiểm tra lại bằng $(\cdot)\dn{}\up$; đếm số concept cuối cùng.
+\item Fuzzy/PSL: ghi rõ T-norm dùng, tính từng bước.
+\item Chứng minh NP-hard: ``quy một bài NP-complete đã biết về bài này trong thời gian đa thức''.
+\end{itemize}
+\end{multicols}
+\end{document}
